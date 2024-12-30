@@ -1,0 +1,38 @@
+/* Custom pagination bullets */
+.swiper-pagination-bullet {
+  background-color: #212529;
+  width: 12px;
+  height: 12px;
+  opacity: 1; /* Fully opaque */
+  outline: none;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #f85b5b;
+  transform: scale(1.2);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.swiper-pagination {
+  position: relative;
+}
+
+
+
+.testy-card {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Uniform shadow around the card */
+  border-radius: 0.5rem; /* Adjust the border-radius as needed */
+  transition: box-shadow 0.3s; /* Optional: Add transition for hover effect */
+}
+
+.testy-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Shadow on hover for effect */
+}
+
+
+.testi-slider{
+    transition: transform 0.5s ease; /* Smooth transition for slide movements */
+
+
+}
+

@@ -1,0 +1,68 @@
+{
+  "compilerOptions": {
+    // Generates source maps for debugging
+    "sourceMap": true,
+    
+    // Ensures compatibility with modern JavaScript features
+    "target": "ES2020",
+    
+    // Includes essential libraries for DOM and ECMAScript support
+    "lib": ["dom", "dom.iterable", "es2020"],
+    
+    // Allows JavaScript files to be included in the project
+    "allowJs": true,
+    
+    // Skips type checking for declaration files (improves build speed)
+    "skipLibCheck": true,
+    
+    // Enforces strict type-checking options
+    "strict": true,
+    
+    // Ensures consistent casing in module imports
+    "forceConsistentCasingInFileNames": true,
+    
+    // Disables emitting compiled JavaScript files
+    "noEmit": true,
+    
+    // Enables compatibility with ES module imports
+    "esModuleInterop": true,
+    
+    // Specifies module code generation as ESNext
+    "module": "ESNext",
+    
+    // Resolves modules using Node.js conventions
+    "moduleResolution": "node",
+    
+    // Allows importing JSON files as modules
+    "resolveJsonModule": true,
+    
+    // Treats each file as an isolated module
+    "isolatedModules": true,
+    
+    // Preserves JSX syntax for further processing by Next.js
+    "jsx": "preserve",
+    
+    // Speeds up incremental builds by reusing information from previous compilations
+    "incremental": true,
+    
+    // Includes type definitions for Node, Next.js, and NextAuth
+    "types": ["node", "next", "next/types", "next-auth"],
+    
+    // Configures aliasing for cleaner imports
+    "paths": {
+      "@/*": ["./catering-booking/src/*"]
+    },
+    
+    // Adds Next.js-specific TypeScript plugins for better integration
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  // Specifies files and patterns to include in the project
+  "include": ["../next-env.d.ts", "**/*.ts", "**/*.tsx", "catering-booking/.next/catering-booking/src/firebase.config.tsirebase.config.ts"],
+  
+  // Excludes unnecessary directories and files from the TypeScript compiler
+  "exclude": ["catering-booking/node_modules", "dist", ".turbo"]
+}

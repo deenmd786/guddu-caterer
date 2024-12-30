@@ -1,0 +1,83 @@
+.cat-btn {
+    position: relative;
+    display: inline-block;
+    color: var(--text-white);
+    background-color: var(--button);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 500ms ease;
+    z-index: 1;
+    padding: 13px 15px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+    min-width: 115px;
+  }
+  
+  .cat-btn::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 100%; /* Start with right fully off the button */
+    content: "";
+    border-radius: 10px;
+    background-color: black; /* Background color for the hover effect */
+    transition: right 500ms ease; /* Smooth transition for the right property */
+    z-index: -1;
+  }
+  
+  .cat-btn:hover::before {
+    right: 0;
+  }
+  
+  .cat-btn:hover {
+    color: var(--text-white);
+  }
+  
+  /* Reverse color styles for .catr-btn */
+  .catr-btn {
+    background-color: black; /* Reverse background color */
+    color: var(--text-white); /* Reverse text color */
+  }
+  
+  .catr-btn::before {
+    background-color: var(--button); /* Reverse hover background */
+  }
+  
+  .catr-btn:hover {
+    color: var(--text-white); /* Reverse hover text color */
+  }
+  
+  /* Responsive Styles */
+@media (max-width: 1024px) {
+  .cat-btn {
+    font-size: 14px; /* Smaller font size for smaller screens */
+    padding: 10px 12px; /* Adjust padding for smaller buttons */
+    min-width: 110px; /* Reduce minimum width */
+  }
+}
+@media (max-width: 768px) {
+  .cat-btn {
+    font-size: 14px; /* Smaller font size for smaller screens */
+    padding: 10px 12px; /* Adjust padding for smaller buttons */
+    min-width: 110px; /* Reduce minimum width */
+  }
+}
+
+@media (max-width: 480px) {
+  .cat-btn {
+    font-size: 14px; /* Even smaller font size for very small screens */
+    padding: 6px 6px; /* Further reduce padding */
+    min-width: 84px; /* Minimum width for very small screens */
+  }
+}
+
+
+@media not all and (min-width: 768px) {
+  .max-lg\:\!text-xs {
+      font-size: 0.60rem /* 12px */ !important;
+      line-height: .8rem /* 16px */ !important;
+  }
+}

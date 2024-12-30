@@ -1,0 +1,36 @@
+// utils/authMessages.ts
+
+const authMessages = {
+  userAlreadyExists: "User already exists!",
+  invalidEmailFormat: "Invalid email format.",
+  invalidCreadencials: "Invalid token",
+  invalidNameFormat: "Name must be 3-20 characters long.",
+  passwordTooShort: "Password must be at least 6 characters long.",
+  invalidProfilePicUrl: "Invalid profile picture URL. It must be a valid base64 image.",
+  registrationSuccess: "User registered successfully.",
+  loginSuccess: "Login successful.",
+  logoutSuccess: "Logout successful.",
+  userFoundSuccess: "User data retrieved successfully",
+  incorrectEmail: "Email is not exist.",
+  incorrectPassword: "Password is not correct.",
+  userNotFound: "User not found.",
+  usersFoundSuccess:"Got All users data",
+  tokenNotExist: "Token is not Exist.",
+  tokenExpired: "Token has expired.",
+  alreadyVerified: "User Already Verified",
+  verificationEmailSent: "Verification email has been sent.",
+  verificationSuccess: "User Verified successfully.",
+  unknownError: "An unknown error occurred.",
+  fetchingError: "An error occurred while data fetching",
+  accountVerified: "Account has been verified successfully.",
+  passwordUpdated: "Password updated successfully.",
+  emailRequired: "Email is required.",
+  passwordRequired: "Password is required.",
+  resetLinkSent: "Password reset link sent successfully to your email.",
+  passwordResetSuccess: "Your password has been reset successfully.",
+  invalidOrExpiredToken: "The token is invalid or has expired.",
+  invalidInput: "Invalid input. Please provide all required fields.",
+  invalidToken: "Token is not valide.",
+};
+
+export default authMessages;

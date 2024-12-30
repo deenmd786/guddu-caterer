@@ -1,0 +1,11 @@
+.admin-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  header {
+    background: #333;
+    color: #fff;
+    padding: 1rem;
+  }
+  
