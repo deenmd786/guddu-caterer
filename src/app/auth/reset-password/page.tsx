@@ -74,10 +74,9 @@ const ResetPassword: React.FC = () => {
 
     try {
       const newPassword = formData.password;
-      
       const data = await apiHelper("/api/user/reset-password", {
         method: "POST",
-        body: { token, userId, newPassword },        
+        body: { token, userId, newPassword },
       });
 
       setSuccess(data.message || "Password reset successful!");
@@ -91,55 +90,54 @@ const ResetPassword: React.FC = () => {
   };
 
   return (
-      
     <AuthLayout>
-       <div className="container max-w-md mx-auto p-6 bg-[var(--background)] rounded-lg shadow-md">
-      <h2 className="text-2xl text-[var(--text-primary)] font-semibold text-center mb-6">Reset Password</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        {["password", "confirmPassword"].map((field) => (
-          <div key={field} className="relative">
-            <input
-              type={field === "password" ? (passwordVisible ? "text" : "password") : (confirmPasswordVisible ? "text" : "password")}
-              name={field}
-              value={formData[field as keyof FormData]}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button)] focus:border-[var(--button)] transition-all placeholder-transparent"
-              onFocus={() => handleFocus(field as "password" | "confirmPassword")}
-              onBlur={() => handleBlur(field as "password" | "confirmPassword")}
-            />
-            <label
-              htmlFor={field}
-              className={`absolute left-4 top-2 transition-all origin-[0] scale-75 transform pointer-events-none ${
-                formData[field as keyof FormData] || focus[field as keyof typeof focus]
-                  ? "translate-y-[-20px] scale-75 text-[var(--button)] px-2 z-10 bg-white"
-                  : "translate-y-0 scale-100 text-[var(--text-muted)] text-lg "
-              }`}
-            >
-              {field === "password" ? "Password" : "Confirm Password"}
-            </label>
-            <button
-              type="button"
-              className="absolute right-4 top-3 text-[var(--button)]"
-              onClick={() => togglePasswordVisibility(field as "password" | "confirmPassword")}
-            >
-              {field === "password" ? (passwordVisible ? <FaEyeSlash /> : <FaEye />) : (confirmPasswordVisible ? <FaEyeSlash /> : <FaEye />)}
-            </button>
-          </div>
-        ))}
-        <button
-          type="submit"
-          disabled={loading}
-          className={`w-full py-2 bg-[var(--button)] text-[var(--text-white)] hover:text-[var(--text-primary)] font-semibold rounded-md transition-colors ${
-            loading ? "bg-[var(--button-hover)]" : "hover:bg-[var(--button-hover)]"
-          }`}
-        >
-          {loading ? "Resetting..." : "Reset Password"}
-        </button>
-        {error && <p className="text-[var(--text-red)] text-center mt-4">{error}</p>}
-        {success && <p className="text-[var(--success)] text-center mt-4">{success}</p>}
-      </form>
-    </div>
+      <div className="container max-w-md mx-auto p-6 bg-[var(--background)] rounded-lg shadow-md">
+        <h2 className="text-2xl text-[var(--text-primary)] font-semibold text-center mb-6">Reset Password</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {["password", "confirmPassword"].map((field) => (
+            <div key={field} className="relative">
+              <input
+                type={field === "password" ? (passwordVisible ? "text" : "password") : (confirmPasswordVisible ? "text" : "password")}
+                name={field}
+                value={formData[field as keyof FormData]}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button)] focus:border-[var(--button)] transition-all placeholder-transparent"
+                onFocus={() => handleFocus(field as "password" | "confirmPassword")}
+                onBlur={() => handleBlur(field as "password" | "confirmPassword")}
+              />
+              <label
+                htmlFor={field}
+                className={`absolute left-4 top-2 transition-all origin-[0] scale-75 transform pointer-events-none ${
+                  formData[field as keyof FormData] || focus[field as keyof typeof focus]
+                    ? "translate-y-[-20px] scale-75 text-[var(--button)] px-2 z-10 bg-white"
+                    : "translate-y-0 scale-100 text-[var(--text-muted)] text-lg"
+                }`}
+              >
+                {field === "password" ? "Password" : "Confirm Password"}
+              </label>
+              <button
+                type="button"
+                className="absolute right-4 top-3 text-[var(--button)]"
+                onClick={() => togglePasswordVisibility(field as "password" | "confirmPassword")}
+              >
+                {field === "password" ? (passwordVisible ? <FaEyeSlash /> : <FaEye />) : (confirmPasswordVisible ? <FaEyeSlash /> : <FaEye />)}
+              </button>
+            </div>
+          ))}
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-2 bg-[var(--button)] text-[var(--text-white)] hover:text-[var(--text-primary)] font-semibold rounded-md transition-colors ${
+              loading ? "bg-[var(--button-hover)]" : "hover:bg-[var(--button-hover)]"
+            }`}
+          >
+            {loading ? "Resetting..." : "Reset Password"}
+          </button>
+          {error && <p className="text-[var(--text-red)] text-center mt-4">{error}</p>}
+          {success && <p className="text-[var(--success)] text-center mt-4">{success}</p>}
+        </form>
+      </div>
     </AuthLayout>
   );
 };
