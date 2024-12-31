@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import apiHelper from "../../../utils/apiHelper";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
@@ -142,4 +142,12 @@ const ResetPassword: React.FC = () => {
   );
 };
 
-export default ResetPassword;
+
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResetPassword />
+    </Suspense>
+  );
+}
+
