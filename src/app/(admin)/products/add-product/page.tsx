@@ -4,14 +4,14 @@ import {
   cookingMethods,
   productCategory,
   regions,
-} from "../../../../data/productCategory";
-import InputField from "../../../../components/admin-com/InputFields";
-import Dropdown from "../../../../components/admin-com/Dropdown";
-import SubmitButton from "../../../../components/admin-com/SubmitButton";
-import ImageUploadAndPreview from "../../../../components/admin-com/ImageUploadAndPreview";
-import CategoryDropdown from "../../../../components/admin-com/CategoryDropdown";
-import { Product } from "../../../../types/Products";
-import { createProduct } from "../../../../utils/productController";
+} from "@/data/productCategory";
+import Dropdown from "@/components/admin-com/Dropdown";
+import SubmitButton from "@/components/admin-com/SubmitButton";
+import ImageUploadAndPreview from "@/components/admin-com/ImageUploadAndPreview";
+import CategoryDropdown from "@/components/admin-com/CategoryDropdown";
+import { Product } from "@/types/Products";
+import { createProduct } from "@/utils/productController";
+import InputField from "@/components/admin-com/InputFields";
 
 interface CreateProductResponse {
   product: Product;

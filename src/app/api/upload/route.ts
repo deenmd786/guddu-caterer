@@ -8,8 +8,8 @@ interface CloudinaryResponse {
   error?: string;
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'POST') {
+export default async function Post(req: NextApiRequest, res: NextApiResponse) {
+  
     const { file } = req.body;
 
     // The Cloudinary upload URL
@@ -37,8 +37,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } catch (error) {
       return res.status(500).json({ error: 'Image upload failed', details: (error as Error).message });
     }
-  } else {
-    // Handle any other HTTP method
-    return res.setHeader('Allow', ['POST']).status(405).end(`Method ${req.method} Not Allowed`);
-  }
 }

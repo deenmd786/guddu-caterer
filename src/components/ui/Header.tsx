@@ -125,7 +125,7 @@ const Header = () => {
 
           <div className="flex items-center space-x-6">
             {user && (
-              <Link href={user.role === "admin" ? "/admin" : "/dashboard"}>
+              <Link href={user.role === "ADMIN" ? "/admin" : "/dashboard"}>
                 <div
                   className={`flex items-center text-[var(--button)] text-4xl`}
                 >
