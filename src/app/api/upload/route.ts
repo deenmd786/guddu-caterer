@@ -1,5 +1,3 @@
-// pages/api/upload.ts
-
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 interface CloudinaryResponse {
@@ -8,21 +6,37 @@ interface CloudinaryResponse {
   error?: string;
 }
 
-export default async function Post(req: NextApiRequest, res: NextApiResponse) {
-  
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'POST') {
     const { file } = req.body;
 
-    // The Cloudinary upload URL
-    const url = `https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`;
+    if (!file) {
+      return res.status(400).json({ error: 'File is required' });
+    }
 
-    // Create form data
-    const formData = new URLSearchParams();
-    formData.append('file', file);
-    formData.append('upload_preset', process.env.CLOUDINARY_UPLOAD_PRESET!);
+    const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
+    const uploadPreset = process.env.CLOUDINARY_UPLOAD_PRESET;
+
+    if (!cloudName || !uploadPreset) {
+      return res
+        .status(500)
+        .json({ error: 'Cloudinary configuration is missing in environment variables' });
+    }
+
+    // The Cloudinary upload URL
+    const url = `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`;
 
     try {
+      // Create form data
+      const formData = new URLSearchParams();
+      formData.append('file', file);
+      formData.append('upload_preset', uploadPreset);
+
       const response = await fetch(url, {
         method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded', // Required for URLSearchParams
+        },
         body: formData,
       });
 
@@ -37,4 +51,9 @@ export default async function Post(req: NextApiRequest, res: NextApiResponse) {
     } catch (error) {
       return res.status(500).json({ error: 'Image upload failed', details: (error as Error).message });
     }
+  } else {
+    // Handle any other HTTP method
+    res.setHeader('Allow', ['POST']);
+    return res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
 }
