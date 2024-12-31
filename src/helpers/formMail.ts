@@ -49,7 +49,7 @@ export const formMail = async ({
     }
 
     const mailOptions = {
-      from: process.env.EMAIL_USER,
+      from: `"${process.env.MAIL_NAME}" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_FOR, 
       subject: "Catering Enquiry Received",
       html: `

@@ -49,7 +49,7 @@ export const sendEmail = async ({
 
     // Email content
     const mailOptions = {
-      from: process.env.EMAIL_FROM,
+      from: `"${process.env.MAIL_NAME}" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: emailType === "VERIFY" ? "Verify Your Account" : "Reset Your Password",
       html: ` 

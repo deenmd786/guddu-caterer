@@ -1,7 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import "@/styles/button.css";
-
+import "@/styles/button.css"
 interface ButtonProps {
   href?: string; // Optional href
   label: string;
