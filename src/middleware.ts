@@ -15,7 +15,7 @@ export function middleware(request: NextRequest) {
     }
 
     // If accessing a protected path (dashboard) without authentication, redirect to login
-    if (!isPublicPath && isDashboardPath && !token) {
+    if (isDashboardPath && !token) {
         return NextResponse.redirect(new URL('/auth/login', request.url));
     }
 
@@ -28,6 +28,6 @@ export const config = {
         '/auth/login',
         '/auth/signup',
         '/auth/verifyemail',
-        '/dashboard/:path*', // Match all dashboard routes and subroutes
+        '/dashboard/:path*',
     ],
 };

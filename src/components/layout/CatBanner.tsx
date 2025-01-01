@@ -10,7 +10,7 @@ const CatBanner: React.FC = () => {
       className="cat-banner-wrapper pt-20 md:pt-28 w-full min-h-screen bg-cover bg-center"
       style={{ backgroundImage: "url('/assets/images/banners/banner.jpg')" }}
     >
-      <div className="container mx-auto min-h-full flex items-center justify-center text-center md:pb-10">
+      <div className="container mx-auto min-h-full flex items-center justify-center text-center ">
         <div className="w-full lg:w-10/12 md:w-full sm:w-full">
           <div className="cat-banner-text flex h-full justify-center">
             <div className="cat-banner-text-inner max-w-[80%] text-center">
