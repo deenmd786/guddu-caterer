@@ -1,13 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { FaUser  } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa6";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import apiHelper from "@/utils/apiHelper";
 import { setUser } from "@/redux/userSlice";
-
 
 const AdminPanelData: React.FC = () => {
   const dispatch = useDispatch();
@@ -15,10 +14,9 @@ const AdminPanelData: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true); // Loading state
 
- 
   useEffect(() => {
     console.log("useEffected");
-    
+
     const fetchUserData = async () => {
       setError(null);
       setLoading(true);
@@ -26,8 +24,8 @@ const AdminPanelData: React.FC = () => {
         const data = await apiHelper("/api/user/me", {
           method: "POST",
         });
-  
-          dispatch(setUser (data.user));
+
+        dispatch(setUser(data.user));
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");
       } finally {
@@ -39,13 +37,15 @@ const AdminPanelData: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="h-[7vh] md:h-[25vh] w-full flex flex-col items-center justify-center bg-[var(--background-secondary)] border-b-4 border-[var(--background)]">
-        <div className="animate-pulse space-x-2 shadow-sm rounded-full bg-[var(--background)] w-24 h-24 flex items-center justify-center">
+      <>
+      <div className="h-[8vh] md:h-[25vh] w-full flex flex-col items-center justify-center bg-[var(--background-secondary)] md:border-b-4 border-[var(--background)]">
+         <div className="animate-pulse space-x-2 shadow-sm rounded-full bg-[var(--background)] w-12 h-12 md:w-24 md:h-24 flex items-center justify-center">
           <div className="bg-gradient-to-r from-red-200 to-red-100 rounded-full w-10 h-10 md:w-20 md:h-20"></div>
         </div>
         <div className="hidden md:flex mt-3 mx-2 bg-gradient-to-r from-red-200 to-red-100 rounded h-6 mb-2 w-40"></div>
         <div className="hidden md:flex mx-2 bg-gradient-to-r from-red-200 to-red-100 rounded h-4 w-24"></div>
       </div>
+      </>
     );
   }
 
@@ -65,11 +65,15 @@ const AdminPanelData: React.FC = () => {
             height={200}
           />
         ) : (
-          <FaUser  className="text-xl md:text-4xl md:m-4" />
+          <FaUser className="text-xl md:text-4xl md:m-4" />
         )}
       </div>
-      <p className="hidden md:flex mt-3 mx-2 md:text-lg text-wrap">{user?.name}</p>
-      <p className="hidden md:flex mx-2 text-[12px] md:text-md text-normal">{user?.role}</p>
+      <p className="hidden md:flex mt-3 mx-2 md:text-lg text-wrap">
+        {user?.name}
+      </p>
+      <p className="hidden md:flex mx-2 text-[12px] md:text-md text-normal">
+        {user?.role}
+      </p>
     </div>
   );
 };
