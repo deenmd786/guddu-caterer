@@ -1,7 +1,7 @@
 "use client";
 
 import { useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import apiHelper from "../../../utils/apiHelper";
 import AuthLayout from "../../../components/layout/AuthLayout";
 
@@ -75,4 +75,10 @@ const VerifyUser = () => {
   );
 };
 
-export default VerifyUser;
+export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <VerifyUser />
+    </Suspense>
+  );
+}
