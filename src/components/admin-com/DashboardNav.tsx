@@ -48,20 +48,20 @@ const DashboardNav = () => {
 
       {/* Desktop Links */}
       <div className="hidden md:flex  flex-col gap-3">
-      <Link href="/dashboard/book-buffet/menu" className="transition duration-200 rounded-lg shadow-md p-2 md:p-4 bg-[var(--background-secondary)] hover:bg-[var(--button)] hover:text-white hover:shadow-lg">
+      <Link href="/dashboard/book-buffet/menu" className="transition duration-200 rounded-lg shadow-md p-2 xl:p-3 bg-[var(--background-secondary)] hover:bg-[var(--button)] hover:text-white hover:shadow-lg">
           Book Your Buffet
         </Link>
-        <Link href="/dashboard/profile" className="transition duration-200 rounded-lg shadow-md p-2 hover:bg-[var(--button)] bg-[var(--background-secondary)] hover:text-white hover:shadow-lg">
+        <Link href="/dashboard/profile" className="transition duration-200 rounded-lg shadow-md p-2 xl:p-3 hover:bg-[var(--button)] bg-[var(--background-secondary)] hover:text-white hover:shadow-lg">
           Your Profile
         </Link>
         
-        <Link href="/dashboard/profile-settings" className="transition duration-200 rounded-lg shadow-md p-2 hover:bg-[var(--button)] bg-[var(--background-secondary)] hover:text-white hover:shadow-lg">
+        <Link href="/dashboard/profile-settings" className="transition duration-200 rounded-lg shadow-md p-2 xl:p-3 hover:bg-[var(--button)] bg-[var(--background-secondary)] hover:text-white hover:shadow-lg">
           Profile Settings
         </Link>
-        <Link href="/dashboard/orders" className="transition duration-200 rounded-lg shadow-md p-2 hover:bg-[var(--button)] bg-[var(--background-secondary)] hover:text-white hover:shadow-lg">
+        <Link href="/dashboard/orders" className="transition duration-200 rounded-lg shadow-md p-2 xl:p-3 hover:bg-[var(--button)] bg-[var(--background-secondary)] hover:text-white hover:shadow-lg">
           Your Orders
         </Link>
-        <Link href="/contact-us" className="transition duration-200 rounded-lg shadow-md p-2 hover:bg-[var(--button)] bg-[var(--background-secondary)] hover:text-white hover:shadow-lg">
+        <Link href="/contact-us" className="transition duration-200 rounded-lg shadow-md p-2 xl:p-3 hover:bg-[var(--button)] bg-[var(--background-secondary)] hover:text-white hover:shadow-lg">
           Support
         </Link>
 
