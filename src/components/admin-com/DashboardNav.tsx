@@ -35,7 +35,7 @@ const DashboardNav = () => {
 
   return (
     <nav className="md:bg-[var(--background-secondary)] text-[var(--text-primary)] md:p-3 lg:p-5 rounded-lg md:shadow-md w-full max-w-3xl mx-auto">
-      <div className="p-2 md:bg-[var(--background)]">
+      <div className="p-2 lg:p-4 md:bg-[var(--background)]">
       <h2 className="max-md:hidden bg-[var(--background-secondary)] text-xl font-semibold text-[var(--text-secondary)]  mb-2 lg:mb-4 md:p-2 lg:p-5 rounded-lg shadow-md border-b-2 border-[var(--border)]">
         Dashboard Navigation
       </h2>
