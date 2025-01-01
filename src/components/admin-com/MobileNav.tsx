@@ -37,6 +37,13 @@ const MobileNav: React.FC<MobileNavProps> = ({
           Dashboard Menu
         </h2>
         <Link
+          href="/dashboard/book-buffet/menu"
+          className="block text-[var(--text-primary)] p-4 border-b hover:bg-[var(--background)]"
+          onClick={() => setMenuOpen(false)}
+        >
+          Book Your Buffet
+        </Link>
+        <Link
           href="/dashboard/profile"
           className="block text-[var(--text-primary)] p-4 border-b hover:bg-[var(--background)]"
           onClick={() => setMenuOpen(false)}

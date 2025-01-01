@@ -69,7 +69,7 @@
 @media (max-width: 480px) {
   .cat-btn {
     font-size: 14px; /* Even smaller font size for very small screens */
-    padding: 6px 6px; /* Further reduce padding */
+    padding: 8px 12px; /* Further reduce padding */
     min-width: 84px; /* Minimum width for very small screens */
   }
 }
@@ -79,5 +79,13 @@
   .max-lg\:\!text-xs {
       font-size: 0.60rem /* 12px */ !important;
       line-height: .8rem /* 16px */ !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-btn {
+    font-size: 14px; /* Even smaller font size for very small screens */
+    padding: 6px 6px; /* Further reduce padding */
+    min-width: 84px; /* Minimum width for very small screens */
   }
 }

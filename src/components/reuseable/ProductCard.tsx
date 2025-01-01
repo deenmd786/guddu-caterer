@@ -50,7 +50,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isInCart }) => {
                 <div> {/* Push the button to the bottom */}
                     <Button
                         label={isInCart ? 'Remove' : 'Add to Plate'}
-                        className={`w-full rounded-lg !font-normal max-xl:!text-xs lg:!py-2  ${
+                        className={`w-full menu-btn rounded-lg !font-normal max-xl:!text-xs lg:!py-2  ${
                             isInCart ? '!bg-black text-white' : ' text-white'
                         } hover:opacity-90`}
                         onClick={isInCart ? handleRemoveFromCart : handleAddToCart}

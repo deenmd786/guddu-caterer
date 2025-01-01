@@ -15,7 +15,7 @@ const BookBuffet = () => {
       <ProgressSteps currentStep={1} />
 
       {/* Content */}
-      <div className="lg:hidden">
+      <div className="lg:hidden ">
       <MenuSection />
       </div>
       <div className="hidden lg:flex">
