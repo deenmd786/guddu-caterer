@@ -1,7 +1,7 @@
-import { withErrorHandler } from "../../../../utils/withErrorHandler";
-import authMessages from "../../../../utils/authMessages";
+import { dbConnect } from "@/lib/dbConnect";
+import authMessages from "@/utils/authMessages";
+import { withErrorHandler } from "@/utils/withErrorHandler";
 import { NextResponse } from "next/server";
-import dbConnect from "../../../../lib/dbConnect";
 
 // Connect to the database
 dbConnect();

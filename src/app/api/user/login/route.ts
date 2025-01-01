@@ -1,11 +1,11 @@
-import { withErrorHandler } from "../../../../utils/withErrorHandler";
-import User from "../../../../models/userModel";
 import { NextRequest, NextResponse } from "next/server";
-import { validateLoginInput } from "../../../../utils/validateUserInput";
 import bcryptjs from "bcryptjs";
-import authMessages from "../../../../utils/authMessages";
 import jwt from "jsonwebtoken";
-import dbConnect from "../../../../lib/dbConnect";
+import { dbConnect } from "@/lib/dbConnect";
+import { validateLoginInput } from "@/utils/validateUserInput";
+import User from "@/models/userModel";
+import authMessages from "@/utils/authMessages";
+import { withErrorHandler } from "@/utils/withErrorHandler";
 
 dbConnect();
 

@@ -3,9 +3,10 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { MdEdit, MdDelete } from "react-icons/md"; // Import icons
-import ProductCard from "../../../components/admin-com/ProductCard";
-import { Product } from "../../../types/Products";
-import { deleteProduct, getProducts } from "../../../utils/productController";
+import { Product } from "@/types/Products";
+import { deleteProduct, getProducts } from "@/utils/productController";
+import ProductCard from "@/components/admin-com/ProductCard";
+
 
 const ProductListPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);

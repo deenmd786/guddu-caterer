@@ -1,11 +1,11 @@
-import { sendEmail } from "../../../../helpers/mailer";
-import User from "../../../../models/userModel";
+import { sendEmail } from "@/helpers/mailer";
+import { dbConnect } from "@/lib/dbConnect";
+import User from "@/models/userModel";
+import authMessages from "@/utils/authMessages";
+import { validateSignupInput } from "@/utils/validateUserInput";
+import { withErrorHandler } from "@/utils/withErrorHandler";
 import bcrypt from "bcryptjs";
 import { NextRequest, NextResponse } from "next/server";
-import authMessages from "../../../../utils/authMessages";
-import { withErrorHandler } from "../../../../utils/withErrorHandler";
-import { validateSignupInput } from "../../../../utils/validateUserInput";
-import dbConnect from "../../../../lib/dbConnect";
 
 dbConnect();
 

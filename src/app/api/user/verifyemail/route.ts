@@ -1,9 +1,9 @@
 
-import { withErrorHandler } from "../../../../utils/withErrorHandler";
-import User from "../../../../models/userModel";
+import { dbConnect } from "@/lib/dbConnect";
+import User from "@/models/userModel";
+import authMessages from "@/utils/authMessages";
+import { withErrorHandler } from "@/utils/withErrorHandler";
 import { NextRequest, NextResponse } from "next/server";
-import authMessages from "../../../../utils/authMessages";
-import dbConnect from "../../../../lib/dbConnect";
 
 dbConnect();
 

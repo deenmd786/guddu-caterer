@@ -3,10 +3,11 @@
 import Image from "next/image";
 import { FaUser  } from "react-icons/fa6";
 import { useState, useEffect } from "react";
-import apiHelper from "../../utils/apiHelper"; // Ensure the apiHelper is correctly imported
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store"; // Adjust the import based on your store structure
-import { setUser } from "../../redux/userSlice";
+import { RootState } from "@/redux/store";
+import apiHelper from "@/utils/apiHelper";
+import { setUser } from "@/redux/userSlice";
+
 
 const AdminPanelData: React.FC = () => {
   const dispatch = useDispatch();

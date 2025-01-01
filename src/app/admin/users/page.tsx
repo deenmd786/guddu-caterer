@@ -1,10 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { fetcher } from "../../../utils/api";
+import { fetcher } from "@/utils/api";
+import { User } from "@/types/User";
 import { MdModeEdit } from "react-icons/md";
-import { User } from "../../../types/User";
-import AdminUpdate from "../../../components/admin-com/AdminUpdate";
+import AdminUpdate from "@/components/admin-com/AdminUpdate";
+
 
 const UsersPage = () => {
   const [users, setUsers] = useState<User[]>([]); // State for users

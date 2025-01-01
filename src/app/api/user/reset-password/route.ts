@@ -1,10 +1,10 @@
-import User from "../../../../models/userModel";
 import jwt from "jsonwebtoken"; // Import jsonwebtoken for JWT verification
 import { NextRequest, NextResponse } from "next/server";
-import authMessages from "../../../../utils/authMessages";
-import { withErrorHandler } from "../../../../utils/withErrorHandler";
-import dbConnect from "../../../../lib/dbConnect";
 import bcrypt from "bcryptjs"
+import { dbConnect } from "@/lib/dbConnect";
+import authMessages from "@/utils/authMessages";
+import { withErrorHandler } from "@/utils/withErrorHandler";
+import User from "@/models/userModel";
 
 dbConnect();
 

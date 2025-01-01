@@ -1,9 +1,9 @@
-import User from "../../../../models/userModel";
+import { getDataFromToken } from "@/helpers/getToken";
+import { dbConnect } from "@/lib/dbConnect";
+import User from "@/models/userModel";
+import authMessages from "@/utils/authMessages";
+import { withErrorHandler } from "@/utils/withErrorHandler";
 import { NextRequest, NextResponse } from "next/server";
-import { withErrorHandler } from "../../../../utils/withErrorHandler";
-import { getDataFromToken } from "../../../../helpers/getToken";
-import authMessages from "../../../../utils/authMessages";
-import dbConnect from "../../../../lib/dbConnect";
 
 dbConnect();
 

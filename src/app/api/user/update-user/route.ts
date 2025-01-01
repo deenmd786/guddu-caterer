@@ -1,7 +1,8 @@
+import { getDataFromToken } from "@/helpers/getToken";
+import { dbConnect } from "@/lib/dbConnect";
+import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
-import User from "../../../../models/userModel";
-import dbConnect from "../../../../lib/dbConnect";
-import { getDataFromToken } from "../../../../helpers/getToken";
+
 
 // TypeScript interface for the request body
 interface UpdateUserRequestBody {

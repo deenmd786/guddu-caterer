@@ -1,18 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { getProductById, updateProduct } from "../../../../utils/productController";
-import {
-  cookingMethods,
-  productCategory,
-  regions,
-} from "../../../../data/productCategory";
-import InputField from "../../../../components/admin-com/InputFields";
-import Dropdown from "../../../../components/admin-com/Dropdown";
-import SubmitButton from "../../../../components/admin-com/SubmitButton";
-import ImageUploadAndPreview from "../../../../components/admin-com/ImageUploadAndPreview";
-import { Product } from "../../../../types/Products";
-import CategoryDropdown from "../../../../components/admin-com/CategoryDropdown";
+import { Product } from "@/types/Products";
+import { getProductById, updateProduct } from "@/utils/productController";
+import InputField from "@/components/admin-com/InputFields";
+import Dropdown from "@/components/admin-com/Dropdown";
+import { cookingMethods, productCategory, regions } from "@/data/productCategory";
+import CategoryDropdown from "@/components/admin-com/CategoryDropdown";
+import ImageUploadAndPreview from "@/components/admin-com/ImageUploadAndPreview";
+import SubmitButton from "@/components/admin-com/SubmitButton";
+
 
 const EditProductPage: React.FC = () => {
   const router = useRouter();

@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import dbConnect from "../../../../../lib/dbConnect";
 import { Error as MongooseError } from "mongoose"; // Import Mongoose error type
-import Product from "../../../../../models/product";
+import { dbConnect } from "@/lib/dbConnect";
+import Product from "@/models/product";
 
 // Adjust the GET function to accept context with params as a Promise
 export async function GET(req: Request, context: { params: Promise<{ subcategory: string }> }) {

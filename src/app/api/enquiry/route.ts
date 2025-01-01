@@ -1,6 +1,6 @@
 // src/app/api/enquiry/route.ts
 
-import { formMail } from '../../../helpers/formMail';
+import { formMail } from '@/helpers/formMail';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
