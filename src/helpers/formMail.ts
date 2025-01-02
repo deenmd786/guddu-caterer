@@ -58,7 +58,7 @@ export const formMail = async ({
         <p><strong>Name:</strong> ${enquiryData?.name || "No name provided."}</p>
         <p><strong>Phone:</strong> ${enquiryData?.phone || "No phone provided."}</p>
         <p><strong>Event Date:</strong> ${enquiryData?.eventDate || "No date provided."}</p>
-        <p><strong>Event Date:</strong> ${enquiryData?.address || "No date provided."}</p>
+        <p><strong>Address:</strong> ${enquiryData?.address || "No date provided."}</p>
         <p><strong>Guests:</strong> ${enquiryData?.guests || 0}</p>
         <p><strong>Comments:</strong> ${enquiryData?.comments || "No comments provided."}</p>
         ${itemsHtml}

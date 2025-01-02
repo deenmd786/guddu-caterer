@@ -15,6 +15,7 @@ const OtpVerify = () => {
   const formattedNumber = "+" + "91" + phoneNumber;
   const [otp, setOtp] = useState("");
   const [verificationId, setVerificationId] = useState("");
+  const [success, setSuccess] = useState("");
   const [message, setMessage] = useState("");
 
   const captureCode = () => {
@@ -51,7 +52,7 @@ const OtpVerify = () => {
         appVerifier
       );
       setVerificationId(confirmationResult.verificationId);
-      setMessage("OTP sent!");
+      setSuccess("OTP sent!");
     } catch (error) {
       console.error("Error during signInWithPhoneNumber", error);
       setMessage("Failed to send OTP. Please try again.");
@@ -64,7 +65,7 @@ const OtpVerify = () => {
 
     try {
       await signInWithCredential(auth, credential);
-      setMessage("Phone number verified successfully!");
+      setSuccess("Phone number verified successfully!");
     } catch (error) {
       console.error("Error verifying OTP", error);
       setMessage("Failed to verify OTP. Please try again.");
@@ -122,6 +123,7 @@ const OtpVerify = () => {
       )}
 
       {message && <p className="text-center text-red-500">{message}</p>}
+      {success && <p className="text-center text-green-500">{success}</p>}
     </div>
   );
 };
