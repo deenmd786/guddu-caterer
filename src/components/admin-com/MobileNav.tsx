@@ -1,8 +1,12 @@
 "use client";
 
+import { RootState } from "@/redux/store";
+
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 interface MobileNavProps {
   handleLogout: () => void;
@@ -15,6 +19,8 @@ const MobileNav: React.FC<MobileNavProps> = ({
   loading,
 }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const user = useSelector((state: RootState) => state.user.user); // Get user state from Redux
+  const router = useRouter();
 
   return (
     <>
@@ -79,19 +85,33 @@ const MobileNav: React.FC<MobileNavProps> = ({
           Support
         </Link>
 
-        {/* Logout Button */}
-        <button
-          onClick={() => {
-            setMenuOpen(false);
-            handleLogout();
-          }}
-          className={`block w-full text-center p-4 bg-[var(--button)] text-white hover:bg-red-600 ${
-            loading ? "cursor-not-allowed opacity-50" : ""
-          }`}
-          disabled={loading}
-        >
-          {loading ? "Logging out..." : "Logout"}
-        </button>
+        {/* Button */}
+{/* Conditional Rendering for Logout Button */}
+{user ? (
+            <button
+            onClick={() => {
+              setMenuOpen(false);
+              handleLogout();
+            }}
+            className={`block w-full text-center p-4 bg-[var(--button)] text-white hover:bg-red-600 ${
+              loading ? "cursor-not-allowed opacity-50" : ""
+            }`}
+            disabled={loading}
+          >
+            {loading ? "Logging out..." : "Logout"}
+          </button>
+          ) : (
+            <button
+            onClick={() => router.push('/auth/login') }
+            className={`block w-full text-center p-4 bg-[var(--button)] text-white hover:bg-red-600 ${
+              loading ? "cursor-not-allowed opacity-50" : ""
+            }`}
+            disabled={loading}
+          >
+            {loading ? "Logging in..." : "Login"}
+          </button>
+          )}
+        
       </div>
     </>
   );

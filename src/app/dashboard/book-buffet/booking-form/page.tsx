@@ -1,7 +1,7 @@
 "use client"
 
 import Button from "../../../../components/reuseable/Button";
-import EnquiryForm from "../../../../components/reuseable/EnquiryForm";
+import EnquiryForm from "../../../../components/reuseable/CateringForm";
 import { useRouter } from "next/navigation";
 import ProgressSteps from "../../_components/ProgressSteps";
 import WhatsAppPage from "../../_components/WhatsAppMessage";
@@ -11,7 +11,8 @@ const BookingForm = () => {
     return(
         <div className="p-3  md:p-6">
         <ProgressSteps currentStep={3} />
-        <div className="mb-5 flex my-4 justify-center items-center">
+        <div className="mb-3
+         flex my-4 justify-center items-center">
 
             <EnquiryForm />
         </div>

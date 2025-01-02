@@ -38,19 +38,23 @@ const AdminPanelData: React.FC = () => {
   if (loading) {
     return (
       <>
-      <div className="h-[8vh] md:h-[25vh] w-full flex flex-col items-center justify-center bg-[var(--background-secondary)] md:border-b-4 border-[var(--background)]">
-         <div className="animate-pulse space-x-2 shadow-sm rounded-full bg-[var(--background)] w-12 h-12 md:w-24 md:h-24 flex items-center justify-center">
-          <div className="bg-gradient-to-r from-red-200 to-red-100 rounded-full w-10 h-10 md:w-20 md:h-20"></div>
+        <div className="h-[8vh] md:h-[25vh] w-full flex flex-col items-center justify-center bg-[var(--background-secondary)] md:border-b-4 border-[var(--background)]">
+          <div className="animate-pulse space-x-2 shadow-sm rounded-full bg-[var(--background)] w-12 h-12 md:w-24 md:h-24 flex items-center justify-center">
+            <div className="bg-gradient-to-r from-red-200 to-red-100 rounded-full w-10 h-10 md:w-20 md:h-20"></div>
+          </div>
+          <div className="hidden md:flex mt-3 mx-2 bg-gradient-to-r from-red-200 to-red-100 rounded h-6 mb-2 w-40"></div>
+          <div className="hidden md:flex mx-2 bg-gradient-to-r from-red-200 to-red-100 rounded h-4 w-24"></div>
         </div>
-        <div className="hidden md:flex mt-3 mx-2 bg-gradient-to-r from-red-200 to-red-100 rounded h-6 mb-2 w-40"></div>
-        <div className="hidden md:flex mx-2 bg-gradient-to-r from-red-200 to-red-100 rounded h-4 w-24"></div>
-      </div>
       </>
     );
   }
 
   if (error) {
-    return <div className="text-[var(--text-primary)]">Error: {error}</div>;
+    return (
+      <div className="h-[8vh] md:h-[25vh] w-full flex flex-col items-center justify-center bg-[var(--background-secondary)] md:border-b-4 border-[var(--background)]">
+        <div className="text-[var(--text-primary)]">Error: User not loged in !!!</div>
+      </div>
+    );
   }
 
   return (

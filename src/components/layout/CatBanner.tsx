@@ -34,7 +34,7 @@ const CatBanner: React.FC = () => {
       </div>
 
       {/* Sticky Button Section */}
-      <div className="fixed md:static bottom-0 left-0 w-full shadow-lg p-4 z-50">
+      <div className="fixed z-30 md:static bottom-0 left-0 w-full shadow-lg p-4 ">
         <div className="container mx-auto flex justify-center">
           <div className="flex gap-4 md:flex-row justify-center space-x-4">
             <Button

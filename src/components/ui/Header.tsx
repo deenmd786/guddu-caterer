@@ -124,25 +124,23 @@ const Header = () => {
     </nav>
 
           <div className="flex items-center space-x-6">
-            {user && (
-              <Link href={user.role === "ADMIN" ? "/admin" : "/dashboard"}>
-                <div
-                  className={`flex items-center text-[var(--button)] text-4xl`}
-                >
-                  {user.profilePic ? (
-                    <Image
-                      src={user.profilePic}
-                      height={50}
-                      width={50}
-                      alt="User Profile"
-                      className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden"
-                    />
-                  ) : (
-                    <FaRegCircleUser />
-                  )}
-                </div>
-              </Link>
+          {user?.role === "ADMIN" && (
+        <Link href="/admin">
+          <div className="flex items-center text-[var(--button)] text-4xl">
+            {user.profilePic ? (
+              <Image
+                src={user.profilePic}
+                height={50}
+                width={50}
+                alt="User  Profile"
+                className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden"
+              />
+            ) : (
+              <FaRegCircleUser  />
             )}
+          </div>
+        </Link>
+      )}
             <div className="hidden md:flex">
               {user ? (
                 <Button href="/" onClick={handleLogout} label="Logout" />

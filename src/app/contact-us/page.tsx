@@ -4,7 +4,7 @@ import Image from "next/image";
 import { FaPhone, FaComments, FaCalendarAlt } from "react-icons/fa"; // Importing React Icons
 import Button from "../../components/reuseable/Button";
 import Logo from "../../components/reuseable/Logo";
-import EnquiryForm from "../../components/reuseable/EnquiryForm";
+import EnquiryForm from "../../components/reuseable/CateringForm";
 import Map from "../../components/reuseable/Map";
 
 const ContactUs: React.FC = () => (

@@ -21,7 +21,7 @@ interface GroupedProducts {
   [category: string]: string[];
 }
 
-const EnquiryForm: React.FC = () => {
+const CateringForm: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   
   const groupProductsByCategory = (items: CartItem[]): GroupedProducts => {
@@ -79,66 +79,66 @@ const EnquiryForm: React.FC = () => {
     setFocus((prevFocus) => ({ ...prevFocus, [field]: false }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    const groupedProducts = groupProductsByCategory(cartItems);
 
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     setSuccess(null);
 
-  
-    try {
-      const payload = {
-        ...formData,
-        items: groupedProducts,
-      };
+    const groupedProducts = groupProductsByCategory(cartItems);
+    console.log("Grouped Products: ", groupedProducts);
 
-      const response = await fetch('/api/enquiry', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
-  
-      console.log("API response status:", response.status);
-      console.log("API response:", response);
-  
-      if (!response.ok) {
-        const errorData = await response.json(); 
-        console.error("Error response data:", errorData);
-        setError(`Error: ${errorData.error || 'Something went wrong'}`);
-        return;
-      }
-  
-      // If the response is OK, parse the JSON
-      const data = await response.json();
-      setSuccess(data.message || 'Email sent successfully!');
-      
-      // Reset form data
-      setFormData({
-        name: "",
-        phone: "",
-        eventDate: "",
-        guests: 0,
-        address: "",
-        comments: "",
-      });
+    try {
+        const payload = {
+            ...formData,
+            items: groupedProducts,
+        };
+        console.log("Payload: ", payload);
+
+        const response = await fetch('/api/enquiry', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
+
+        console.log("API response status:", response.status);
+        console.log("API response:", response);
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Error response data:", errorData);
+            setError(`Error: ${errorData.error || 'Something went wrong'}`);
+            return;
+        }
+        localStorage.removeItem('cart');
+        const data = await response.json();
+        setSuccess(data.message || 'Email sent successfully!');
+
+        setFormData({
+            name: "",
+            phone: "",
+            eventDate: "",
+            guests: 0,
+            address: "",
+            comments: "",
+        });
     } catch (error) {
-      console.error('Error during form submission:', error); // Log the error
-      setError('An unexpected error occurred.');
+        console.error('Error during form submission:', error);
+        setError('An unexpected error occurred.');
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
   return (
-    <div className="container max-w-md mx-auto p-4 bg-[var(--background)] rounded-lg shadow-md">
+    <div className="container max-w-md mx-auto p-3 bg-[var(--background)] rounded-lg shadow-md">
       <h2 className=" mb-2 text-xl lg:text-2xl text-[var(--text-primary)] font-semibold text-center md:mb-6">
         Catering Form
       </h2>
-      <form onSubmit={handleSubmit} className="space-y-2 md:space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-2 md:space-y-3">
         {["name", "phone", "eventDate", "guests", "address", "comments"].map((field) => (
           <div key={field} className="relative">
             {field === "eventDate" ? (
@@ -192,13 +192,13 @@ const EnquiryForm: React.FC = () => {
         
       </form>
       {error && (
-        <p className="text-[var(--text-red)] text-center mt-4">{error}</p>
+        <p className="text-[var(--text-red)] text-center mt-2">{error}</p>
       )}
       {success && (
-        <p className="text-[var(--success)] text-center mt-4">{success}</p>
+        <p className="text-[var(--success)] text-center mt-2">{success}</p>
       )}
     </div>
   );
 };
 
-export default EnquiryForm;
+export default CateringForm;

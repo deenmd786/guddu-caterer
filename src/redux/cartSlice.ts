@@ -4,6 +4,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // Save cart to localStorage
 const saveCartToLocalStorage = (cartItems: Product[]) => {
+
   if (typeof window !== 'undefined') {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }

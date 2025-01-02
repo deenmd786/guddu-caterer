@@ -1,15 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart, setCart } from "../../../../redux/cartSlice";
-import { RootState } from "../../../../redux/store";
-import { Product } from "../../../../types/Products";
+
 import Image from "next/image";
 import { FaTrash } from "react-icons/fa";
 import CustomDropdown from "../../../../components/reuseable/CustomDropdown";
 import Button from "../../../../components/reuseable/Button";
 import { useRouter } from "next/navigation";
 import ProgressSteps from "../../_components/ProgressSteps";
+import { RootState } from "@/redux/store";
+import { removeFromCart, setCart } from "@/redux/cartSlice";
+import { Product } from "@/types/Products";
 
 const Cart: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -66,7 +67,7 @@ const Cart: React.FC = () => {
       {filteredItems.length === 0 ? (
         <p className="text-sm md:text-base">Your cart is empty.</p>
       ) : (
-        <div className="overflow-y-auto max-h-[65vh] md:max-h-[71vh] lg:max-h-[69vh] xl:max-h-[67vh]">
+        <div className="overflow-y-auto max-h-[64vh] md:max-h-[71vh] lg:max-h-[69vh] xl:max-h-[67vh]">
           <table className="min-w-full bg-[var(--background)] border text-center tranform border-[var(--background-secondary)] text-xs lg:text-base">
             <thead className="sticky font-light -top-1 bg-[var(--red)] z-10">
               <tr className="bg-[var(--button)] text-[var(--text-white)]">

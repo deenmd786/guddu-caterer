@@ -1,4 +1,9 @@
+import { RootState } from '@/redux/store';
+import { clearUser  } from '@/redux/userSlice';
+import apiHelper from '@/utils/apiHelper';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface MobileMenuProps {
   menuOpen: boolean;
@@ -6,8 +11,26 @@ interface MobileMenuProps {
 }
 
 const MobileMenu: React.FC<MobileMenuProps> = ({ menuOpen, setMenuOpen }) => {
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const user = useSelector((state: RootState) => state.user.user);
 
-
+  const handleLogout = async () => {
+    alert("Logout button clicked!");
+    try {
+      await apiHelper("/api/user/logout", {
+        method: "GET",
+      });
+      dispatch(clearUser ());
+      router.push('/'); // Redirect to home or login page after logout
+    } catch (err) {
+      console.error(
+        err instanceof Error
+          ? err.message
+          : "An error occurred during logout"
+      );
+    }
+  };
 
   return (
     <div
@@ -17,14 +40,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuOpen, setMenuOpen }) => {
     >
       {/* Single Links */}
       <Link
-        href="#home"
+        href="/"
         className="block text-[var(--text-primary)] p-4 border-b-2 border-[var(--border)]"
         onClick={() => setMenuOpen(false)} // Close menu on link click
       >
         Home
       </Link>
       <Link
-        href="#menu"
+        href="/dashboard/book-buffet/menu"
         className="block text-[var(--text-primary)] p-4 border-b-2 border-[var(--border)]"
         onClick={() => setMenuOpen(false)} // Close menu on link click
       >
@@ -38,30 +61,42 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuOpen, setMenuOpen }) => {
         Services
       </Link>
 
-      
-
       {/* Additional Links */}
       <Link
-        href="#about"
+        href="/about-us"
         className="block text-[var(--text-primary)] p-3 border-b-2 border-[var(--border)]"
         onClick={() => setMenuOpen(false)} // Close menu on link click
       >
         About Us
       </Link>
       <Link
-        href="#contact"
+        href="/contact-us"
         className="block text-[var(--text-primary)] p-3 border-b-2 border-[var(--border)]"
         onClick={() => setMenuOpen(false)} // Close menu on link click
       >
         Contact Us
       </Link>
-      <Link
-        href="/auth/login"
-        className="block text-[var(--text-primary)] p-3 border-b-2 border-[var(--border)]"
-        onClick={() => setMenuOpen(false)} // Close menu on link click
-      >
-        Log In
-      </Link>
+
+      {/* Conditional Rendering for Log In / Log Out */}
+      {user ? (
+        <button
+          className="block text-[var(--text-primary)] p-3 border-b-2 border-[var(--border)] w-full text-left"
+          onClick={() => {
+            handleLogout();
+            setMenuOpen(false); // Close menu on logout
+          }}
+        >
+          Log Out
+        </button>
+      ) : (
+        <Link
+          href="/auth/login"
+          className="block text-[var(--text-primary)] p-3 border-b-2 border-[var(--border)]"
+          onClick={() => setMenuOpen(false)} // Close menu on link click
+        >
+          Log In
+        </Link>
+      )}
     </div>
   );
 };

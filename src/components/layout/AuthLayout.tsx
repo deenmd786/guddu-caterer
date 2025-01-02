@@ -9,7 +9,7 @@ export default function AuthLayout({
 }>) {
 
   return (
-    <div className="flex px-4 h-screen w-screen flex-col gap-4 items-center justify-center bg-[var(--background-secondary)]">
+    <div className="flex px-4 h-screen w-screen flex-col gap-4 items-center py-8 md:py-0 md:justify-center bg-[var(--background-secondary)]">
         <div><Logo/></div>
         {children}
     </div>
