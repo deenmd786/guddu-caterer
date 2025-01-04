@@ -3,7 +3,7 @@ import Image from "next/image";
 import Button from "../reuseable/Button";
 
 const AboutUs: React.FC = () => (
-  <div id="about" className="bg-[var(--background-secondary)] py-12">
+  <div id="about" className="bg-[var(--background)] py-12">
     <div className="container mx-auto px-4">
       {/* Full-width headings */}
       <h1 className="text-[var(--text-red)] text-xl font-bold text-center border-b pb-3 mb-8 border-red-600">
