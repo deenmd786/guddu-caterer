@@ -65,7 +65,7 @@ const Cart: React.FC = () => {
       </div>
 
       {filteredItems.length === 0 ? (
-        <p className="text-sm md:text-base">Your cart is empty.</p>
+        <p className="text-sm md:text-base">Your cart is empty. <br /> Please Select Menu to Make a Booking.</p>
       ) : (
         <div className="overflow-y-auto max-h-[64vh] md:max-h-[71vh] lg:max-h-[69vh] xl:max-h-[67vh]">
           <table className="min-w-full bg-[var(--background)] border text-center tranform border-[var(--background-secondary)] text-xs lg:text-base">
@@ -139,7 +139,8 @@ const Cart: React.FC = () => {
       )}
       <div className="flex pt-3 justify-between">
           <Button label="Back" onClick={()=> route.back()} className="catr-btn" />
-          <Button label="Next" href="/dashboard/book-buffet/phone-verify"/>
+          {filteredItems.length !== 0 &&
+          <Button label="Next"  href="/dashboard/book-buffet/phone-verify"/>}
         </div>
     </div>
   );

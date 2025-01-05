@@ -44,7 +44,6 @@ const ShowProduct: React.FC = () => {
         subCategory.value
       );
       setProducts(fetchedProducts.products);
-      console.log("Fetched products:", fetchedProducts.products);
     } catch (error) {
       console.error("Error loading products:", (error as Error).message);
       setError("Failed to load products. Please try again.");
