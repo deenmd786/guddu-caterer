@@ -83,7 +83,7 @@ const ShowProduct: React.FC = () => {
 
   return (
     <div id="menu" className="bg-[var(--background-secondary)] p-2 mb-3">
-      <div className="container mx-auto">
+      <div className="mx-auto">
         <div className="flex pb-2 justify-center">
           {productCategory.map((category) => (
             <button
@@ -129,7 +129,7 @@ const ShowProduct: React.FC = () => {
                 ))}
             </div>
           )}
-          <div className="hidden lg:grid lg:grid-cols-4 xl:grid-cols-5 scroll-hidden overflow-x-auto gap-2 bg-[var(--background)] lg:max-h-[410px] xl:max-h-[424px]">
+          <div className="hidden lg:grid lg:grid-cols-4 xl:grid-cols-5 scroll-hidden overflow-x-auto gap-4 bg-[var(--background)] lg:max-h-[410px] xl:max-h-[424px]">
             {!loading &&
               !error &&
               products.map((product) => (

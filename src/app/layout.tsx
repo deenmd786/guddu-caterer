@@ -18,6 +18,11 @@ export default function RootLayout({
         <title>Your Site Title</title>
         <meta name="description" content="Your site description here." />
         <link rel="icon" href="/favicon.ico" />
+        {/* Google Search Console verification meta tag */}
+        <meta
+          name="google-site-verification"
+          content="c3a84e8c0d7a5137"
+        />
         {/* Add other meta tags as needed */}
       </Head>
       <body>
@@ -26,7 +31,7 @@ export default function RootLayout({
         </Provider>
         <Footer />
         <Copyright />
-        {/* If you want to use Speed Insights, you can add it here */}
+        {/* Optional: Speed Insights */}
         <SpeedInsights />
       </body>
     </html>

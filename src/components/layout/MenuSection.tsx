@@ -86,7 +86,7 @@ const MenuSection: React.FC = () => {
           />
         )}
       </div>
-      <div className="mb-1 md:mb-2 lg:mb-0 bg-[var(--background)] w-full max-h-[64vh] md:max-h-[71vh] scroll-hidden overflow-y-auto ">
+      <div className="mb-1 md:mb-2 lg:mb-0 bg-[var(--background)] w-full max-h-[60vh] md:max-h-[71vh] scroll-hidden overflow-y-auto ">
         {loading && (
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:flex w-full scroll-hidden lg:overflow-x-auto gap-2 md:gap-3 lg:gap-4 bg-[var(--background)]">
     {Array.from({ length: 12 }).map((_, index) => (

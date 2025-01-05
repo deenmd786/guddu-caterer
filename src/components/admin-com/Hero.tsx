@@ -52,7 +52,7 @@ const Hero: React.FC<HeroProps> = ({ serviceKey }) => {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
           <Button href="/contact-us" label="Request a Quote" />
-          <Button href="/#menu" className="catr-btn" label="Explore Menus" />
+          <Button href="/dashboard/book-buffet/menu" className="catr-btn" label="Explore Menus" />
         </div>
       </div>
     </div>

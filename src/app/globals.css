@@ -43,7 +43,7 @@ html {
 @media (prefers-color-scheme: dark) {
   :root {
     /* Background Colors */
-    --background: #f1f5f9;
+    --background: #FFFFFF;
     --background-secondary: #FFECE7; 
     --bg-dark: #212529;
     --bg-Menu: #FFECE7;
