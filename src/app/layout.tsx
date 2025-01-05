@@ -1,4 +1,5 @@
 "use client";
+
 import "./globals.css";
 import Copyright from "../components/layout/CopyRight";
 import Footer from "../components/layout/Footer";
@@ -23,14 +24,22 @@ export default function RootLayout({
           content="Guddu Catering offers exceptional catering services in Delhi, perfect for weddings, parties, and corporate events. Experience delicious food and impeccable service."
         />
         <meta name="robots" content="index, follow" />
-
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         <link rel="icon" href="/favicon.ico" />
-
-        {/* Google Search Console verification meta tag */}
-        <meta name="google-site-verification" content="c3a84e8c0d7a5137" />
-        {/* Add other meta tags as needed */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "Guddu Catering",
+              url: "https://www.gudducaterer.in",
+              logo: "https://www.gudducaterer.in/logo.png",
+              description:
+                "Guddu Catering delivers exceptional services with live cooking, customized buffets, and delicious flavors. From weddings to corporate events, we make every event memorable.",
+            }),
+          }}
+        />
       </Head>
       <body>
         <Provider store={store}>{children}</Provider>

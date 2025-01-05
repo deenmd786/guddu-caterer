@@ -76,7 +76,7 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed w-full transition-all duration-200 ease-in-out ${getColorClass()} z-10`}
+      className={`fixed w-full transition-all duration-200 ease-in-out ${getColorClass()} z-50`}
     >
       <div
         className={`container max-w-5xl mx-auto px-4 py-3 ${getTextColorClass()}`}
