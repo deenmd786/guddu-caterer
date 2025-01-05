@@ -99,13 +99,13 @@ const ShowProduct: React.FC = () => {
             </button>
           ))}
         </div>
-        <div className="flex  lg:gap-2 bg-[var(--background)] p-2">
+        <div className="flex lg:gap-2 bg-[var(--background)] p-2">
           <div>
             {selectedCategory?.subcategories?.map((subCategory) => (
               <div
                 key={subCategory.id}
                 onClick={() => handleSubcategoryClick(subCategory)}
-                className={`max-xl:p-[5px] p-2 w-44 xl:w-60  text-[var(--text-primary)] text-sm xl:text-base line-clamp-1 leading-7 text-ellipsis shadow-md rounded mb-2 cursor-pointer transition-all duration-300 ease-in-out ${
+                className={`max-xl:p-[5px] p-2 w-44 xl:w-60 text-[var(--text-primary)] text-sm xl:text-base line-clamp-1 leading-7 text-ellipsis shadow-md rounded mb-2 cursor-pointer transition-all duration-300 ease-in-out ${
                   selectedSubcategory?.id === subCategory.id
                     ? "bg-[var(--red)] text-[var(--text-white)] transform scale-100"
                     : "bg-[var(--background-secondary)]"
@@ -117,8 +117,8 @@ const ShowProduct: React.FC = () => {
               </div>
             ))}
           </div>
-          {loading && (
-            <div className="hidden lg:grid lg:grid-cols-4 xl:grid-cols-5 scroll-hidden overflow-x-auto gap-2 bg-[var(--background)] lg:max-h-[410px] xl:max-h-[424px]">
+          {loading ? (
+            <div className="hidden lg:grid lg:grid-cols-4 xl:grid-cols-5 scroll-hidden overflow-x-auto gap-4 bg-[var(--background)] lg:max-h-[410px] xl:max-h-[424px]">
               {Array(12)
                 .fill(0)
                 .map((_, index) => (
@@ -127,11 +127,9 @@ const ShowProduct: React.FC = () => {
                   </div>
                 ))}
             </div>
-          )}
-          <div className="hidden lg:grid lg:grid-cols-4 xl:grid-cols-5 scroll-hidden overflow-x-auto gap-4 bg-[var(--background)] lg:max-h-[410px] xl:max-h-[424px]">
-            {!loading &&
-              !error &&
-              products.map((product) => (
+          ) : (
+            <div className="hidden lg:grid lg:grid-cols-4 xl:grid-cols-5 scroll-hidden overflow-x-auto gap-4 bg-[var(--background)] lg:max-h-[410px] xl:max-h-[424px]">
+              {products.map((product) => (
                 <div key={product._id} className="flex-shrink-0">
                   <ProductCard
                     product={product}
@@ -141,12 +139,13 @@ const ShowProduct: React.FC = () => {
                   />
                 </div>
               ))}
-            {error && !loading && (
-              <p className="text-[var(--danger)] flex items-center justify-center w-full">
-                {error}
-              </p>
-            )}
-          </div>
+            </div>
+          )}
+          {error && !loading && (
+            <p className="text-[var(--danger)] flex items-center justify-center w-full">
+              {error}
+            </p>
+          )}
         </div>
       </div>
     </div>

@@ -15,20 +15,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-        <title>Your Site Title</title>
-        <meta name="description" content="Your site description here." />
-        <link rel="icon" href="/favicon.ico" />
-        {/* Google Search Console verification meta tag */}
+        <title>
+          Discover the Best Catering Services in Delhi with Guddu Catering
+        </title>
         <meta
-          name="google-site-verification"
-          content="c3a84e8c0d7a5137"
+          name="description"
+          content="Guddu Catering offers exceptional catering services in Delhi, perfect for weddings, parties, and corporate events. Experience delicious food and impeccable service."
         />
+        <meta name="robots" content="index, follow" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="icon" href="/favicon.ico" />
+
+        {/* Google Search Console verification meta tag */}
+        <meta name="google-site-verification" content="c3a84e8c0d7a5137" />
         {/* Add other meta tags as needed */}
       </Head>
       <body>
-        <Provider store={store}>
-          {children}
-        </Provider>
+        <Provider store={store}>{children}</Provider>
         <Footer />
         <Copyright />
         {/* Optional: Speed Insights */}

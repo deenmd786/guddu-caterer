@@ -1,6 +1,6 @@
 const Shimmer: React.FC = () => {
     return (
-        <div className="animate-pulse bg-gray-300 rounded-lg shadow-md overflow-hidden sm:w-[108px] md:w-[136px] lg:w-32  lg:text-center xl:w-[141px]">
+        <div className="animate-pulse bg-gray-300 rounded-lg shadow-md overflow-hidden sm:w-[108px] md:w-[136px] lg:w-32  lg:text-center xl:w-36">
             {/* Image Placeholder */}
             <div className="relative h-20 md:h-24 lg:h-28 bg-gray-400 shimmer"></div>
             {/* Content Placeholder */}

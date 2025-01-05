@@ -9,6 +9,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase.config";
 import Button from "../reuseable/Button";
+import { useRouter } from "next/navigation";
 
 const OtpVerify = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -17,7 +18,7 @@ const OtpVerify = () => {
   const [verificationId, setVerificationId] = useState("");
   const [success, setSuccess] = useState("");
   const [message, setMessage] = useState("");
-
+  const router = useRouter();
   const captureCode = () => {
     window.recaptchaVerifier = new RecaptchaVerifier(
       auth,
@@ -38,7 +39,7 @@ const OtpVerify = () => {
     e.preventDefault();
     if (phoneNumber.length !== 10) {
       setMessage("Please enter a valid 10-digit phone number.");
-      return; 
+      return;
     }
     captureCode();
     const appVerifier = window.recaptchaVerifier;
@@ -66,12 +67,12 @@ const OtpVerify = () => {
     try {
       await signInWithCredential(auth, credential);
       setSuccess("Phone number verified successfully!");
+      router.push('/dashboard/book-buffet/booking-form')
     } catch (error) {
       console.error("Error verifying OTP", error);
       setMessage("Failed to verify OTP. Please try again.");
     }
   };
-
 
   return (
     <div className="max-w-md mx-auto p-6 border border-gray-300 rounded-lg shadow-md bg-[var(--background)]">
@@ -98,10 +99,10 @@ const OtpVerify = () => {
         </div>
 
         <Button
-  type="submit" // Specify the button type
-  label="Send OTP"
-  className="w-full"
-/>
+          type="submit" // Specify the button type
+          label="Send OTP"
+          className="w-full"
+        />
       </form>
 
       {verificationId && (
@@ -115,10 +116,10 @@ const OtpVerify = () => {
             className="w-full p-2 border border-gray-300 rounded mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <Button
-  type="submit" 
-  label="Verify OTP"
-  className="w-full catr-btn"
-/>
+            type="submit"
+            label="Verify OTP"
+            className="w-full catr-btn"
+          />
         </form>
       )}
 
