@@ -7,19 +7,19 @@ const CatBanner: React.FC = () => {
   return (
     <div
       id="home"
-      className="cat-banner-wrapper w-full min-h-screen bg-cover bg-center flex flex-col items-center justify-center gap-16 lg:gap-24"
+      className="cat-banner-wrapper w-full min-h-screen md:pt-6 bg-cover bg-center flex flex-col items-center justify-center gap-10"
       style={{ backgroundImage: "url('/assets/images/banners/banner.jpg')" }}
     >
-      <div className="container px-4   sm:w-4/5 xl:w-3/5 space-y-6 md:space-y-8 lg:space-y-14 xl:space-y-24 md:mt-20 mx-auto text-center">
+      <div className="container px-4   sm:w-4/5 xl:w-3/5 space-y-6 mx-auto text-center">
         <h4 className="text-lg font-semibold">
           <span className="py-2 px-4 bg-opacity-25 text-base lg:text-xl bg-slate-100">
             Creating Unforgettable Events with Exquisite Catering
           </span>
         </h4>
-        <h1 className="cat-banner-title text-2xl md:text-4xl lg:text-6xl font-bold my-6 md:my-8 lg:my-10">
+        <h1 className="cat-banner-title text-2xl md:text-4xl lg:text-6xl font-bold my-6 ">
           Discover the Best Catering Services in Delhi with Guddu Catering
         </h1>
-        <p className="text-base md:text-lg mb-6 md:mb-8 lg:mb-10">
+        <p className="text-base md:text-lg">
           Guddu Catering offers premium catering solutions for weddings,
           parties, corporate events, and more. We combine traditional
           flavors with modern flair to make your special occasions truly
