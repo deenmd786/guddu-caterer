@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Image from "next/image";
 import { FaTrash } from "react-icons/fa";
-import CustomDropdown from "../../../../components/reuseable/CustomDropdown";
-import Button from "../../../../components/reuseable/Button";
 import { useRouter } from "next/navigation";
 import ProgressSteps from "../../_components/ProgressSteps";
 import { RootState } from "@/redux/store";
 import { removeFromCart, setCart } from "@/redux/cartSlice";
 import { Product } from "@/types/Products";
+import CustomDropdown from "@/components/reuseable/CustomDropdown";
+import Button from "@/components/reuseable/Button";
+
+
 
 const Cart: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
@@ -48,6 +50,30 @@ const Cart: React.FC = () => {
 
   return (
     <div className="cart p-3 md:p-6">
+
+      {/* Structured Data for SEO */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ShoppingCart",
+          name: "Your Buffet Cart",
+          description: "Review your customized buffet selections, Guddu Catering Service ensures a seamless booking experience in Delhi.",
+          itemListElement: filteredItems.map((item) => ({
+            "@type": "Product",
+            name: item.productName,
+            image: item.productImg[0] || "/images/placeholder.jpg",
+            sku: item._id,
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "INR",
+              itemCondition: "https://schema.org/NewCondition",
+              availability: "https://schema.org/InStock",
+            },
+          })),
+        }),
+      }} />
+
+
       {/* Step Tracker */}
       <ProgressSteps currentStep={1} />
       <div className="flex my-2 w-full justify-between items-center">

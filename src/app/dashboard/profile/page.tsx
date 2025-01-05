@@ -3,7 +3,13 @@ import { RootState } from "../../../redux/store";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import Button from "../../../components/reuseable/Button";
+import Button from "@/components/reuseable/Button";
+
+export const metadata = {
+  title: "Profile Page | Manage Your Account with Guddu Catering",
+  description:
+    "View and manage your profile details, including name, email, and verification status. Secure your catering bookings with a personalized experience at Guddu Catering.",
+};
 
 const ProfilePage = () => {
   // Accessing the user data from Redux store
@@ -14,7 +20,7 @@ const ProfilePage = () => {
     // Simulate loading time (remove this in production)
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1000); // Simulate a 1 second loading time
+    }, 1000); 
 
     return () => clearTimeout(timer);
   }, []);
@@ -51,6 +57,24 @@ const ProfilePage = () => {
 
   return (
     <>
+    {/* Structured Data */}
+    <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: user.name,
+          email: user.email,
+          description: user.description || "No description provided",
+          image: user.profilePic || "",
+          jobTitle: "Customer at Guddu Catering Service",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Delhi, India",
+          },
+          knowsAbout: ["Catering Services", "Event Management","Manage Food"],
+        })}
+      </script>
+
     <div className="flex flex-col items-center justify-center h-[90vh] bg-gray-100 p-5">
       <div className="bg-[var(--background)] shadow-md rounded-lg p-6 w-full max-w-md">
         <div className="flex flex-col items-center mb-4">

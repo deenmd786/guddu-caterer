@@ -9,6 +9,7 @@ import convertToBase64 from "../../../helpers/bash64Img";
 import { FaUser  } from "react-icons/fa6";
 import AuthLayout from "../../../components/layout/AuthLayout";
 import { FormData } from "../../../types/FormData";
+import Head from "next/head";
 
 
 
@@ -100,6 +101,28 @@ const SignUp: React.FC = () => {
 
   return (
     <AuthLayout>
+
+<Head>
+      <title>Sign Up | Guddu Catering Service</title>
+      <meta
+        name="description"
+        content="Create an account with Guddu Catering Service's to enjoy our exceptional catering services. Sign up now!"
+      />
+      <meta name="robots" content="noindex, nofollow" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Sign Up - Guddu Catering Service",
+            description: "Create an account with Guddu Catering Service's to enjoy our exceptional catering services. Sign up now!",
+            url: "https://www.gudducaterer.in/auth/signup",
+          }),
+        }}
+      />
+    </Head>
+      
       <div className="container max-w-md mx-auto px-6 py-4 bg-[var(--background)] rounded-lg shadow-md">
         <div className="flex flex-col gap-1 justify-center items-center">
           <div className="border-2 border-gray-950 rounded-full w-24 h-24 flex items-center justify-center relative overflow-hidden">

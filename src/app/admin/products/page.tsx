@@ -6,6 +6,7 @@ import { MdEdit, MdDelete } from "react-icons/md"; // Import icons
 import { Product } from "@/types/Products";
 import { deleteProduct, getProducts } from "@/utils/productController";
 import ProductCard from "@/components/admin-com/ProductCard";
+import Head from "next/head";
 
 
 const ProductListPage: React.FC = () => {
@@ -60,6 +61,28 @@ const ProductListPage: React.FC = () => {
     return <p className="text-red-500 text-center font-semibold">{error}</p>;
 
   return (
+    <>
+      <Head>
+        <title>Users | Guddu Catering Service</title>
+        <meta
+          name="description"
+          content="Manage users in the Guddu Catering admin panel. View and edit user details."
+        />
+        <meta name="robots" content="noindex, nofollow" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              name: "Users Management - Guddu Catering Service",
+              description: "Manage users in the Guddu Catering admin panel. View and edit user details.",
+              url: "https://www.gudducaterer.in/admin/users",
+            }),
+          }}
+        />
+      </Head>
+
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {products.length > 0 ? (
         products.map((product) => (
@@ -90,6 +113,7 @@ const ProductListPage: React.FC = () => {
         </p>
       )}
     </div>
+  </>
   );
 };
 

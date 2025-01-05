@@ -17,7 +17,7 @@ const CatBanner: React.FC = () => {
           </span>
         </h4>
         <h1 className="cat-banner-title text-2xl md:text-4xl lg:text-6xl font-bold my-6 ">
-          Discover the Best Catering Services in Delhi with Guddu Catering
+          Discover the Best Veg Menu for Catering Services in Delhi with Guddu Catering
         </h1>
         <p className="text-base md:text-lg">
           Guddu Catering offers premium catering solutions for weddings,

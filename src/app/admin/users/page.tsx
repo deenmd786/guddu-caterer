@@ -5,6 +5,7 @@ import { fetcher } from "@/utils/api";
 import { User } from "@/types/User";
 import { MdModeEdit } from "react-icons/md";
 import AdminUpdate from "@/components/admin-com/AdminUpdate";
+import Head from "next/head";
 
 
 const UsersPage = () => {
@@ -40,6 +41,30 @@ const UsersPage = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
+
+    <>
+    <Head>
+        <title>Users | Guddu Catering Service</title>
+        <meta
+          name="description"
+          content="Manage users in the Guddu Caterer admin panel. View and edit user details."
+        />
+        <meta name="robots" content="noindex, nofollow" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              name: "Users Management - Guddu Catering Service",
+              description: "Manage users in the Guddu Catering admin panel. View and edit user details.",
+              url: "https://www.gudducaterer.in/admin/users",
+            }),
+          }}
+        />
+      </Head>
+
+
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">All Users</h1>
       {users.length > 0 ? (
@@ -89,6 +114,7 @@ const UsersPage = () => {
       )}
       {selectedUser  && <AdminUpdate onClose={() => setSelectedUser(null)} user={selectedUser } />} {/* Pass the selected user to the UserUpdate component */}
     </div>
+    </>
   );
 };
 

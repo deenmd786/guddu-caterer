@@ -9,6 +9,7 @@ import { cookingMethods, productCategory, regions } from "@/data/productCategory
 import CategoryDropdown from "@/components/admin-com/CategoryDropdown";
 import ImageUploadAndPreview from "@/components/admin-com/ImageUploadAndPreview";
 import SubmitButton from "@/components/admin-com/SubmitButton";
+import Head from "next/head";
 
 
 const EditProductPage: React.FC = () => {
@@ -138,55 +139,77 @@ const EditProductPage: React.FC = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="max-w-md mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4 text-[--text-primary] text-center">Edit Product</h1>
-      <form onSubmit={handleUpdateProduct} className="space-y-2">
-        {/* Input Fields */}
-        <InputField
-          id="productName"
-          name="productName"
-          value={formData.productName}
-          placeholder="Enter product name"
-          onChange={handleChange}
+    <>
+      <Head>
+        <title>Edit Product | Guddu Catering Service</title>
+        <meta
+          name="description"
+          content="Edit the details of an existing product in Guddu Catering's inventory. Update product information and images."
         />
-        <Dropdown
-          id="region"
-          name="region"
-          value={formData.region}
-          options={regions}
-          onChange={handleChange}
+        <meta name="robots" content="noindex, nofollow" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              name: "Edit Product - Guddu Catering Service",
+              description: "Edit the details of an existing product in Guddu Catering's inventory. Update product information and images.",
+              url: "https://www.gudducaterer.in/admin/edit-product",
+            }),
+          }}
         />
+      </Head>
+      <div className="max-w-md mx-auto p-4">
+        <h1 className="text-2xl font-bold mb-4 text-[--text-primary] text-center">Edit Product</h1>
+        <form onSubmit={handleUpdateProduct} className="space-y-2">
+          {/* Input Fields */}
+          <InputField
+            id="productName"
+            name="productName"
+            value={formData.productName}
+            placeholder="Enter product name"
+            onChange={handleChange}
+          />
+          <Dropdown
+            id="region"
+            name="region"
+            value={formData.region}
+            options={regions}
+            onChange={handleChange}
+          />
 
-        <Dropdown
-          id="cookingMethods"
-          name="cookingMethods"
-          value={formData.cookingMethods}
-          options={cookingMethods}
-          onChange={handleChange}
-        />
+          <Dropdown
+            id="cookingMethods"
+            name="cookingMethods"
+            value={formData.cookingMethods}
+            options={cookingMethods}
+            onChange={handleChange}
+          />
 
-        {/* Dropdowns */}
-        <CategoryDropdown
-          categoryOptions={productCategory}
-          onCategoryChange={handleCategoryChange}
-          onSubCategoryChange={handleSubCategoryChange}
-          initialCategory={formData.category}
-          initialSubCategory={formData.subcategory}
-        />
-        
+          {/* Dropdowns */}
+          <CategoryDropdown
+            categoryOptions={productCategory}
+            onCategoryChange={handleCategoryChange}
+            onSubCategoryChange={handleSubCategoryChange}
+            initialCategory={formData.category}
+            initialSubCategory={formData.subcategory}
+          />
 
-        {/* Image Upload Component */}
-        <ImageUploadAndPreview
-          onImageUpload={handleImageUpload}
-          onImageDelete={handleImageDelete} // Pass the delete handler
-          loading={loading}
-          initialImages={formData.productImg}
-        />
+          {/* Image Upload Component */}
+          <ImageUploadAndPreview
+            onImageUpload={handleImageUpload}
+            onImageDelete={handleImageDelete} // Pass the delete handler
+            loading={loading}
+            initialImages={formData.productImg}
+          />
 
-        {/* Submit Button */}
-        <SubmitButton loading={loading} text="Update Product" />
-      </form>
-    </div>
+          {/* Submit Button */}
+          <SubmitButton loading={loading} text="Update Product" />
+        </form>
+      </div>
+    </>
+
   );
 };
 

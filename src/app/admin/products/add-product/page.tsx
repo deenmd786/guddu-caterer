@@ -12,6 +12,7 @@ import CategoryDropdown from "@/components/admin-com/CategoryDropdown";
 import { Product } from "@/types/Products";
 import { createProduct } from "@/utils/productController";
 import InputField from "@/components/admin-com/InputFields";
+import Head from "next/head";
 
 interface CreateProductResponse {
   product: Product;
@@ -133,54 +134,76 @@ const AddProductPage: React.FC = () => {
   }, [shouldReset]);
 
   return (
-      <div className="max-w-md mx-auto overflow-y-auto">
-    <h1 className="text-2xl font-bold mb-4 text-[--text-primary]  text-center">Add Product</h1>
-    <div className="h-[500px] overflow-y-auto p-1">
-    <form onSubmit={handleAddProduct} className="space-y-1 ">
-      {/* Input Fields */}
-      <InputField
-        id="productName"
-        name="productName"
-        value={formData.productName}
-        placeholder="Enter product name"
-        onChange={handleChange}
+    <>
+    <Head>
+      <title>Add Product | Guddu Catering Service</title>
+      <meta
+        name="description"
+        content="Add a new product to Guddu Catering's inventory. Fill in the product details and upload images."
       />
-
-      <Dropdown
-        id="region"
-        name="region"
-        value={formData.region}
-        options={regions}
-        onChange={handleChange}
+      <meta name="robots" content="noindex, nofollow" />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: "Add Product - Guddu Catering Service",
+            description: "Add a new product to Guddu Catering's inventory. Fill in the product details and upload images.",
+            url: "https://www.gudducaterer.in/admin/add-product",
+          }),
+        }}
       />
+    </Head>
+    <div className="max-w-md mx-auto overflow-y-auto">
+      <h1 className="text-2xl font-bold mb-4 text-[--text-primary] text-center">Add Product</h1>
+      <div className="h-[500px] overflow-y-auto p-1">
+        <form onSubmit={handleAddProduct} className="space-y-1">
+          {/* Input Fields */}
+          <InputField
+            id="productName"
+            name="productName"
+            value={formData.productName}
+            placeholder="Enter product name"
+            onChange={handleChange}
+          />
 
-      <Dropdown
-        id=" Method"
-        name="cookingMethods" // Corrected to match state property
-        value={formData.cookingMethods}
-        options={cookingMethods}
-        onChange={handleChange}
-      />
+          <Dropdown
+            id="region"
+            name="region"
+            value={formData.region}
+            options={regions}
+            onChange={handleChange}
+          />
 
-      {/* Dropdowns */}
-      <CategoryDropdown
-        categoryOptions={productCategory}
-        onCategoryChange={handleCategoryChange}
-        onSubCategoryChange={handleSubCategoryChange}
-        shouldReset={shouldReset}
-      />
+          <Dropdown
+            id="Method"
+            name="cookingMethods" // Corrected to match state property
+            value={formData.cookingMethods}
+            options={cookingMethods}
+            onChange={handleChange}
+          />
 
-      <ImageUploadAndPreview
-        onImageUpload={handleImageUpload}
-        loading={loading}
-        shouldReset={shouldReset}
-      />
+          {/* Dropdowns */}
+          <CategoryDropdown
+            categoryOptions={productCategory}
+            onCategoryChange={handleCategoryChange}
+            onSubCategoryChange={handleSubCategoryChange}
+            shouldReset={shouldReset}
+          />
 
-      {/* Submit Button */}
-      <SubmitButton loading={loading} text="Add Product" />
-    </form>
+          <ImageUploadAndPreview
+            onImageUpload={handleImageUpload}
+            loading={loading}
+            shouldReset={shouldReset}
+          />
+
+          {/* Submit Button */}
+          <SubmitButton loading={loading} text="Add Product" />
+        </form>
+      </div>
     </div>
-  </div>
+  </>
   );
 };
 

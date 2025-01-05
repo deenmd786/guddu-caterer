@@ -6,6 +6,7 @@ import Button from "../../components/reuseable/Button";
 import Logo from "../../components/reuseable/Logo";
 import EnquiryForm from "../../components/reuseable/CateringForm";
 import Map from "../../components/reuseable/Map";
+import Head from "next/head";
 
 const ContactUs: React.FC = () => {
   const message = "Hello, Guddu Catering Service!";
@@ -16,7 +17,45 @@ const ContactUs: React.FC = () => {
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappURL, "_blank");
   };
+
+  // Structured data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Us - Guddu Catering Service",
+    description: "Get in touch with Guddu Catering Service for exceptional catering services. Reach out via phone, chat, or book an appointment.",
+    url: "https://www.gudducaterer.in/contact-us",
+    mainEntity: {
+      "@type": "Organization",
+      name: "Guddu Catering Service",
+      url: "https://www.gudducaterer.in",
+      logo: "https://www.gudducaterer.in/logo.png",
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+9192878422964",
+        contactType: "Customer Service",
+        areaServed: "IN",
+        availableLanguage: "English",
+      },
+    },
+  };
+
   return (
+
+    <>
+    <Head>
+        <title>Contact Us | Guddu Catering Service</title>
+        <meta
+          name="description"
+          content="Contact Guddu Catering for exceptional catering services. Reach out via phone, chat, or book an appointment."
+        />
+        <meta name="robots" content="index, follow" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="/favicon.ico" />
+        {/* Structured Data for SEO */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+      </Head>
+      
     <div className="bg-white font-LexendDeca text-[var(--text-primary)] pt-24 pb-6">
     <div className="container mx-auto px-4">
       <span className="absolute top-10 left-20">
@@ -28,10 +67,10 @@ const ContactUs: React.FC = () => {
         <div className="flex flex-col lg:flex-row w-full justify-between items-center">
           <div className="w-full lg:w-1/2 pl-4 lg:pl-20">
             <h1 className="text-[var(--text-red)] text-3xl lg:text-4xl font-bold mb-4">
-              Contact Us About HubSpot’s Software
+              Contact Us About HubSpot&apos;s Software
             </h1>
             <p className="text-lg text-gray-600 mb-8">
-              We’d love to show you how you can get more traffic and leads,
+              We&apos;d love to show you how you can get more traffic and leads,
               increase your sales productivity, provide better customer service,
               or all of the above! Here are a few ways to reach out to our sales
               team.
@@ -112,6 +151,7 @@ const ContactUs: React.FC = () => {
       </div>
     </div>
   </div>
+    </>
 )};
 
 export default ContactUs;
