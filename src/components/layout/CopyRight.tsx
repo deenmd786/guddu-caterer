@@ -10,7 +10,7 @@ import {
 
 const Copyright: React.FC = () => {
   return (
-    <div className="bg-gray-800 text-white py-4">
+    <div className="bg-gray-800 pb-28 text-white py-4">
       <div className="container mx-auto text-center">
         <div className="w-full mb-2">
           {/* Social Media Platforms */}
