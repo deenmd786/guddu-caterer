@@ -1,6 +1,5 @@
 "use client";
 
-import Head from "next/head";
 import AdminPanelData from "@/components/admin-com/AdminPanelData";
 import AdminPanelNavigation from "@/components/admin-com/AdminPanelNavigation";
 import { RootState } from "@/redux/store";
@@ -29,13 +28,7 @@ export default function RootLayout({
 
   return (
     <>
-      <Head>
-        <title>Admin Panel | Guddu Catering Service</title>
-        <meta
-          name="description"
-          content="Admin panel for Guddu Catering Service. Manage users, view reports, and oversee catering services."
-        />
-        <meta name="robots" content="noindex, nofollow" />
+      
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -48,7 +41,6 @@ export default function RootLayout({
             }),
           }}
         />
-      </Head>
       <div className="flex overflow-y-hidden">
         {/* Admin panel sidebar */}
         <aside className="min-w-[40%] min-h-screen md:min-w-[30%] sticky top-0 custom-shadow">

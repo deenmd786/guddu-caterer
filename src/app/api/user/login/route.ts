@@ -31,7 +31,7 @@ const loginHandler = async (req: NextRequest) => {
         return NextResponse.json({ error: authMessages.incorrectPassword }, { status: 400 });
     }
 
-    const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET!, { expiresIn: "30d" });
+    const token = jwt.sign({ id: user._id }, process.env.TOKEN_SECRET!, { expiresIn: "365d" });
 
     const response = NextResponse.json({
         message: authMessages.loginSuccess,

@@ -12,7 +12,6 @@ import CategoryDropdown from "@/components/admin-com/CategoryDropdown";
 import { Product } from "@/types/Products";
 import { createProduct } from "@/utils/productController";
 import InputField from "@/components/admin-com/InputFields";
-import Head from "next/head";
 
 interface CreateProductResponse {
   product: Product;
@@ -135,14 +134,7 @@ const AddProductPage: React.FC = () => {
 
   return (
     <>
-    <Head>
-      <title>Add Product | Guddu Catering Service</title>
-      <meta
-        name="description"
-        content="Add a new product to Guddu Catering's inventory. Fill in the product details and upload images."
-      />
-      <meta name="robots" content="noindex, nofollow" />
-      <script
+           <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
@@ -154,7 +146,6 @@ const AddProductPage: React.FC = () => {
           }),
         }}
       />
-    </Head>
     <div className="max-w-md mx-auto overflow-y-auto">
       <h1 className="text-2xl font-bold mb-4 text-[--text-primary] text-center">Add Product</h1>
       <div className="h-[500px] overflow-y-auto p-1">

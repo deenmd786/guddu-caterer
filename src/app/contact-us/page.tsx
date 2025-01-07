@@ -6,13 +6,12 @@ import Button from "../../components/reuseable/Button";
 import Logo from "../../components/reuseable/Logo";
 import EnquiryForm from "../../components/reuseable/CateringForm";
 import Map from "../../components/reuseable/Map";
-import Head from "next/head";
 
 const ContactUs: React.FC = () => {
   const message = "Hello, Guddu Catering Service!";
 
   const sendMessage = () => {
-    const phoneNumber = "918851253661"; // Fixed phone number
+    const phoneNumber = "918851253661";
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappURL, "_blank");
@@ -43,18 +42,7 @@ const ContactUs: React.FC = () => {
   return (
 
     <>
-    <Head>
-        <title>Contact Us | Guddu Catering Service</title>
-        <meta
-          name="description"
-          content="Contact Guddu Catering for exceptional catering services. Reach out via phone, chat, or book an appointment."
-        />
-        <meta name="robots" content="index, follow" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="/favicon.ico" />
-        {/* Structured Data for SEO */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-      </Head>
       
     <div className="bg-white font-LexendDeca text-[var(--text-primary)] pt-24 pb-6">
     <div className="container mx-auto px-4">

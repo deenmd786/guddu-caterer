@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import apiHelper from "../../../utils/apiHelper";
 import Link from "next/link";
 import AuthLayout from "../../../components/layout/AuthLayout";
-import Head from "next/head";
 
 interface FormData {
   email: string;
@@ -56,18 +55,10 @@ const ForgotPassword: React.FC = () => {
 
   return (
     <AuthLayout>
-      <Head>
-        <title>Forgot Password | Guddu Catering Service</title>
-        <meta
-          name="description"
-          content="Reset your password for your Guddu Catering Service's account. Enter your email to receive a password reset link."
-        />
-        <meta name="robots" content="noindex, nofollow" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-      </Head>
       <div className="container max-w-md mx-auto p-6 bg-[var(--background)] rounded-lg shadow-md">
         <h2 className="text-2xl text-[var(--text-primary)] font-semibold text-center mb-6">
           Forgot Password

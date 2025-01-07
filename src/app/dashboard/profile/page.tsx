@@ -5,11 +5,6 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import Button from "@/components/reuseable/Button";
 
-export const metadata = {
-  title: "Profile Page | Manage Your Account with Guddu Catering",
-  description:
-    "View and manage your profile details, including name, email, and verification status. Secure your catering bookings with a personalized experience at Guddu Catering.",
-};
 
 const ProfilePage = () => {
   // Accessing the user data from Redux store

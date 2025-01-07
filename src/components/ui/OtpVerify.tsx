@@ -10,6 +10,7 @@ import {
 import { auth } from "../../firebase.config";
 import Button from "../reuseable/Button";
 import { useRouter } from "next/navigation";
+import { createPhoneNumber } from "@/utils/phoneNumberController";
 
 const OtpVerify = () => {
   const [otpTimer, setOtpTimer] = useState(60); // Timer for OTP reset
@@ -19,10 +20,9 @@ const [isResendDisabled, setIsResendDisabled] = useState(true); // Disable resen
   const [otp, setOtp] = useState("");
   const [verificationId, setVerificationId] = useState("");
   const [success, setSuccess] = useState("");
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const [isOtpSent, setIsOtpSent] = useState(false); // New state variable
   const router = useRouter();
-
 
 
   const captureCode = () => {
@@ -44,7 +44,7 @@ const [isResendDisabled, setIsResendDisabled] = useState(true); // Disable resen
   const sendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
     if (phoneNumber.length !== 10) {
-      setMessage("Please enter a valid 10-digit phone number.");
+      setError("Please enter a valid 10-digit phone number.");
       return;
     }
     captureCode();
@@ -75,7 +75,7 @@ const [isResendDisabled, setIsResendDisabled] = useState(true); // Disable resen
       }, 1000);
     } catch (error) {
       console.error("Error during signInWithPhoneNumber", error);
-      setMessage("Failed to send OTP. Please try again.");
+      setError("Failed to send OTP. Please try again.");
     }
   };
 
@@ -86,10 +86,30 @@ const [isResendDisabled, setIsResendDisabled] = useState(true); // Disable resen
     try {
       await signInWithCredential(auth, credential);
       setSuccess("Phone number verified successfully!");
+      await handleCreatePhoneNumber();
       router.push('/dashboard/book-buffet/booking-form');
     } catch (error) {
       console.error("Error verifying OTP", error);
-      setMessage("Failed to verify OTP. Please try again.");
+      setError("Failed to verify OTP. Please try again.");
+    }
+  };
+
+  const handleCreatePhoneNumber = async () => {
+    if (!formattedNumber) {
+      setError("Phone number is required.");
+      return;
+    }
+
+    try {
+      const response = await createPhoneNumber({phoneNumber: formattedNumber});
+      if ('message' in response) {
+        setError(response.message);
+      } else {
+        
+      }
+    } catch (err) {
+      console.error("Error creating phone number:", err);
+      setError("Failed to create phone number.");
     }
   };
 
@@ -160,7 +180,7 @@ const [isResendDisabled, setIsResendDisabled] = useState(true); // Disable resen
         </form>
       )}
 
-      {message && <p className="text-center text-red-500">{message}</p>}
+      {error && <p className="text-center text-red-500">{error}</p>}
       {success && <p className="text-center text-green-500">{success}</p>}
     </div>
   );

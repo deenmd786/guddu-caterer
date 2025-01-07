@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import AuthLayout from "../../../components/layout/AuthLayout";
-import Head from "next/head";
 
 interface FormData {
   password: string;
@@ -103,15 +102,7 @@ const ResetPassword: React.FC = () => {
   return (
     <AuthLayout>
 
-<Head>
-        <title>Reset Password | Guddu Catering Service</title>
-        <meta
-          name="description"
-          content="Reset your password for your Guddu Catering Service's account. Enter your new password to regain access."
-        />
-        <meta name="robots" content="noindex, nofollow" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-      </Head>
       <div className="container max-w-md mx-auto p-6 bg-[var(--background)] rounded-lg shadow-md">
         <h2 className="text-2xl text-[var(--text-primary)] font-semibold text-center mb-6">Reset Password</h2>
         <form onSubmit={handleSubmit} className="space-y-4">

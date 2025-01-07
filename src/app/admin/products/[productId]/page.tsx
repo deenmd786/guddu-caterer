@@ -9,7 +9,6 @@ import { cookingMethods, productCategory, regions } from "@/data/productCategory
 import CategoryDropdown from "@/components/admin-com/CategoryDropdown";
 import ImageUploadAndPreview from "@/components/admin-com/ImageUploadAndPreview";
 import SubmitButton from "@/components/admin-com/SubmitButton";
-import Head from "next/head";
 
 
 const EditProductPage: React.FC = () => {
@@ -140,13 +139,7 @@ const EditProductPage: React.FC = () => {
 
   return (
     <>
-      <Head>
-        <title>Edit Product | Guddu Catering Service</title>
-        <meta
-          name="description"
-          content="Edit the details of an existing product in Guddu Catering's inventory. Update product information and images."
-        />
-        <meta name="robots" content="noindex, nofollow" />
+      
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -159,7 +152,6 @@ const EditProductPage: React.FC = () => {
             }),
           }}
         />
-      </Head>
       <div className="max-w-md mx-auto p-4">
         <h1 className="text-2xl font-bold mb-4 text-[--text-primary] text-center">Edit Product</h1>
         <form onSubmit={handleUpdateProduct} className="space-y-2">

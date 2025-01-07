@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import AuthLayout from "../../../components/layout/AuthLayout";
 import { setUser } from "../../../redux/userSlice";
 import { useDispatch } from "react-redux";
-import Head from "next/head";
 
 interface FormData {
   email: string;
@@ -74,15 +73,8 @@ const Login: React.FC = () => {
 
   return (
     <AuthLayout>
-      <Head>
-        <title>Login | Guddu Catering Service</title>
-        <meta
-          name="description"
-          content="Login to your Guddu Catering Service's account to access your dashboard and manage your catering services."
-        />
-        <meta name="robots" content="noindex, nofollow" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-      </Head>
+     
 
       <div className="container max-w-md mx-auto p-6 bg-[var(--background)] rounded-lg shadow-md">
         <h2 className="text-2xl text-[var(--text-primary)] font-semibold text-center mb-6">Login</h2>

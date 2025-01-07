@@ -5,11 +5,6 @@ import Button from "@/components/reuseable/Button";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 
-export const metadata = {
-  title: "Profile Settings | Update Your Account at Guddu Catering",
-  description:
-    "Easily manage and update your account details, including personal information, preferences, and more. Enjoy seamless updates with Guddu Catering's Profile Settings.",
-};
 
 const ProfileSettings = () => {
   const user = useSelector((state: RootState) => state.user.user);

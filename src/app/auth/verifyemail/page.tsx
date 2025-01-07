@@ -1,10 +1,9 @@
 "use client";
 
+import AuthLayout from "@/components/layout/AuthLayout";
+import apiHelper from "@/utils/apiHelper";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
-import apiHelper from "../../../utils/apiHelper";
-import AuthLayout from "../../../components/layout/AuthLayout";
-import Head from "next/head";
 
 const VerifyUser = () => {
   const searchParams = useSearchParams();
@@ -53,14 +52,6 @@ const VerifyUser = () => {
 
   return (
     <AuthLayout>
-
-<Head>
-      <title>Verify Your Account | Guddu Catering Service</title>
-      <meta
-        name="description"
-        content="Verify your account with Guddu Catering Service using the link sent to your email. Complete your registration process."
-      />
-      <meta name="robots" content="noindex, nofollow" />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -73,7 +64,6 @@ const VerifyUser = () => {
           }),
         }}
       />
-    </Head>
 
       <div className="flex items-center justify-center bg-[var(--background)]">
       <div className="p-6 shadow-md rounded-md text-center">
