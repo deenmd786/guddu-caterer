@@ -24,23 +24,6 @@ const [isResendDisabled, setIsResendDisabled] = useState(true); // Disable resen
   const router = useRouter();
 
 
-  const checkUserVerification = () => {
-    const user = auth.currentUser ; // Get the current user
-  
-    if (user) {
-      if (user.phoneNumber) {
-        console.log("User  is verified. No need for OTP verification.");
-        router.push('/dashboard/book-buffet/booking-form');
-        // Proceed with the application logic
-      } else {
-        console.log("User  is not verified. Proceed with OTP verification.");
-        // Trigger OTP verification process
-      }
-    } else {
-      console.log("No user is signed in.");
-      // Handle user not signed in
-    }
-  };
 
   const captureCode = () => {
     window.recaptchaVerifier = new RecaptchaVerifier(
@@ -60,7 +43,6 @@ const [isResendDisabled, setIsResendDisabled] = useState(true); // Disable resen
 
   const sendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
-    checkUserVerification();
     if (phoneNumber.length !== 10) {
       setMessage("Please enter a valid 10-digit phone number.");
       return;
@@ -122,35 +104,44 @@ const [isResendDisabled, setIsResendDisabled] = useState(true); // Disable resen
 
       {!isOtpSent ? ( // Conditional rendering based on isOtpSent
         <form onSubmit={sendOtp} className="mb-4">
-          <div className="flex items-center mb-4">
-            <span className="p-2 bg-gray-100 border border-gray-300 rounded-s-lg">
-              +91
-            </span>
-            <input
-              type="text"
-              placeholder="Enter phone number"
-              value={phoneNumber}
-              onChange={(e) =>
-                setPhoneNumber(e.target.value.replace(/[^0-9]/g, ""))
-              }
-              required
-              maxLength={10}
-              className="w-full p-2 border border-gray-300 rounded-r max-sm:placeholder:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+  <div className="flex items-center mb-4">
+    <span className="p-2 bg-gray-100 border border-gray-300 rounded-l-lg">
+      +91
+    </span>
+    <input
+      type="text"
+      placeholder="Enter phone number"
+      value={phoneNumber}
+      onChange={(e) =>
+        setPhoneNumber(e.target.value.replace(/[^0-9]/g, ""))
+      }
+      required
+      maxLength={10}
+      className="w-full p-2 border border-gray-300 rounded-r-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+  </div>
 
-          {isOtpSent && (
+  <div className="text-center mt-4">
+    
+    <Button 
+    type="submit"
+    label="Send OTP"
+    />
+  </div>
+
+  {isOtpSent && (
     <div className="text-center mt-4">
-        <button
-            onClick={sendOtp}
-            disabled={isResendDisabled}
-            className={`p-2 border rounded ${isResendDisabled ? 'bg-gray-300' : 'bg-blue-500 text-white'}`}
-        >
-            {isResendDisabled ? `Resend OTP in ${otpTimer}s` : "Resend OTP"}
-        </button>
+      
+      <Button 
+      type="button"
+      onClick={sendOtp}
+      disabled={isResendDisabled}
+      label={`${isResendDisabled ? `Resend OTP in ${otpTimer}s` : "Resend OTP"}`}
+      />
+
     </div>
-)}
-        </form>
+  )}
+</form>
       ) : (
         <form onSubmit={verifyOtp} className="mb-4">
           <input
