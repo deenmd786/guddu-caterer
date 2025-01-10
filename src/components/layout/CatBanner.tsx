@@ -9,7 +9,7 @@ const CatBanner: React.FC = () => {
   return (
     <section
       id="home"
-      className="cat-banner-wrapper w-full min-h-screen md:pt-10 bg-cover bg-center flex flex-col items-center justify-center"
+      className="cat-banner-wrapper w-full min-h-screen md:pt-10 bg-cover bg-center  flex flex-col items-center justify-center"
       style={{
         backgroundImage: "url('/assets/images/banners/banner.jpg')",
         backgroundSize: "cover",
@@ -41,7 +41,7 @@ const CatBanner: React.FC = () => {
       {/* Sticky Button Section */}
       {/* Sticky Button Section */}
 <div
-  className="fixed md:static z-30 bg-[var(--background-secondary)] bottom-0 left-0 w-full shadow-lg p-2 md:p-4 md:bg-transparent"
+  className="fixed md:static md:pt-10 z-30 bg-[var(--background-secondary)] bottom-0 left-0 w-full shadow-lg p-2 md:p-4 md:bg-transparent"
   role="complementary"
 >
   <div className="container mx-auto flex justify-center">
