@@ -61,7 +61,7 @@
 @media (max-width: 768px) {
   .cat-btn {
     font-size: 14px; /* Smaller font size for smaller screens */
-    padding: 12px 16px; /* Adjust padding for smaller buttons */
+    padding: 10px 14px; /* Adjust padding for smaller buttons */
     min-width: 120px; /* Reduce minimum width */
   }
 }

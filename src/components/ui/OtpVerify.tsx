@@ -12,7 +12,10 @@ import Button from "../reuseable/Button";
 import { useRouter } from "next/navigation";
 import { createPhoneNumber } from "@/utils/phoneNumberController";
 
-const OtpVerify = () => {
+interface OtpVerifyProps {
+  setIsVerified: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
   const [otpTimer, setOtpTimer] = useState(60); // Timer for OTP reset
 const [isResendDisabled, setIsResendDisabled] = useState(true); // Disable resend button initially
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -86,6 +89,8 @@ const [isResendDisabled, setIsResendDisabled] = useState(true); // Disable resen
     try {
       await signInWithCredential(auth, credential);
       setSuccess("Phone number verified successfully!");
+      setIsVerified(true);
+
       await handleCreatePhoneNumber();
       router.push('/dashboard/book-buffet/booking-form');
     } catch (error) {

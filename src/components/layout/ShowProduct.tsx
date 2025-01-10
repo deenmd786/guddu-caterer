@@ -84,7 +84,7 @@ const ShowProduct: React.FC = () => {
     <div id="menu" className="bg-[var(--background-secondary)] p-2 mb-3">
       <div className="mx-auto">
         {/* Category buttons */}
-        <div className="flex pb-2 justify-center">
+        <div className="flex pb-2 h-[6vh] xl:h-[8vh] justify-center">
           {productCategory.map((category) => (
             <button
               key={category.id}
@@ -101,7 +101,7 @@ const ShowProduct: React.FC = () => {
         </div>
 
         {/* Subcategory selection */}
-        <div className="flex lg:gap-2 bg-[var(--background)] p-2">
+        <div className="flex h-[78vh] xl:h-[70vh]  lg:gap-2 bg-[var(--background)] p-2">
           <div>
             {selectedCategory?.subcategories?.map((subCategory) => (
               <div
@@ -122,7 +122,7 @@ const ShowProduct: React.FC = () => {
 
           {/* Loading shimmer or products */}
           {loading ? (
-            <div className="hidden lg:grid lg:grid-cols-4 xl:grid-cols-5 scroll-hidden overflow-x-auto gap-4 bg-[var(--background)] lg:max-h-[410px] xl:max-h-[424px]">
+            <div className="min:h-[80vh] hidden lg:grid lg:grid-cols-4 xl:grid-cols-5 scroll-hidden overflow-x-auto gap-4 bg-[var(--background)]">
               {Array(12)
                 .fill(0)
                 .map((_, index) => (
@@ -132,7 +132,7 @@ const ShowProduct: React.FC = () => {
                 ))}
             </div>
           ) : (
-            <div className="hidden lg:grid lg:grid-cols-4 xl:grid-cols-5 scroll-hidden overflow-x-auto gap-4 bg-[var(--background)] lg:max-h-[410px] xl:max-h-[424px]">
+            <div className="hidden min:h-[80vh]  lg:grid lg:grid-cols-4 xl:grid-cols-5 scroll-hidden overflow-x-auto gap-4 bg-[var(--background)] ">
               {products.map((product) => (
                 <div key={product._id} className="flex-shrink-0">
                   <ProductCard
