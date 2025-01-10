@@ -19,20 +19,16 @@ interface DropdownProps {
 const Dropdown: React.FC<DropdownProps> = ({ title, links, isScroll = false, className = '' }) => {
     const [isOpen, setIsOpen] = useState(false);
 
-    // Open dropdown on mouse enter
-    const handleMouseEnter = () => {
-        setIsOpen(true);
-    };
-
-    // Close dropdown on mouse leave
-    const handleMouseLeave = () => {
-        setIsOpen(false);
+    const handleToggleDropdown = () => {
+        setIsOpen(!isOpen);
     };
 
     return (
-        <div className="relative z-10" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div className="relative z-10">
             <button
-            
+                aria-haspopup="true"
+                aria-expanded={isOpen ? "true" : "false"}
+                onClick={handleToggleDropdown}
                 className={`${
                     isScroll ? 'text-[var(--text-primary)]' : 'text-[var(--text-white)]'
                 } md:hover:text-[var(--text-secondary)] flex items-center`}
@@ -40,19 +36,18 @@ const Dropdown: React.FC<DropdownProps> = ({ title, links, isScroll = false, cla
                 {title} <IoMdArrowDropdown className='ml-1 text-xl' />
             </button>
             <div
-                className={`absolute bg-[var(--background)] shadow-lg transition-transform duration-300 ease-in-out transform ${isOpen ? 'scale-y-100' : 'scale-y-0'} origin-top`}
-                style={{ pointerEvents: isOpen ? 'auto' : 'none' }} // Prevent interaction when closed
+                className={`absolute bg-[var(--background)] shadow-lg transition-all duration-300 ease-in-out transform ${isOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'} origin-top`}
+                style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
             >
                 {links.map((link) => (
                     <Link
-                        key={link.label} // Use a unique key
+                        key={link.label}
                         href={link.href || '#'}
                         className={`${
                             className
                                 ? className
                                 : 'block px-2 py-1 text-[var(--text-primary)] md:hover:text-[var(--text-secondary)] md:hover:bg-[var(--background-secondary)] whitespace-nowrap'
                         }`}
-                        // scroll={false} 
                     >
                         {link.label}
                     </Link>

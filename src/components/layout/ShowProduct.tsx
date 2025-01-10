@@ -83,10 +83,10 @@ const ShowProduct: React.FC = () => {
   return (
     <div id="menu" className="bg-[var(--background-secondary)] p-2 mb-3">
       <div className="mx-auto">
+        {/* Category buttons */}
         <div className="flex pb-2 justify-center">
           {productCategory.map((category) => (
             <button
-              id={`${category.value}`}
               key={category.id}
               onClick={() => handleCategoryClick(category)}
               className={`border text-base border-[var(--border)] py-1 px-2 rounded-full mx-2 mb-1 ${
@@ -99,6 +99,8 @@ const ShowProduct: React.FC = () => {
             </button>
           ))}
         </div>
+
+        {/* Subcategory selection */}
         <div className="flex lg:gap-2 bg-[var(--background)] p-2">
           <div>
             {selectedCategory?.subcategories?.map((subCategory) => (
@@ -117,6 +119,8 @@ const ShowProduct: React.FC = () => {
               </div>
             ))}
           </div>
+
+          {/* Loading shimmer or products */}
           {loading ? (
             <div className="hidden lg:grid lg:grid-cols-4 xl:grid-cols-5 scroll-hidden overflow-x-auto gap-4 bg-[var(--background)] lg:max-h-[410px] xl:max-h-[424px]">
               {Array(12)
@@ -133,14 +137,14 @@ const ShowProduct: React.FC = () => {
                 <div key={product._id} className="flex-shrink-0">
                   <ProductCard
                     product={product}
-                    isInCart={cartItems.some(
-                      (item) => item._id === product._id
-                    )}
+                    isInCart={cartItems.some((item) => item._id === product._id)}
                   />
                 </div>
               ))}
             </div>
           )}
+
+          {/* Error message */}
           {error && !loading && (
             <p className="text-[var(--danger)] flex items-center justify-center w-full">
               {error}

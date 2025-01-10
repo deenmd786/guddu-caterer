@@ -15,8 +15,8 @@ const Copyright: React.FC = () => {
         <div className="w-full mb-2">
           {/* Social Media Platforms */}
           <h3 className="font-bold text-lg mb-2">FOLLOW US</h3>
-          <div className="flex justify-center space-x-4">
-            <a
+          <div className="flex justify-center space-x-4 md:space-x-6">
+          <a
               href="https://www.facebook.com"
               target="_blank"
               rel="noopener noreferrer"

@@ -14,7 +14,10 @@ const MenuCategorySelector: React.FC<CategorySelectorProps> = ({
   onCategoryClick,
 }) => {
   return (
-    <div className="flex flex-wrap justify-center">
+    <fieldset className="flex flex-wrap justify-center" aria-labelledby="category-selector-label">
+      <legend id="category-selector-label" className="sr-only">
+        Select a category
+      </legend>
       <select
         id="category-selector"
         value={selectedCategory?.id || ""}
@@ -25,27 +28,33 @@ const MenuCategorySelector: React.FC<CategorySelectorProps> = ({
           );
           onCategoryClick(selectedCat || null); // Handle case where no category is found
         }}
-        className=" border border-[var(--border)] py-1 px-2 rounded-md w-full"
+        className="border border-[var(--border)] py-1 px-2 rounded-md w-full"
+        aria-label="Select a category"
       >
         <option value="" disabled>
           Select a Category
         </option>
-        {categories.map((category) => (
-          <option
-            key={category.id}
-            value={category.id}
-            className={
-              selectedCategory?.id === category.id
-                ? "bg-[var(--red)] text-[var(--text-white)]"
-                : "text-[var(--text-red)]"
-            }
-          >
-            {category.label}
+        {categories.length > 0 ? (
+          categories.map((category) => (
+            <option
+              key={category.id}
+              value={category.id}
+              className={
+                selectedCategory?.id === category.id
+                  ? "bg-[var(--red)] text-[var(--text-white)]"
+                  : "text-[var(--text-red)]"
+              }
+            >
+              {category.label}
+            </option>
+          ))
+        ) : (
+          <option value="" disabled>
+            No categories available
           </option>
-        ))}
+        )}
       </select>
-    </div>
-    
+    </fieldset>
   );
 };
 

@@ -4,7 +4,7 @@ import React from 'react';
 const Specialization = () => {
   return (
     <div
-      className="bg-[var(--background-secondary)] py-8 mx-auto px-20 relative z-10"
+      className="bg-[var(--background-secondary)] py-8 mx-auto px-4 xl:px-20 relative z-10"
       style={{ fontFamily: "'Roboto', sans-serif" }}
     >
       <div className="flex items-center flex-col">

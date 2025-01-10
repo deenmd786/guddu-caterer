@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa"; // Import the dropdown icon
 
 // Define the props interface
@@ -14,6 +14,7 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
   setSelectedCategory,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const handleSelect = (category: string) => {
     setSelectedCategory(category);
@@ -21,9 +22,11 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
   };
 
   return (
-    <div className="relative  w-full md:w-1/2 z-30">
+    <div ref={dropdownRef} className="relative w-full md:w-1/2 z-30">
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen ? "true" : "false"}
+        aria-haspopup="true"
         className="border border-black rounded p-1 md:p-2 text-sm md:text-base w-full text-left flex items-center justify-between"
       >
         <span className="capitalize">{selectedCategory}</span>
@@ -45,5 +48,6 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
     </div>
   );
 };
+
 
 export default CustomDropdown;

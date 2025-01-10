@@ -27,9 +27,11 @@ export default function BookBuffetLayout({
   };
 
   return (
-    <div>
+       <>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-      {children}
+        <div className="max-h-[91vh] md:max-h-screen overflow-hidden">
+        {children}
     </div>
+       </>
   );
 }

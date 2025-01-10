@@ -45,7 +45,7 @@ const OurServices: React.FC = () => {
                   altText={service.label}
                   description={service.description}
                 />
-                <span className="mt-2 hidden md:flex text-lg font-semibold text-[var(--text-black)] ">
+                <span className="mt-2 hidden md:flex text-lg font-semibold text-[var(--text-primary)] ">
                   {service.label}
                 </span>
               </div>

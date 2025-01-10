@@ -9,6 +9,7 @@ import { RootState } from "../../redux/store";
 import SubCategorySelector from "../ui/SubCategorySelector";
 import MenuCategorySelector from "../ui/MenuCategorySelector";
 import { Category, SubCategory } from "../../types/types";
+import ShimmerPlaceholder from "../reuseable/ShimmerPlaceholder";
 
 const MenuSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
@@ -72,7 +73,7 @@ const MenuSection: React.FC = () => {
 
   return (
     <div className="bg-[var(--background)]">
-      <div className="flex gap-4 py-3 items-center justify-center">
+      <div className="flex gap-4 py-3 items-center justify-center ">
         <MenuCategorySelector
           categories={productCategory}
           selectedCategory={selectedCategory}
@@ -86,35 +87,21 @@ const MenuSection: React.FC = () => {
           />
         )}
       </div>
-      <div className="mb-1 md:mb-2 lg:mb-0 bg-[var(--background)] w-full max-h-[60vh] md:max-h-[71vh] scroll-hidden overflow-y-auto ">
-        {loading && (
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:flex w-full scroll-hidden lg:overflow-x-auto gap-2 md:gap-3 lg:gap-4 bg-[var(--background)]">
+      <div className="mb-1 md:mb-2 lg:mb-0 bg-[var(--background)] w-full max-h-[64vh]  md:max-h-[74vh] scroll-hidden overflow-y-auto">
+      {loading && (
+  <div className="grid grid-cols-3 sm:grid-cols-4 lg:flex w-full h-full scroll-hidden gap-2 md:gap-3 lg:gap-4 bg-[var(--background)]">
     {Array.from({ length: 12 }).map((_, index) => (
-      <div
-        key={index}
-        className="bg-[var(--background)] rounded-lg shadow-md overflow-hidden w-full"
-      >
-        <div className="relative h-20 md:h-24 lg:h-36 shimmer">
-          {/* Image placeholder */}
-        </div>
-        <div className="text-xs sm:text-sm lg:text-lg font-semibold p-2">
-          <div className="h-4 shimmer rounded mb-2"></div> {/* Product name */}
-          <div className="h-2 shimmer rounded mb-1"></div> {/* Region */}
-          <div className="hidden lg:flex h-2 shimmer rounded mb-3"></div> {/* Cooking methods */}
-          <div className="mt-auto">
-            <div className="h-6 shimmer rounded"></div> {/* Button */}
-          </div>
-        </div>
-      </div>
+      <ShimmerPlaceholder key={index} />
     ))}
   </div>
 )}
-          {error && !loading && (
-            <p className="text-[var(--danger)] flex items-center justify-center w-full">
-              {error}
-            </p>
-          )}
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:flex w-full scroll-hidden lg:overflow-x-auto gap-2 bg-[var(--background)]">
+
+        {error && !loading && (
+          <p className="text-[var(--danger)] flex items-center justify-center w-full">
+            {error}
+          </p>
+        )}
+        <div className="grid grid-cols-3 sm:grid-cols-4 lg:flex w-full scroll-hidden lg:overflow-x-auto gap-2 bg-[var(--background)]">
           {!loading &&
             !error &&
             products.map((product) => (

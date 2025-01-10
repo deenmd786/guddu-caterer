@@ -4,8 +4,8 @@ import Image from "next/image";
 import { FaPhone, FaComments, FaUtensils } from "react-icons/fa"; // Importing React Icons
 import Button from "../../components/reuseable/Button";
 import Logo from "../../components/reuseable/Logo";
-import EnquiryForm from "../../components/reuseable/CateringForm";
 import Map from "../../components/reuseable/Map";
+import CateringForm from "../../components/reuseable/CateringForm";
 
 const ContactUs: React.FC = () => {
   const message = "Hello, Guddu Catering Service!";
@@ -46,11 +46,11 @@ const ContactUs: React.FC = () => {
       
     <div className="bg-white font-LexendDeca text-[var(--text-primary)] pt-24 pb-6">
     <div className="container mx-auto px-4">
-      <span className="absolute top-10 left-20">
+      <span className="absolute  top-10 lg:left-20">
         <Logo />
       </span>
       {/* Flex container for text and image */}
-      <div className="">
+      <div className="mt-10 xl:mt-4">
         {/* Text and img section*/}
         <div className="flex flex-col lg:flex-row w-full justify-between items-center">
           <div className="w-full lg:w-1/2 pl-4 lg:pl-20">
@@ -71,7 +71,8 @@ const ContactUs: React.FC = () => {
               height={300}
               src="https://storage.googleapis.com/a1aa/image/k9NXFrflQ93XFCeJ7D0PeDOMpz1u06KUf8nI7wJZDCC8wltPB.jpg"
               alt="Person with headphones talking"
-              className="rounded-lg object-cover w-full h-auto"
+              className="rounded-lg object-cover w-full h-auto md:h-72
+              "
             />
           </div>
         </div>
@@ -128,8 +129,8 @@ const ContactUs: React.FC = () => {
         </h1>
         <div className="flex flex-col md:flex-row justify-center gap-5 lg:gap-20">
           {/* Form Section */}
-          <div className="max-w-lg w-full">
-            <EnquiryForm />
+          <div className="max-w-lg w-full ">
+            <CateringForm />
           </div>
           {/* Map Section */}
           <div className="w-full md:max-w-lg">

@@ -114,7 +114,7 @@ const [isResendDisabled, setIsResendDisabled] = useState(true); // Disable resen
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 border border-gray-300 rounded-lg shadow-md bg-[var(--background)]">
+    <div className="max-w-md  mx-auto p-6 border border-gray-300 rounded-lg shadow-md bg-[var(--background)]">
       <h2 className="text-xl md:text-2xl text-[var(--text-primary)] font-semibold text-center mb-4">
         Phone Authentication
       </h2>
@@ -143,7 +143,7 @@ const [isResendDisabled, setIsResendDisabled] = useState(true); // Disable resen
 
   <div className="text-center mt-4">
     
-    <Button 
+    <Button
     type="submit"
     label="Send OTP"
     />

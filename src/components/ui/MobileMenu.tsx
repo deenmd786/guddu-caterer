@@ -33,7 +33,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuOpen, setMenuOpen }) => {
   };
 
   return (
-    <div
+    <nav
       className={`fixed top-0 left-0 h-full w-[80%] bg-[var(--bg-Menu)] z-50 text-md font-medium transform transition-transform duration-500 ease-in-out md:hidden ${
         menuOpen ? 'translate-x-0' : '-translate-x-full'
       }`}
@@ -97,7 +97,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuOpen, setMenuOpen }) => {
           Log In
         </Link>
       )}
-    </div>
+    </nav>
   );
 };
 

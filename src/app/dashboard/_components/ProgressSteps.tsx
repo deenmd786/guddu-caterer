@@ -13,12 +13,12 @@ const ProgressSteps: React.FC<ProgressStepsProps> = ({ currentStep }) => {
 
   return (
 <div className="lg:w-2/3 mx-auto">        
-    <div className="flex  items-center justify-between md:pb-3 bg-gray-100">
+    <div className="flex  items-center justify-between lg:pb-3 bg-[var(--background)]">
       {steps.map((step, index) => (
         <div
           key={index}
           className={`flex flex-col md:flex-row items-center space-x-2 ${
-            index + 1 <= currentStep ? "text-blue-500" : "text-gray-400"
+            index + 1 <= currentStep ? "text-[var(--button)]" : "text-gray-400"
           }`}
         >
           <div className="flex items-center justify-center w-8 h-8 rounded-full border-2 border-current">

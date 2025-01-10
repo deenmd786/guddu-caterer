@@ -11,7 +11,7 @@ const greatVibes = Great_Vibes({
 
 const OurStory: React.FC = () => {
   return (
-    <div className={`bg-white min-h-96 p-8 border-8 border-black shadow-lg text-center relative max-w-lg mx-auto`}>
+    <div className="bg-white min-h-[24rem] p-8 border-8 border-black shadow-lg text-center relative max-w-lg mx-auto">
       <Image
         alt="Decorative background image of a catering setup"
         className="absolute inset-0 w-full h-full object-cover opacity-10"
@@ -23,7 +23,7 @@ const OurStory: React.FC = () => {
         <h1 className={`title text-4xl text-rose-600 mb-2 ${greatVibes.className}`}>
           Our Story
         </h1>
-        <h2 className="subtitle text-3xl text-gray-800 mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
+        <h2 className="subtitle text-3xl text-gray-800 mb-4 font-serif">
           LOVE FOR FOOD
         </h2>
         <div className="flex justify-center items-center mb-2">

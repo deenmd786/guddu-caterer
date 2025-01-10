@@ -31,7 +31,7 @@ export default function Home() {
         const data: ApiResponse = await apiHelper("/api/user/me", {
           method: "POST",
         });
-        if (data.user) {
+        if (data?.user) {
           dispatch(setUser(data.user));
           setError(null);
         } else {
@@ -49,47 +49,69 @@ export default function Home() {
 
   return (
     <>
-      <Head>
+            <Head>
         <title>
-          Guddu Catering Service - Exceptional Catering Services for Weddings, Parties & Events in Delhi
+          Guddu Catering Services - Best Catering Services in Delhi for Weddings, Parties & Events
         </title>
         <meta
           name="description"
-          content="Experience the best catering services in Delhi with Guddu Catering. Specializing in weddings, parties, and corporate events, we offer live cooking, customized buffets, and exceptional service to make your event unforgettable!"
+          content="Hire Guddu Catering Services for the best catering services in Delhi. Specializing in weddings, parties, and corporate events with live cooking and customized buffets."
         />
         <meta
           name="keywords"
-          content="catering service, wedding catering, party catering, event catering, live cooking, buffet catering, corporate events, Guddu Catering, catering services in Delhi, wedding planners, party food, Delhi catering services"
+          content="catering services in Delhi, caterers in Delhi, wedding catering, party catering, event catering, corporate catering, customized buffets, live cooking, Guddu Catering Services"
         />
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="author" content="Guddu Catering" />
         <link rel="icon" href="/favicon.ico" />
-
+        <link rel="canonical" href="https://gudducaterer.in" />
         {/* Open Graph Tags for Social Sharing */}
-        <meta
-          property="og:title"
-          content="Guddu Catering Service - Exceptional Catering Services for Weddings, Parties & Events in Delhi"
-        />
+        <meta property="og:title" content="Guddu Catering Services - Best Catering Services in Delhi" />
         <meta
           property="og:description"
-          content="Guddu Catering Service offers top-notch catering for weddings, parties, and corporate events in Delhi. Experience customized buffet options, live cooking, and impeccable service."
+          content="Hire Guddu Catering Services for top-notch catering in Delhi. Perfect for weddings, parties, and corporate events with live cooking and customized buffets."
         />
-        <meta property="og:image" content="/path-to-image.jpg" /> {/* Replace with a relevant image URL */}
-        <meta property="og:url" content="https://yourwebsite.com" /> {/* Replace with your actual URL */}
+        <meta property="og:image" content="https://gudducaterer.in/path-to-image.jpg" />
+        <meta property="og:url" content="https://gudducaterer.in" />
         <meta property="og:type" content="website" />
 
         {/* Twitter Card Tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Guddu Catering Service - Exceptional Catering Services for Weddings, Parties & Events in Delhi"
-        />
+        <meta name="twitter:title" content="Guddu Catering Services - Best Catering Services in Delhi" />
         <meta
           name="twitter:description"
-          content="Guddu Catering Service offers top-notch catering for weddings, parties, and corporate events in Delhi. Experience customized buffet options, live cooking, and impeccable service."
+          content="Hire Guddu Catering Services for top-notch catering in Delhi. Perfect for weddings, parties, and corporate events with live cooking and customized buffets."
         />
-        <meta name="twitter:image" content="/path-to-image.jpg" /> {/* Replace with your image URL */}
+        <meta name="twitter:image" content="https://gudducaterer.in/path-to-image.jpg" />
+
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "Guddu Catering Services",
+              description:
+                "Guddu Catering Services specializes in catering for weddings, parties, and corporate events in Delhi, offering customized buffet options and live cooking.",
+              image: "https://gudducaterer.in/path-to-image.jpg",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Delhi",
+                addressRegion: "DL",
+                postalCode: "110001",
+                addressCountry: "IN",
+              },
+              telephone: "+91-1234567890",
+              url: "https://gudducaterer.in",
+              sameAs: [
+                "https://www.facebook.com/gudducatering",
+                "https://www.instagram.com/gudducatering",
+              ],
+            }),
+          }}
+        />
       </Head>
 
       <Header />

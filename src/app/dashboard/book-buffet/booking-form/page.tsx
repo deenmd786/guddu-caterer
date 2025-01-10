@@ -33,19 +33,19 @@ const BookingForm = () => {
     };
 
     return (
-        <div className="p-3 md:p-6">
-            {/* Structured Data for SEO */}
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+           <> {/* Structured Data for SEO */}
+           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+       <div className="p-3 md:p-6">
 
-            <ProgressSteps currentStep={3} />
-            <div className="mb-3 flex my-4 justify-center items-center">
-                <CateringForm />
-            </div>
-            <div className="flex justify-between">
-                <Button label="Back" onClick={() => route.back()} className="catr-btn" />
-                <WhatsAppPage />
-            </div>
-        </div>
+           <ProgressSteps currentStep={3} />
+           <div className="mb-3 flex my-4 justify-center items-center">
+               <CateringForm />
+           </div>
+           <div className="flex justify-between">
+               <Button label="Back" onClick={() => route.back()} className="catr-btn" />
+               <WhatsAppPage />
+           </div>
+       </div></>
     );
 };
 

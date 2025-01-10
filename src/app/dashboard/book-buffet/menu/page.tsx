@@ -39,26 +39,26 @@ const BookBuffet = () => {
         },
       }),
     }} />
-    <div className="w-full p-2 lg:py-4">
+   <div className="w-full px-3 pt-3  md:max-h-screen">
      
 
-      {/* Step Tracker */}
-      <ProgressSteps currentStep={1} />
+     {/* Step Tracker */}
+     <ProgressSteps currentStep={1} />
 
-      {/* Content */}
-      <div className="lg:hidden ">
-        <MenuSection />
-      </div>
-      <div className="hidden lg:flex">
-        <ShowProduct />
-      </div>
+     {/* Content */}
+     <div className="lg:hidden max-h-[84vh]">
+       <MenuSection />
+     </div>
+     <div className="hidden lg:flex">
+       <ShowProduct />
+     </div>
 
-      {/* Navigation Buttons */}
-      <div className="flex justify-between">
-        <Button label="Back" onClick={() => router.back()} className="catr-btn" />
-        <Button label="Next" href="/dashboard/book-buffet/cart" />
-      </div>
-    </div>
+     {/* Navigation Buttons */}
+     <div className="flex justify-between">
+       <Button label="Back" onClick={() => router.back()} className="catr-btn" />
+       <Button label="Next" href="/dashboard/book-buffet/cart" />
+     </div>
+   </div>
      </>
   );
 };

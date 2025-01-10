@@ -49,29 +49,32 @@ const Cart: React.FC = () => {
       : cartItems.filter((item) => item.category === selectedCategory);
 
   return (
+
+    <>
+    {/* Structured Data for SEO */}
+    <script type="application/ld+json" dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "ShoppingCart",
+        name: "Your Buffet Cart",
+        description: "Review your customized buffet selections, Guddu Catering Service ensures a seamless booking experience in Delhi.",
+        itemListElement: filteredItems.map((item) => ({
+          "@type": "Product",
+          name: item.productName,
+          image: item.productImg[0] || "/images/placeholder.jpg",
+          sku: item._id,
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "INR",
+            itemCondition: "https://schema.org/NewCondition",
+            availability: "https://schema.org/InStock",
+          },
+        })),
+      }),
+    }} />
     <div className="cart p-3 md:p-6">
 
-      {/* Structured Data for SEO */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{
-        __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "ShoppingCart",
-          name: "Your Buffet Cart",
-          description: "Review your customized buffet selections, Guddu Catering Service ensures a seamless booking experience in Delhi.",
-          itemListElement: filteredItems.map((item) => ({
-            "@type": "Product",
-            name: item.productName,
-            image: item.productImg[0] || "/images/placeholder.jpg",
-            sku: item._id,
-            offers: {
-              "@type": "Offer",
-              priceCurrency: "INR",
-              itemCondition: "https://schema.org/NewCondition",
-              availability: "https://schema.org/InStock",
-            },
-          })),
-        }),
-      }} />
+      
 
 
       {/* Step Tracker */}
@@ -93,7 +96,7 @@ const Cart: React.FC = () => {
       {filteredItems.length === 0 ? (
         <p className="text-sm md:text-base">Your cart is empty. <br /> Please Select Menu to Make a Booking.</p>
       ) : (
-        <div className="overflow-y-auto max-h-[64vh] md:max-h-[71vh] lg:max-h-[69vh] xl:max-h-[67vh]">
+        <div className="overflow-y-auto max-h-[65vh] md:max-h-[72vh]">
           <table className="min-w-full bg-[var(--background)] border text-center tranform border-[var(--background-secondary)] text-xs lg:text-base">
             <thead className="sticky font-light -top-1 bg-[var(--red)] z-10">
               <tr className="bg-[var(--button)] text-[var(--text-white)]">
@@ -169,6 +172,7 @@ const Cart: React.FC = () => {
           <Button label="Next"  href="/dashboard/book-buffet/phone-verify"/>}
         </div>
     </div>
+    </>
   );
 };
 

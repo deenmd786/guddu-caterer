@@ -61,31 +61,17 @@
 @media (max-width: 768px) {
   .cat-btn {
     font-size: 14px; /* Smaller font size for smaller screens */
-    padding: 10px 12px; /* Adjust padding for smaller buttons */
-    min-width: 110px; /* Reduce minimum width */
-  }
-}
-
-@media (max-width: 480px) {
-  .cat-btn {
-    font-size: 14px; /* Even smaller font size for very small screens */
-    padding: 8px 12px; /* Further reduce padding */
-    min-width: 84px; /* Minimum width for very small screens */
+    padding: 12px 16px; /* Adjust padding for smaller buttons */
+    min-width: 120px; /* Reduce minimum width */
   }
 }
 
 
-@media not all and (min-width: 768px) {
-  .max-lg\:\!text-xs {
-      font-size: 0.60rem /* 12px */ !important;
-      line-height: .8rem /* 16px */ !important;
-  }
-}
 
 @media (max-width: 480px) {
   .menu-btn {
     font-size: 14px; /* Even smaller font size for very small screens */
-    padding: 6px 6px; /* Further reduce padding */
+    padding: 6px 8px; /* Further reduce padding */
     min-width: 84px; /* Minimum width for very small screens */
   }
 }

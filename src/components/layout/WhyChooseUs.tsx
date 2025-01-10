@@ -16,12 +16,10 @@ const WhyChooseUs: React.FC = () => (
   <div id="choose-us" className="bg-[var(--background)] py-12">
     <div className="container mx-auto px-4 text-center">
       <h1 className="text-[var(--text-red)] text-xl font-bold mb-8 pb-3 border-b border-red-600">
-        -- Why Choose Us --
+        Why Choose Our Catering Services
       </h1>
-      <h2
-        className={`font-GreatVibes  text-2xl md:text-4xl tracking-widest mb-3`}
-      >
-        Committed to <span className="text-[var(--text-red)]">Excellence</span>
+      <h2 className="font-GreatVibes text-2xl md:text-4xl tracking-widest mb-3">
+        Committed to <span className="text-[var(--text-red)]">Excellence in Event Catering</span>
       </h2>
       <div className="flex w-full mx-auto flex-col lg:flex-row gap-8 items-center">
         {/* Image Section */}
@@ -29,13 +27,13 @@ const WhyChooseUs: React.FC = () => (
           width={300}
           height={300}
           src="/assets/images/banners/story.png"
-          alt="Why Choose Us"
+          alt="Why Choose Guddu Catering Services for your event"
           className="w-full lg:w-[35%] max-h-screen object-contain"
         />
         {/* Text and Stats Section */}
         <div className="w-full lg:w-2/3 ">
           <p className="mb-6 text-lg text-[var(--text-black)] leading-relaxed">
-            At Guddu Catering Service, we focus on:
+            At Guddu Catering Services, we focus on:
             <br />
             <br />
             <span className="hover:text-[var(--text-red)] transition-colors duration-300">
@@ -44,15 +42,14 @@ const WhyChooseUs: React.FC = () => (
             : A variety of delicious dishes, perfect for your event.
             <br />
             <span className="hover:text-[var(--text-red)] transition-colors duration-300">
-              <strong>Easy Planning</strong>
+              <strong>Easy Event Planning</strong>
             </span>
             : Custom options for a stress-free, personalized experience.
             <br />
             <span className="hover:text-[var(--text-red)] transition-colors duration-300">
               <strong>Reliable Service</strong>
             </span>
-            : Fresh, tasty food delivered on time for your guests&apos;
-            enjoyment.
+            : Fresh, tasty food delivered on time for your guests&apos; enjoyment.
             <br />
             <span className="hover:text-[var(--text-red)] transition-colors duration-300">
               <strong>Fresh and On-Time Food Delivery</strong>
@@ -71,7 +68,7 @@ const WhyChooseUs: React.FC = () => (
                   width={70}
                   height={70}
                   src={icon}
-                  alt={label}
+                  alt={`${label} for Guddu Catering Services`}
                   className="object-contain mx-auto"
                 />
                 <h3 className="text-2xl font-bold text-[var(--text-black)]">

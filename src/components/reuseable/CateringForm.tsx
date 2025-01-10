@@ -133,72 +133,72 @@ const CateringForm: React.FC = () => {
     }
 };
 
-  return (
-    <div className="container max-w-md mx-auto p-3 bg-[var(--background)] rounded-lg shadow-md">
-      <h2 className=" mb-2 text-xl lg:text-2xl text-[var(--text-primary)] font-semibold text-center md:mb-6">
-        Catering Form
-      </h2>
-      <form onSubmit={handleSubmit} className="space-y-2 md:space-y-3">
-        {["name", "phone", "eventDate", "guests", "address", "comments"].map((field) => (
-          <div key={field} className="relative">
-            {field === "eventDate" ? (
-              <input
-                type="date"
-                name={field}
-                value={formData[field as keyof FormData]}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button)] focus:border-[var(--button)] transition-all"
-                onFocus={() => handleFocus(field)}
-                onBlur={() => handleBlur(field)}
-              />
-            ) : field === "guests" ? (
-              <input
-                type="number"
-                name={field}
-                value={formData[field as keyof FormData]}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button)] focus:border-[var(--button)] transition-all"
-                onFocus={() => handleFocus(field)}
-                onBlur={() => handleBlur(field)}
-              />
-            ) : (
-              <input
-                type="text"
-                name={field}
-                value={formData[field as keyof FormData]}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button)] focus:border-[var(--button)] transition-all"
-                onFocus={() => handleFocus(field)}
-                onBlur={() => handleBlur(field)}
-              />
-            )}
-            <label
-              htmlFor={field}
-              className={`absolute left-4 top-2 transition-all origin-[0] bg-white scale-75 transform pointer-events-none ${
-                formData[field as keyof FormData] || focus[field]
-                  ? "translate-y-[-20px] scale-75 text-[var(--button)] px-2 z-10"
-                  : "translate-y-0 scale-100 text-[var(--text-muted)] text-lg pr-20"
-              }`}
-            >
-              {field.charAt(0).toUpperCase() +
-                field.slice(1).replace(/([A-Z])/g, " $1")}
-            </label>
-          </div>
-        ))}
-        <Button type="submit" className="w-full" label={loading ? "Submitting..." : "Submit Enquiry"}/>
-        
-      </form>
-      {error && (
-        <p className="text-[var(--text-red)] text-center mt-2">{error}</p>
-      )}
-      {success && (
-        <p className="text-[var(--success)] text-center mt-2">{success}</p>
-      )}
-    </div>
-  );
+return (
+  <div className="container max-w-md mx-auto p-3 bg-[var(--background)] rounded-lg shadow-md">
+    <h2 className=" mb-2 text-xl lg:text-2xl text-[var(--text-primary)] font-semibold text-center md:mb-6">
+      Catering Form
+    </h2>
+    <form onSubmit={handleSubmit} className="space-y-3 text-base">
+      {["name", "phone", "eventDate", "guests", "address", "comments"].map((field) => (
+        <div key={field} className="relative">
+          {field === "eventDate" ? (
+            <input
+              type="date"
+              name={field}
+              value={formData[field as keyof FormData]}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button)] focus:border-[var(--button)] transition-all"
+              onFocus={() => handleFocus(field)}
+              onBlur={() => handleBlur(field)}
+            />
+          ) : field === "guests" ? (
+            <input
+              type="number"
+              name={field}
+              value={formData[field as keyof FormData]}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button)] focus:border-[var(--button)] transition-all"
+              onFocus={() => handleFocus(field)}
+              onBlur={() => handleBlur(field)}
+            />
+          ) : (
+            <input
+              type="text"
+              name={field}
+              value={formData[field as keyof FormData]}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button)] focus:border-[var(--button)] transition-all"
+              onFocus={() => handleFocus(field)}
+              onBlur={() => handleBlur(field)}
+            />
+          )}
+          <label
+            htmlFor={field}
+            className={`absolute left-4 top-2 transition-all origin-[0] bg-[var(--background)] scale-75 transform pointer-events-none ${
+              formData[field as keyof FormData] || focus[field]
+                ? "translate-y-[-20px] scale-75 text-[var(--button)] px-2 z-10"
+                : "translate-y-0 scale-100 text-[var(--text-muted)] text-lg pr-20"
+            }`}
+          >
+            {field.charAt(0).toUpperCase() +
+              field.slice(1).replace(/([A-Z])/g, " $1")}
+          </label>
+        </div>
+      ))}
+      <Button type="submit" className="w-full" label={loading ? "Submitting..." : "Submit Enquiry"}/>
+      
+    </form>
+    {error && (
+      <p className="text-[var(--text-red)] text-center mt-2">{error}</p>
+    )}
+    {success && (
+      <p className="text-[var(--success)] text-center mt-2">{success}</p>
+    )}
+  </div>
+);
 };
 
 export default CateringForm;
