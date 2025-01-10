@@ -30,19 +30,19 @@ export default function RootLayout({
         <meta name="robots" content="index, follow" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {/* Standard favicon */}
-        <link rel="icon" href="/favicon_io/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32" />
 
         {/* Apple Touch Icons */}
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/favicon_io/apple-touch-icon.png"
+          href="/apple-touch-icon.png"
         />
         <link
           rel="apple-touch-icon"
           sizes="120x120"
-          href="/favicon_io/apple-touch-icon-120x120.png"
+          href="/apple-touch-icon-120x120.png"
         />
 
         {/* Other icons */}
@@ -50,17 +50,17 @@ export default function RootLayout({
           rel="icon"
           type="image/png"
           sizes="192x192"
-          href="/favicon_io/android-chrome-192x192.png"
+          href="/android-chrome-192x192.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="512x512"
-          href="/favicon_io/android-chrome-512x512.png"
+          href="/android-chrome-512x512.png"
         />
 
         {/* Manifest for PWA */}
-        <link rel="manifest" href="/favicon_io/manifest.json" />
+        <link rel="manifest" href="/manifest.json" />
         {/* Open Graph Tags for social sharing */}
         <meta
           property="og:title"
