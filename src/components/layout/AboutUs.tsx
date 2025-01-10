@@ -33,7 +33,7 @@ const AboutUs: React.FC = () => (
             className="mb-6 md:text-lg text-[var(--text-black)] leading-relaxed"
             aria-label="About our services"
           >
-            At Guddu Catering Service, we pride ourselves on our commitment to
+            At Guddu Caterer, we pride ourselves on our commitment to
             quality and customer satisfaction. Our team of expert cooks is
             dedicated to providing delicious and fresh food for all types of
             events. We believe in making your experience as seamless as
