@@ -7,7 +7,15 @@ const phoneNumberSchema = new mongoose.Schema({
     unique: true, // Ensure phone numbers are unique
     match: [/^\+?[1-9]\d{1,14}$/, "Please provide a valid phone number."], // Regex for phone number validation
   },
-}, { timestamps: true }); // Automatically manage createdAt and updatedAt fields
+  products: {
+    type: [String],
+    default: [],
+  },
+  orderDate: {
+    type: Date,
+    default: Date.now,
+  },
+}, { timestamps: true });
 
 const PhoneNumber = mongoose.models.phoneNumbers || mongoose.model("phoneNumbers", phoneNumberSchema);
 

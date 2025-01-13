@@ -4,6 +4,7 @@ import { RootState } from "../../redux/store";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Button from "./Button";
+import { createPhoneNumber } from "@/utils/phoneNumberController";
 
 interface CartItem {
   category: string;
@@ -23,7 +24,9 @@ interface GroupedProducts {
 
 const CateringForm: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
-  
+  const productNames = cartItems.map(item => item.productName);
+  const phoneNumber = localStorage.getItem('phoneNumber');
+
   const groupProductsByCategory = (items: CartItem[]): GroupedProducts => {
     return items.reduce<GroupedProducts>((acc, item) => {
       
@@ -42,7 +45,7 @@ const CateringForm: React.FC = () => {
 
   const [formData, setFormData] = useState<FormData>({
     name: "",
-    phone: "",
+    phone: phoneNumber ?? "",
     eventDate: "",
     guests: 0,
     address: "",
@@ -104,8 +107,6 @@ const CateringForm: React.FC = () => {
             body: JSON.stringify(payload),
         });
 
-        console.log("API response status:", response.status);
-        console.log("API response:", response);
 
         if (!response.ok) {
             const errorData = await response.json();
@@ -113,6 +114,21 @@ const CateringForm: React.FC = () => {
             setError(`Error: ${errorData.error || 'Something went wrong'}`);
             return;
         }
+        if (!phoneNumber) {
+          console.error("Phone number is required.");
+          return; // Exit the function if phoneNumber is not valid
+        }
+        const res = await createPhoneNumber({
+          phoneNumber: formData.phone,
+          products: productNames, // Include the array of product names
+        });
+      
+        if (res.status === 201) {
+          console.log("Phone number added successfully:", res.data);
+        } else {
+          console.error("Error adding phone number:", res.message);
+        }
+        localStorage.removeItem('phoneNumber');
         localStorage.removeItem('cart');
         const data = await response.json();
         setSuccess(data.message || 'Email sent successfully!');
@@ -139,7 +155,7 @@ return (
       Catering Form
     </h2>
     <form onSubmit={handleSubmit} className="space-y-3 text-base">
-      {["name", "phone", "eventDate", "guests", "address", "comments"].map((field) => (
+      {["name", "phone", "eventDate", "No. of guests", "address", "comments"].map((field) => (
         <div key={field} className="relative">
           {field === "eventDate" ? (
             <input
