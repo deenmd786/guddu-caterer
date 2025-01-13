@@ -1,7 +1,7 @@
 "use client";
 
 import { RootState } from "../../redux/store";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Button from "./Button";
 import { createPhoneNumber } from "@/utils/phoneNumberController";
@@ -25,8 +25,15 @@ interface GroupedProducts {
 const CateringForm: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const productNames = cartItems.map(item => item.productName);
-  const phoneNumber = localStorage.getItem('phoneNumber');
+ // State to hold the phone number
+ const [phoneNumber, setPhoneNumber] = useState<string | null>(null);
 
+ useEffect(() => {
+   // Access localStorage only in the browser
+   const storedPhoneNumber = localStorage.getItem('phoneNumber');
+   setPhoneNumber(storedPhoneNumber);
+ }, []); 
+  
   const groupProductsByCategory = (items: CartItem[]): GroupedProducts => {
     return items.reduce<GroupedProducts>((acc, item) => {
       
