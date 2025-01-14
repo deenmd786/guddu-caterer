@@ -4,29 +4,19 @@ import WhyChooseUs from "../../components/layout/WhyChooseUs";
 import AboutHome from "./_components/AboutHome";
 import Specialization from "./_components/Specialization";
 import WhatWeOffer from "./_components/WhatWeOffer";
+import Seo from "@/components/reuseable/Seo";
 
 const AboutUs = () => {
     return (
         <>
             <Head>
-                <title>About Us | Guddu Catering Service</title>
-                <meta
-                    name="description"
-                    content="Learn more about Guddu Catering Service, our values, and the exceptional services we offer. Discover why we are the best choice for your catering needs."
-                />
-                <meta name="robots" content="index, follow" />
-                <script
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            "@context": "https://schema.org",
-                            "@type": "WebPage",
-                            name: "About Us - Guddu Catering Service",
-                            description: "Learn more about Guddu Catering Service, our values, and the exceptional services we offer. Discover why we are the best choice for your catering needs.",
-                            url: "https://www.gudducaterer.in/about-us",
-                        }),
-                    }}
-                />
+            <Seo
+        title="About Us - Guddu Catering Services"
+        description="Learn more about Guddu Catering Services, our journey, and the exceptional catering services we provide in Delhi."
+        url="https://gudducaterer.in/about-us"
+        image="https://gudducaterer.in/logo.png"
+        keywords="About Guddu Catering, Catering Services, Delhi Catering"
+      />
             </Head>
             <section>
                 <AboutHome />
