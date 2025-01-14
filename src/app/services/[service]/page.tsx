@@ -1,9 +1,10 @@
 "use client";
+
 import React from "react";
 import { ServiceKey, servicesData } from "../../../data/servicesData";
 import { useParams } from "next/navigation";
 import Hero from "../../../components/admin-com/Hero";
-import Head from "next/head";
+import Seo from "@/components/reuseable/Seo";
 
 const ServicePage: React.FC = () => {
   const params = useParams();
@@ -18,7 +19,7 @@ const ServicePage: React.FC = () => {
 
   // Define SEO metadata based on the service
   const seoData = {
-    title: serviceData ? `Service - ${serviceData.title}` : "Service Not Found - My Website",
+    title: serviceData ? `Service - ${serviceData.title}` : "Service Not Found - Guddu Catering",
     description: serviceData
       ? `Discover our ${serviceData.title} service. We offer top-notch solutions tailored for your needs.`
       : "The service you are looking for is not available. Explore our other services.",
@@ -31,38 +32,15 @@ const ServicePage: React.FC = () => {
 
   return (
     <>
-      <Head>
-        <title>{seoData.title}</title>
-        <meta name="description" content={seoData.description} />
-        <meta name="keywords" content={seoData.keywords} />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={seoData.url} />
-        {/* Open Graph Meta Tags */}
-        <meta property="og:title" content={seoData.title} />
-        <meta property="og:description" content={seoData.description} />
-        <meta property="og:url" content={seoData.url} />
-        <meta property="og:image" content={seoData.image} />
-        <meta property="og:type" content="website" />
-        {/* Twitter Card Meta Tags */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={seoData.title} />
-        <meta name="twitter:description" content={seoData.description} />
-        <meta name="twitter:image" content={seoData.image} />
-        {/* Add structured data (JSON-LD) for rich results */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Service",
-              name: serviceData?.title || "Service Not Found",
-              description: seoData.description,
-              image: seoData.image,
-              url: seoData.url,
-            }),
-          }}
-        />
-      </Head>
+      {/* Use the Seo component to set SEO metadata */}
+      <Seo
+        title={seoData.title}
+        description={seoData.description}
+        url={seoData.url}
+        image={seoData.image}
+        keywords={seoData.keywords}
+      />
+      
       {serviceData ? (
         <Hero serviceKey={validServiceKey} />
       ) : (
