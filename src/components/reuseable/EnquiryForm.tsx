@@ -1,10 +1,9 @@
 "use client";
 
-import { RootState } from "../../redux/store";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import Button from "./Button";
-import { createPhoneNumber } from "@/utils/phoneNumberController";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 interface CartItem {
   category: string;
@@ -22,10 +21,9 @@ interface GroupedProducts {
   [category: string]: string[];
 }
 
-const CateringForm: React.FC = () => {
-  const cartItems = useSelector((state: RootState) => state.cart.items);
-  const productNames = cartItems.map(item => item.productName);
-  const phoneNumber = typeof window !== "undefined" ? localStorage.getItem('phoneNumber') : null;
+const EnquiryForm: React.FC = () => {
+    const cartItems = useSelector((state: RootState) => state.cart.items);
+
 
   const groupProductsByCategory = (items: CartItem[]): GroupedProducts => {
     return items.reduce<GroupedProducts>((acc, item) => {
@@ -45,7 +43,7 @@ const CateringForm: React.FC = () => {
 
   const [formData, setFormData] = useState<FormData>({
     name: "",
-    phone: phoneNumber ?? "",
+    phone: "",
     eventDate: "",
     guests: 0,
     address: "",
@@ -90,7 +88,6 @@ const CateringForm: React.FC = () => {
     setSuccess(null);
 
     const groupedProducts = groupProductsByCategory(cartItems);
-    console.log("Grouped Products: ", groupedProducts);
 
     try {
         const payload = {
@@ -114,22 +111,6 @@ const CateringForm: React.FC = () => {
             setError(`Error: ${errorData.error || 'Something went wrong'}`);
             return;
         }
-        if (!phoneNumber) {
-          console.error("Phone number is required.");
-          return; // Exit the function if phoneNumber is not valid
-        }
-        const res = await createPhoneNumber({
-          phoneNumber: formData.phone,
-          products: productNames, // Include the array of product names
-        });
-      
-        if (res.status === 201) {
-          console.log("Phone number added successfully:", res.data);
-        } else {
-          console.error("Error adding phone number:", res.message);
-        }
-        localStorage.removeItem('phoneNumber');
-        localStorage.removeItem('cart');
         const data = await response.json();
         setSuccess(data.message || 'Email sent successfully!');
 
@@ -217,4 +198,4 @@ return (
 );
 };
 
-export default CateringForm;
+export default EnquiryForm;

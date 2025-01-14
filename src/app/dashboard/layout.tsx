@@ -1,13 +1,7 @@
-import type { Metadata } from "next";
 import AdminPanelData from "../../components/admin-com/AdminPanelData";
 import Link from "next/link";
 import DashboardNav from "../../components/admin-com/DashboardNav";
 
-export const metadata: Metadata = {
-  title: "Guddu Catering: Book Delicious Custom Menu for Events in Delhi",
-  description:
-    "Elevate your events with Guddu Catering Service in Delhi. Customize your menu, book effortlessly, and enjoy premium service at affordable prices.",
-};
 
 export default function RootLayout({
   children,
@@ -16,25 +10,6 @@ export default function RootLayout({
 }) {
   return (
     <>
-    <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "Guddu Catering Service's Dashboard",
-          description:
-            "Manage your Guddu Catering Service dashboard with ease. Access all features, track orders, and customize event menus from a single platform.",
-          about: "Catering Services and Event Management in Delhi",
-          publisher: {
-            "@type": "Organization",
-            name: "Guddu Catering Service",
-            url: "https://gudducatering.com",
-          },
-          mainEntity: {
-            "@type": "WebPageElement",
-            name: "Dashboard",
-          },
-        })}
-      </script>
     <div className="min-h-screen flex flex-col md:flex-row">
       
       {/* Admin panel sidebar */}

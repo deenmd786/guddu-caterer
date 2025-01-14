@@ -12,33 +12,6 @@ const BookBuffet = () => {
 
   return (
      <>
-     {/* Structured Data for SEO */}
-     <script type="application/ld+json" dangerouslySetInnerHTML={{
-      __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Service",
-        serviceType: "Catering Service",
-        name: "Buffet Catering Customization",
-        description: "Explore and customize a buffet menu tailored for your event. Book your catering experience with seamless navigation and premium service.",
-        provider: {
-          "@type": "Organization",
-          name: "Guddu Catering Service",
-          url: "https://www.gudducaterer.in",
-          logo: "https://www.gudducaterer.in/logo.png",
-        },
-        offers: {
-          "@type": "Offer",
-          url: "https://www.gudducaterer.in/dashboard/book-buffet",
-          priceCurrency: "INR",
-          price: "Affordable pricing based on menu selection",
-          itemOffered: {
-            "@type": "MenuItem",
-            name: "Custom Buffet Menu",
-            description: "A customizable buffet menu for events, including various cuisines and dishes.",
-          },
-        },
-      }),
-    }} />
    <div className="w-full px-3 pt-3  md:max-h-screen">
      
 

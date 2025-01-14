@@ -100,18 +100,6 @@ const SignUp: React.FC = () => {
 
   return (
     <AuthLayout>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            name: "Sign Up - Guddu Catering Service",
-            description: "Create an account with Guddu Catering Service's to enjoy our exceptional catering services. Sign up now!",
-            url: "https://www.gudducaterer.in/auth/signup",
-          }),
-        }}
-      />
       
       <div className="container max-w-md mx-auto px-6 py-4 bg-[var(--background)] rounded-lg shadow-md">
         <div className="flex flex-col gap-1 justify-center items-center">

@@ -28,24 +28,6 @@ const ProfileSettings = () => {
 
   return (
     <>
-      {/* Structured Data */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Person",
-          name: user.name,
-          email: user.email,
-          description:
-            user.description || "No description available for this user.",
-          image: user.profilePic || "",
-          jobTitle: "Customer at Guddu Catering Service",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Delhi, India",
-          },
-          knowsAbout: ["Catering Services", "Event Management"],
-        })}
-      </script>
 
       {/* Profile Settings */}
       <div className="flex flex-col justify-center items-center h-[70vh] md:h-[90vh]">

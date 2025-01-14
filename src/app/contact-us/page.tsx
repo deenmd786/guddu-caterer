@@ -5,7 +5,7 @@ import { FaPhone, FaComments, FaUtensils } from "react-icons/fa"; // Importing R
 import Button from "../../components/reuseable/Button";
 import Logo from "../../components/reuseable/Logo";
 import Map from "../../components/reuseable/Map";
-import CateringForm from "../../components/reuseable/CateringForm";
+import EnquiryForm from "@/components/reuseable/EnquiryForm";
 
 const ContactUs: React.FC = () => {
   const message = "Hello, Guddu Catering Service!";
@@ -130,7 +130,7 @@ const ContactUs: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-center gap-5 lg:gap-20">
           {/* Form Section */}
           <div className="max-w-lg w-full ">
-            <CateringForm />
+            <EnquiryForm />
           </div>
           {/* Map Section */}
           <div className="w-full md:max-w-lg">

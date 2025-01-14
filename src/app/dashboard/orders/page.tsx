@@ -6,20 +6,6 @@ export const metadata = {
 const Page = () => {
   return (
       <>
-      {/* Structured Data for SEO */}
-      <script type="application/ld+json">
-        {JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "Order History",
-          description:
-            "A page to view past catering bookings with Guddu Catering and explore options to book new events.",
-          author: {
-            "@type": "Organization",
-            name: "Guddu Catering Service",
-          },
-        })}
-      </script>
     <div className="p-8 text-center">
 
       {/* Main Content */}

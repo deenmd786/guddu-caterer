@@ -6,8 +6,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 const saveCartToLocalStorage = (cartItems: Product[]) => {
 
   if (typeof window !== 'undefined') {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
-  }
+    try {
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+    } catch (error) {
+      console.error("Could not save cart to localStorage", error);
+    }  }
 };
 
 interface CartState {

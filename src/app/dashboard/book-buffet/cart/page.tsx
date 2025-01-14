@@ -51,31 +51,7 @@ const Cart: React.FC = () => {
   return (
 
     <>
-    {/* Structured Data for SEO */}
-    <script type="application/ld+json" dangerouslySetInnerHTML={{
-      __html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "ShoppingCart",
-        name: "Your Buffet Cart",
-        description: "Review your customized buffet selections, Guddu Catering Service ensures a seamless booking experience in Delhi.",
-        itemListElement: filteredItems.map((item) => ({
-          "@type": "Product",
-          name: item.productName,
-          image: item.productImg[0] || "/images/placeholder.jpg",
-          sku: item._id,
-          offers: {
-            "@type": "Offer",
-            priceCurrency: "INR",
-            itemCondition: "https://schema.org/NewCondition",
-            availability: "https://schema.org/InStock",
-          },
-        })),
-      }),
-    }} />
     <div className="cart p-3 md:p-6">
-
-      
-
 
       {/* Step Tracker */}
       <ProgressSteps currentStep={1} />
