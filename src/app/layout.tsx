@@ -5,7 +5,6 @@ import Copyright from "../components/layout/CopyRight";
 import Footer from "../components/layout/Footer";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
-import { NextSeo } from "next-seo";
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -35,8 +34,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body>
         {/* Provider ensures Redux state is available globally */}
         <Provider store={store}>
-          {/* Example of dynamic SEO for specific pages */}
-          <NextSeo title="Home | Guddu Catering" />
           {children}
         </Provider>
         <Footer />

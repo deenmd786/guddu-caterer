@@ -4,7 +4,6 @@ import React from "react";
 import { ServiceKey, servicesData } from "../../../data/servicesData";
 import { useParams } from "next/navigation";
 import Hero from "../../../components/admin-com/Hero";
-import Seo from "@/components/reuseable/Seo";
 
 const ServicePage: React.FC = () => {
   const params = useParams();
@@ -17,8 +16,7 @@ const ServicePage: React.FC = () => {
   // Check if the service key is valid and exists in servicesData
   const serviceData = validServiceKey ? servicesData[validServiceKey] : undefined;
 
-  // Define SEO metadata based on the service
-  const seoData = {
+  const metaData = {
     title: serviceData ? `Service - ${serviceData.title}` : "Service Not Found - Guddu Catering",
     description: serviceData
       ? `Discover our ${serviceData.title} service. We offer top-notch solutions tailored for your needs.`
@@ -31,25 +29,31 @@ const ServicePage: React.FC = () => {
   };
 
   return (
-    <>
-      {/* Use the Seo component to set SEO metadata */}
-      <Seo
-        title={seoData.title}
-        description={seoData.description}
-        url={seoData.url}
-        image={seoData.image}
-        keywords={seoData.keywords}
-      />
-      
-      {serviceData ? (
-        <Hero serviceKey={validServiceKey} />
-      ) : (
-        <div className="text-center p-4">
-          <h1 className="text-2xl font-bold">Service Not Found</h1>
-          <p>The service you are looking for does not exist.</p>
-        </div>
-      )}
-    </>
+    <html lang="en">
+      <head>
+        <title>{metaData.title}</title>
+        <meta name="description" content={metaData.description} />
+        <meta name="keywords" content={metaData.keywords} />
+        <meta property="og:url" content={metaData.url} />
+        <meta property="og:title" content={metaData.title} />
+        <meta property="og:description" content={metaData.description} />
+        <meta property="og:image" content={metaData.image} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={metaData.title} />
+        <meta name="twitter:description" content={metaData.description} />
+        <meta name="twitter:image" content={metaData.image} />
+      </head>
+      <body>
+        {serviceData ? (
+          <Hero serviceKey={validServiceKey} />
+        ) : (
+          <div className="text-center p-4">
+            <h1 className="text-2xl font-bold">Service Not Found</h1>
+            <p>The service you are looking for does not exist.</p>
+          </div>
+        )}
+      </body>
+    </html>
   );
 };
 

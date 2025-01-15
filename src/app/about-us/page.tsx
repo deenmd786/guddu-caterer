@@ -1,23 +1,12 @@
 
-import Head from "next/head";
 import WhyChooseUs from "../../components/layout/WhyChooseUs";
 import AboutHome from "./_components/AboutHome";
 import Specialization from "./_components/Specialization";
 import WhatWeOffer from "./_components/WhatWeOffer";
-import Seo from "@/components/reuseable/Seo";
 
 const AboutUs = () => {
     return (
         <>
-            <Head>
-            <Seo
-        title="About Us - Guddu Catering Services"
-        description="Learn more about Guddu Catering Services, our journey, and the exceptional catering services we provide in Delhi."
-        url="https://gudducaterer.in/about-us"
-        image="https://gudducaterer.in/logo.png"
-        keywords="About Guddu Catering, Catering Services, Delhi Catering"
-      />
-            </Head>
             <section>
                 <AboutHome />
             </section>

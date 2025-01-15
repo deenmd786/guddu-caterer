@@ -1,5 +1,4 @@
 
-import Head from "next/head";
 import WhyChooseUs from "../../components/admin-com/WhyChooseUs";
 
 export default function RootLayout({
@@ -9,7 +8,7 @@ export default function RootLayout({
 }>) {
   return (
     <>
-      <Head>
+      <head>
         <title>Our Services | Guddu Catering Service</title>
         <meta
           name="description"
@@ -28,7 +27,7 @@ export default function RootLayout({
             }),
           }}
         />
-      </Head>
+      </head>
       <main>
         <section>
           {children}

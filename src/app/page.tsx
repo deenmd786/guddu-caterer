@@ -1,6 +1,5 @@
 "use client";
 
-import Seo from "@/components/reuseable/Seo";
 import AboutUs from "../components/layout/AboutUs";
 import CatBanner from "../components/layout/CatBanner";
 import OurServices from "../components/layout/OurServices";
@@ -13,7 +12,6 @@ import { User } from "../types/User";
 import apiHelper from "../utils/apiHelper";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import Head from "next/head";
 
 interface ApiResponse {
   message?: string;
@@ -49,16 +47,7 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    <>
-      <Head>
-        <Seo
-          title="Guddu Catering Services - Best Catering Services in Delhi for Weddings, Parties & Events"
-          description="Hire Guddu Catering Services for the best catering services in Delhi. Specializing in weddings, parties, and corporate events with live cooking and customized buffets."
-          url="https://gudducaterer.in"
-          image="https://gudducaterer.in/logo.png"
-          keywords="catering services in Delhi, caterers in Delhi, wedding catering in Delhi, party catering in Delhi, event catering in Delhi, corporate catering in Delhi, customized buffets in Delhi, live cooking in Delhi, Guddu Catering Services in Delhi"
-        />
-      </Head>
+    <>        
 
       <Header />
 
