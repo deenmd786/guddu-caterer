@@ -26,6 +26,8 @@ const CateringForm: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const productNames = cartItems.map(item => item.productName);
   const phoneNumber = typeof window !== "undefined" ? localStorage.getItem('phoneNumber') : null;
+  console.log("cartItems: ", cartItems);
+  
 
   const groupProductsByCategory = (items: CartItem[]): GroupedProducts => {
     return items.reduce<GroupedProducts>((acc, item) => {
