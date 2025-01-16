@@ -9,6 +9,7 @@ export async function POST(req: Request) {
 
   try {
     const { phoneNumber, products } = await req.json(); // Destructure products from the request body
+    console.log("phoneData: ", phoneNumber, products);
 
     // Validate phone number input
     if (!phoneNumber) {
@@ -20,17 +21,27 @@ export async function POST(req: Request) {
       return NextResponse.json({ message: "Products must be an array." }, { status: 400 });
     }
 
-    // Check if the phone number already exists
-    const exists = await PhoneNumber.findOne({ phoneNumber });
-    if (exists) {
-      return NextResponse.json({ message: "Phone number already exists." }, { status: 400 });
+    // Validate each product object
+    for (const product of products) {
+      if (typeof product !== 'object' || !product.id || !product.name) {
+        return NextResponse.json({ message: "Each product must be an object with 'id' and 'name'." }, { status: 400 });
+      }
     }
 
-    // Create a new phone number entry with products
-    const newPhoneNumber = new PhoneNumber({ phoneNumber, products });
-    await newPhoneNumber.save();
+    // Check if the phone number already exists
+    const existingEntry = await PhoneNumber.findOne({ phoneNumber });
 
-    return NextResponse.json({ message: "Phone number added successfully.", newPhoneNumber }, { status: 201 });
+    if (existingEntry) {
+      // If the phone number exists, update the products array
+      existingEntry.products.push(...products); // Add new products to the existing array
+      await existingEntry.save();
+      return NextResponse.json({ message: "Phone number updated successfully.", existingEntry }, { status: 200 });
+    } else {
+      // Create a new phone number entry with products
+      const newPhoneNumber = new PhoneNumber({ phoneNumber, products });
+      await newPhoneNumber.save();
+      return NextResponse.json({ message: "Phone number added successfully.", newPhoneNumber }, { status: 201 });
+    }
   } catch (error) {
     console.error("Error adding phone number:", error);
 

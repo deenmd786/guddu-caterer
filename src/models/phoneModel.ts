@@ -11,10 +11,6 @@ const phoneNumberSchema = new mongoose.Schema({
     type: [String],
     default: [],
   },
-  orderDate: {
-    type: Date,
-    default: Date.now,
-  },
 }, { timestamps: true });
 
 const PhoneNumber = mongoose.models.phoneNumbers || mongoose.model("phoneNumbers", phoneNumberSchema);

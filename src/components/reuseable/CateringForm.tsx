@@ -26,7 +26,6 @@ const CateringForm: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const productNames = cartItems.map(item => item.productName);
   const phoneNumber = typeof window !== "undefined" ? localStorage.getItem('phoneNumber') : null;
-  console.log("cartItems: ", cartItems);
   
 
   const groupProductsByCategory = (items: CartItem[]): GroupedProducts => {
@@ -84,7 +83,6 @@ const CateringForm: React.FC = () => {
     setFocus((prevFocus) => ({ ...prevFocus, [field]: false }));
   };
 
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -118,8 +116,10 @@ const CateringForm: React.FC = () => {
         }
         if (!phoneNumber) {
           console.error("Phone number is required.");
-          return; // Exit the function if phoneNumber is not valid
+          return;
         }
+        console.log("MdDataUsage",formData.phone,productNames);
+        
         const res = await createPhoneNumber({
           phoneNumber: formData.phone,
           products: productNames, // Include the array of product names
@@ -130,6 +130,8 @@ const CateringForm: React.FC = () => {
         } else {
           console.error("Error adding phone number:", res.message);
         }
+        
+        
         localStorage.removeItem('phoneNumber');
         localStorage.removeItem('cart');
         const data = await response.json();

@@ -47,6 +47,8 @@ export const createPhoneNumber = async (
   phoneData: Omit<PhoneNumber, "_id"> & { products: string[] } // Include products in the type
 ): Promise<ApiResponse<CreatePhoneNumberResponse | { message: string }>> => {
   try {
+    console.log("phoneData: ", phoneData);
+    
     const response = await fetch("/api/phoneNumber/registerUser", { // Ensure the URL is correct
       method: "POST",
       headers: {
