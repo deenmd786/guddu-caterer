@@ -83,6 +83,8 @@ const CateringForm: React.FC = () => {
     setFocus((prevFocus) => ({ ...prevFocus, [field]: false }));
   };
 
+  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);

@@ -8,7 +8,7 @@ const phoneNumberSchema = new mongoose.Schema({
     match: [/^\+?[1-9]\d{1,14}$/, "Please provide a valid phone number."], // Regex for phone number validation
   },
   products: {
-    type: [String],
+    type: [[String]],
     default: [],
   },
 }, { timestamps: true });

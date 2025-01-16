@@ -55,10 +55,10 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
     }
 
     // Check if the phone number already exists
-    const response = await checkUserExistence(formattedNumber );
+    const response = await checkUserExistence(formattedNumber);
 
     // If the user already exists, handle the 300 status
-    if (response.status === 300) {
+    if (response.status === 200) {
       if (response.data && 'message' in response.data) {
         setError(response.data.message);
       } else {
@@ -150,7 +150,6 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
               label="Send OTP"
             />
           </div>
-
           {isOtpSent && (
             <div className="text-center mt-4">
               <Button 

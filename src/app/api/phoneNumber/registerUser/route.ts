@@ -1,4 +1,3 @@
-// pages/api/phoneNumbers/registerUser .ts
 import { NextResponse } from "next/server";
 import { Error as MongooseError } from "mongoose";
 import { dbConnect } from "@/lib/dbConnect";
@@ -17,28 +16,25 @@ export async function POST(req: Request) {
     }
 
     // Validate products input
-    if (!Array.isArray(products)) {
-      return NextResponse.json({ message: "Products must be an array." }, { status: 400 });
+    if (!Array.isArray(products) || !products.every(product => typeof product === 'string')) {
+      return NextResponse.json({ message: "Products must be an array of strings." }, { status: 400 });
     }
 
-    // Validate each product object
-    for (const product of products) {
-      if (typeof product !== 'object' || !product.id || !product.name) {
-        return NextResponse.json({ message: "Each product must be an object with 'id' and 'name'." }, { status: 400 });
-      }
-    }
+    // Wrap products in another array to match the schema
+    const wrappedProducts = [products]; // This is correct for your schema
+    console.log("wrappedProducts : ", phoneNumber, wrappedProducts);
 
     // Check if the phone number already exists
     const existingEntry = await PhoneNumber.findOne({ phoneNumber });
 
     if (existingEntry) {
       // If the phone number exists, update the products array
-      existingEntry.products.push(...products); // Add new products to the existing array
+      existingEntry.products.push(products); // Add new products to the existing array
       await existingEntry.save();
       return NextResponse.json({ message: "Phone number updated successfully.", existingEntry }, { status: 200 });
     } else {
       // Create a new phone number entry with products
-      const newPhoneNumber = new PhoneNumber({ phoneNumber, products });
+      const newPhoneNumber = new PhoneNumber({ phoneNumber, products: wrappedProducts });
       await newPhoneNumber.save();
       return NextResponse.json({ message: "Phone number added successfully.", newPhoneNumber }, { status: 201 });
     }
@@ -47,7 +43,7 @@ export async function POST(req: Request) {
 
     // Handle validation errors specifically
     if (error instanceof MongooseError.ValidationError) {
-      return NextResponse.json({ message: error.message }, { status: 400 });
+      return NextResponse.json({ message: error.message, errors: error.errors }, { status: 400 });
     }
 
     // Handle other errors
