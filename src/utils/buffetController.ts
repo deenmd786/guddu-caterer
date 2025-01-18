@@ -17,3 +17,18 @@ export const createBuffet = async (
     return { message: error instanceof Error ? error.message : "Unknown error occurred." };
   }
 };
+
+// Function to fetch all buffets
+export const getBuffets = async (): Promise<{ message: string; buffets?: IBuffetData[] } | { message: string }> => {
+  try {
+    const response = await fetcher<{ message: string; buffets: IBuffetData[] }>("/api/buffet", {
+      method: "GET",
+    });
+
+    console.log("Fetched buffets:", response.buffets);
+    return response; // Ensure `response` is of type `{ message: string; buffets?: IBuffetData[] }`
+  } catch (error) {
+    console.error("Failed to fetch buffets:", error);
+    return { message: error instanceof Error ? error.message : "Unknown error occurred." };
+  }
+};
