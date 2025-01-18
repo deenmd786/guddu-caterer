@@ -5,9 +5,14 @@ import ProgressSteps from "../../_components/ProgressSteps";
 import MenuSection from "@/components/layout/MenuSection";
 import ShowProduct from "@/components/layout/ShowProduct";
 import Button from "@/components/reuseable/Button";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 
 const BookBuffet = () => {
+  const user = useSelector((state: RootState) => state.user.user);
+  console.log("user: ", user);
+  
   const router = useRouter();
 
   return (
@@ -29,7 +34,7 @@ const BookBuffet = () => {
      {/* Navigation Buttons */}
      <div className="flex justify-between">
        <Button label="Back" onClick={() => router.back()} className="catr-btn" />
-       <Button label="Buffet" href="/dashboard/create-buffet" />
+        {user?.role === "ADMIN" && (<Button label="Buffet" href="/dashboard/create-buffet" />)}
        <Button label="Next" href="/dashboard/book-buffet/cart" />
      </div>
    </div>

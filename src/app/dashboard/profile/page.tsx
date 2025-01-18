@@ -8,7 +8,7 @@ import Button from "@/components/reuseable/Button";
 
 const ProfilePage = () => {
   // Accessing the user data from Redux store
-  const user = useSelector((state: RootState) => state.user.user); // Note: user.user if your state structure has user
+  const user = useSelector((state: RootState) => state.user.user);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

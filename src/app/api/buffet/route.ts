@@ -9,8 +9,8 @@ export async function POST(req: NextRequest) {
   try {
     const buffetData = await req.json(); // Correctly parse the request body
 
-    const { title, minPrice, maxPrice, gatheringSize, categories } = buffetData;
-    if (!title || !minPrice || !maxPrice || !gatheringSize || !categories || typeof categories !== "object") {
+    const { title,cookPrice, minPrice, maxPrice, gatheringSize, categories } = buffetData;
+    if (!title || !cookPrice || !minPrice || !maxPrice || !gatheringSize || !categories || typeof categories !== "object") {
       return NextResponse.json(
         { message: "All fields are required and categories must be an object." },
         { status: 400 }
@@ -20,6 +20,7 @@ export async function POST(req: NextRequest) {
     // Create a new buffet instance
     const buffet = new Buffet({
       title,
+      cookPrice,
       minPrice,
       maxPrice,
       gatheringSize,

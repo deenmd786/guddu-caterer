@@ -10,6 +10,7 @@ export interface IItem {
 // Buffet schema definition
 const buffetSchema = new Schema<IBuffetData>({
   title: { type: String, required: true, trim: true },
+  cookPrice: { type: Number, required: true, min: [0, "Minimum price cannot be negative"] },
   minPrice: { type: Number, required: true, min: [0, "Minimum price cannot be negative"] },
   maxPrice: {
     type: Number,

@@ -15,7 +15,6 @@ export interface IItem {
 const Page: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
-  console.log("cartItems: ", cartItems);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -28,6 +27,7 @@ const Page: React.FC = () => {
 
   const [buffetData, setBuffetData] = useState<IBuffetData>({
     title: "Buffet",
+    cookPrice: 0,
     minPrice: 0,
     maxPrice: 0,
     gatheringSize: "medium",
@@ -37,25 +37,19 @@ const Page: React.FC = () => {
   useEffect(() => {
     const result = cartItems.reduce((acc: Record<string, IItem[]>, item) => {
       const { category, productName, productImg } = item;
-      
       if (category) {
         if (!acc[category]) {
           acc[category] = [];
         }
-  
         const newItem: IItem = {
           title: productName,
           imageUrl: productImg[0]
         };
-  
         acc[category].push(newItem);
       }
-  
       return acc;
-  
     }, {} as Record<string, IItem[]>);
 
-    console.log(result);
 
     setBuffetData((prevData) => ({
       ...prevData,
@@ -63,21 +57,23 @@ const Page: React.FC = () => {
     }));
   }, [cartItems]);
 
-  console.log("buffetData: ", buffetData);
-
   const [formData, setFormData] = useState({
     title: buffetData.title,
+    cookPrice: buffetData.cookPrice,
     minPrice: buffetData.minPrice,
     maxPrice: buffetData.maxPrice,
-    gatheringSize: buffetData.gatheringSize
+    gatheringSize: buffetData.gatheringSize,
+    categories: buffetData.categories
   });
 
   useEffect(() => {
     setFormData({
       title: buffetData.title,
+      cookPrice: buffetData.cookPrice,
       minPrice: buffetData.minPrice,
       maxPrice: buffetData.maxPrice,
-      gatheringSize: buffetData.gatheringSize
+      gatheringSize: buffetData.gatheringSize,
+      categories: buffetData.categories
     });
   }, [buffetData]);
 
@@ -88,17 +84,20 @@ const Page: React.FC = () => {
       [name]: name === "minPrice" || name === "maxPrice" ? Number(value) : value
     }));
   };
+  console.log("FormData: ", formData);
 
-  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!formData.title || !formData.cookPrice || !formData.minPrice || !formData.maxPrice || !formData.gatheringSize) {
+      console.error("All fields are required");
+      return;
+    }
     setBuffetData((prevData) => ({
       ...prevData,
       ...formData
     }));
-    
     console.log("FormData: ", formData);
-
-    const response = await createBuffet(buffetData);
+    const response = await createBuffet(formData);
     console.log("response", response);
   };
 
@@ -119,6 +118,18 @@ const Page: React.FC = () => {
           />
         </div>
 
+        <div>
+          <label htmlFor="cookPrice" className="block">Cook Price:</label>
+          <input
+            type="number"
+            id="cookPrice"
+            name="cookPrice"
+            value={formData.cookPrice}
+            onChange={handleChange}
+            required
+            className="border p-2 w-full"
+          />
+        </div>
         <div>
           <label htmlFor="minPrice" className="block">Min Price:</label>
           <input

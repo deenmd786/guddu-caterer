@@ -2,6 +2,7 @@
 export interface IBuffetData {
   id?: string;
   title: string;
+  cookPrice: number;
   minPrice: number;
   maxPrice: number;
   gatheringSize: "small" | "medium" | "large";
