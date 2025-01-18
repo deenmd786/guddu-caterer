@@ -20,8 +20,6 @@ const Cart: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
   console.log("cartItems: ", cartItems);
       const route = useRouter();
-  
-
   useEffect(() => {
     // Load cart from localStorage when the component mounts
     if (typeof window !== "undefined") {

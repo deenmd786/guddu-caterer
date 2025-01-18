@@ -61,7 +61,7 @@
     "../next-env.d.ts",
     "catering-booking/.next/catering-booking/src/firebase.config.tsirebase.config.ts",
     ".next/types/**/*.ts"
-  ],
+, "src/app/dashboard/buffet"  ],
   // Excludes unnecessary directories and files from the TypeScript compiler
   "exclude": [
     "catering-booking/node_modules",

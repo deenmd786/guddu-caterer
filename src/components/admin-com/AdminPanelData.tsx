@@ -52,7 +52,7 @@ const AdminPanelData: React.FC = () => {
   if (error) {
     return (
       <div className="h-[8vh] md:h-[25vh] w-full flex flex-col items-center justify-center bg-[var(--background-secondary)] md:border-b-4 border-[var(--background)]">
-        <div className="text-[var(--text-primary)]">Error: User not loged in !!!</div>
+        <div className="text-[var(--text-primary)]">User can login!!!</div>
       </div>
     );
   }

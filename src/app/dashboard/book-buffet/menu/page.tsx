@@ -29,6 +29,7 @@ const BookBuffet = () => {
      {/* Navigation Buttons */}
      <div className="flex justify-between">
        <Button label="Back" onClick={() => router.back()} className="catr-btn" />
+       <Button label="Buffet" href="/dashboard/create-buffet" />
        <Button label="Next" href="/dashboard/book-buffet/cart" />
      </div>
    </div>
