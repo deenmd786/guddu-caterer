@@ -89,7 +89,7 @@ const MenuSection: React.FC = () => {
       </div>
       <div className="mb-1 md:mb-2 lg:mb-0 bg-[var(--background)] w-full max-h-[64vh]  md:max-h-[74vh] scroll-hidden overflow-y-auto">
       {loading && (
-  <div className="grid grid-cols-3 sm:grid-cols-4 lg:flex w-full h-full scroll-hidden gap-2 md:gap-3 lg:gap-4 bg-[var(--background)]">
+  <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex w-full h-full scroll-hidden gap-5 md:gap-4 lg:gap-4 bg-[var(--background)]">
     {Array.from({ length: 12 }).map((_, index) => (
       <ShimmerPlaceholder key={index} />
     ))}
@@ -101,7 +101,7 @@ const MenuSection: React.FC = () => {
             {error}
           </p>
         )}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex w-full scroll-hidden lg:overflow-x-auto gap-2 bg-[var(--background)]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex w-full scroll-hidden lg:overflow-x-auto gap-5 bg-[var(--background)]">
           {!loading &&
             !error &&
             products.map((product) => (
