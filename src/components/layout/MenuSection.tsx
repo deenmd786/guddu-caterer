@@ -101,7 +101,7 @@ const MenuSection: React.FC = () => {
             {error}
           </p>
         )}
-        <div className="grid grid-cols-3 sm:grid-cols-4 lg:flex w-full scroll-hidden lg:overflow-x-auto gap-2 bg-[var(--background)]">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex w-full scroll-hidden lg:overflow-x-auto gap-2 bg-[var(--background)]">
           {!loading &&
             !error &&
             products.map((product) => (
