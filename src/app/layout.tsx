@@ -5,6 +5,7 @@ import Copyright from "../components/layout/CopyRight";
 import Footer from "../components/layout/Footer";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
+import Head from "next/head";
 
 type RootLayoutProps = {
   children: React.ReactNode;
@@ -13,11 +14,10 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
-      <head>
-        {/* Default metadata for the entire application */}
+      {/* <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Guddu Caterer | Best Catering Service in Delhi</title>
+        <title>Guddu Caterer | Best Custom Wedding Catering Service in Delhi</title>
         <meta name="description" content="Exceptional catering services in Delhi." />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_US" />
@@ -30,7 +30,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <meta name="twitter:title" content="Home | Guddu Catering" />
         <meta name="twitter:description" content="Exceptional catering services in Delhi." />
         <meta name="twitter:image" content="https://www.gudducaterer.in/guddu-catering-service.jpg" />
-      </head>
+      </head> */}
+
+<Head>
+        <title>Guddu Caterer | Best Custom Wedding Catering Service in Delhi</title>
+        <meta name="description" content="Exceptional catering services in Delhi." />
+      </Head>
       <body>
         {/* Provider ensures Redux state is available globally */}
         <Provider store={store}>
