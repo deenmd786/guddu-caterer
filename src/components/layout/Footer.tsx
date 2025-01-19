@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
     }
   };
   return (
-    <footer className="bg-[var(--background-secondary)]">
+    <div className="bg-[var(--background-secondary)]">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* About Catering */}
@@ -100,7 +100,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </div>
   );
 };
 
