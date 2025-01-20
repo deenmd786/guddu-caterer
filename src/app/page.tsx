@@ -14,7 +14,6 @@ import apiHelper from "../utils/apiHelper";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Copyright from "@/components/layout/CopyRight";
-import Head from "next/head";
 
 interface ApiResponse {
   message?: string;
@@ -50,16 +49,7 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    <> 
-    <Head>
-        <title>Guddu Caterer | Home</title>
-        <meta name="description" content="Welcome to Guddu Caterer, the best wedding catering service in Delhi. Customized buffets and exceptional live cooking for all occasions." />
-        <meta property="og:title" content="Guddu Caterer | Home" />
-        <meta property="og:description" content="Welcome to Guddu Caterer, the best wedding catering service in Delhi." />
-        <meta property="og:image" content="https://www.gudducaterer.in/logo.png" />
-        <meta property="og:url" content="https://www.gudducaterer.in/" />
-        <meta property="og:type" content="website" />
-      </Head>       
+    <>      
       <Header />
 
       <main>
