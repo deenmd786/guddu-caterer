@@ -8,12 +8,13 @@ import OurTestimonials from "../components/layout/OurTestimonials";
 import LayoutWithImages from "../components/layout/StoryLayout";
 import WhyChooseUs from "../components/layout/WhyChooseUs";
 import Header from "../components/ui/Header";
-import { setUser } from "../redux/userSlice";
+import { setUser  } from "../redux/userSlice";
 import { User } from "../types/User";
 import apiHelper from "../utils/apiHelper";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Copyright from "@/components/layout/CopyRight";
+import RootLayout from "./layout";
 
 interface ApiResponse {
   message?: string;
@@ -33,7 +34,7 @@ export default function Home() {
           method: "POST",
         });
         if (data?.user) {
-          dispatch(setUser(data.user));
+          dispatch(setUser (data.user));
           setError(null);
         } else {
           setError(data.message || "User  data not found");
@@ -48,10 +49,15 @@ export default function Home() {
     fetchUserData();
   }, [dispatch]);
 
-  return (
-    <>      
-      <Header />
+  // Dynamic data for the RootLayout
+  const title = "Guddu Caterer | Home";
+  const description = "Welcome to Guddu Caterer, the best wedding catering service in Delhi. Customized buffets and exceptional live cooking for all occasions.";
+  const image = "https://gudducaterer.in/logo.png";
+  const url = "https://gudducaterer.in/";
 
+  return (
+    <RootLayout title={title} description={description} image={image} url={url}>
+      <Header />
       <main>
         <section
           id="home"
@@ -85,10 +91,9 @@ export default function Home() {
         {error && <p className="text-red-500">Error: {error}</p>}
       </main>
       <footer>
-      <Footer />
-      <Copyright />
+        <Footer />
+        <Copyright />
       </footer>
-      
-    </>
+    </RootLayout>
   );
 }
