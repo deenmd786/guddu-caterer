@@ -20,7 +20,7 @@ const ImageCard: React.FC<ImageCardProps> = ({ imageUrl, altText, description })
         sizes="(max-width: 600px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
       {/* Dark overlay for smaller screens */}
-      <div className="absolute inset-0 bg-black bg-opacity-40 flex gap-10 px-4 flex-col md:hidden items-center justify-center">
+      <div className="absolute inset-0 bg-black bg-opacity-30 flex gap-10 px-4 flex-col md:hidden items-center justify-center">
         <span className="text-white text-base font-semibold text-center">
           {description}
         </span>
