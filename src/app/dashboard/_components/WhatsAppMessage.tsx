@@ -14,7 +14,7 @@ const WhatsAppPage: React.FC = () => {
   return (
     <Button
       onClick={sendMessage}
-      label="Send WhatsApp Message"
+      label="WhatsApp"
       className="!bg-green-500 "
     />
   );
