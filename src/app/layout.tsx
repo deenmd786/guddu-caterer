@@ -3,7 +3,6 @@ import "./globals.css";
 import { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import Copyright from "@/components/layout/CopyRight";
-import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Guddu Caterer - Best Catering Service in Delhi",
@@ -24,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <Head>
+        <head>
           <meta name="description" content={description} />
           <meta name="title" content={title} />
           <meta property="og:title" content={title} />
@@ -32,7 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <meta name="twitter:card" content="summary_large_image" /> {/* Use a default value */}
           {metadata.twitter?.site && <meta name="twitter:site" content={metadata.twitter.site} />}
           {metadata.twitter?.creator && <meta name="twitter:creator" content={metadata.twitter.creator} />}
-        </Head>
+        </head>
 
         <ClientProvider>{children}</ClientProvider>
         <footer>
