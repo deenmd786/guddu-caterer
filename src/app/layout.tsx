@@ -31,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <meta name="twitter:card" content="summary_large_image" /> {/* Use a default value */}
           {metadata.twitter?.site && <meta name="twitter:site" content={metadata.twitter.site} />}
           {metadata.twitter?.creator && <meta name="twitter:creator" content={metadata.twitter.creator} />}
+          <meta name="google-adsense-account" content="ca-pub-6227091069689473"></meta>
         </head>
 
         <ClientProvider>{children}</ClientProvider>
