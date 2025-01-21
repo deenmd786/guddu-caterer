@@ -12,7 +12,7 @@ const CatBanner: React.FC = () => {
       className="cat-banner-wrapper w-full min-h-screen md:pt-10 bg-cover bg-center  flex flex-col items-center justify-center"
       style={{
         backgroundImage: "url('/assets/images/banners/banner.jpg')",
-        backgroundSize: "cover",
+        backgroundSize: "100% 100%",
       }}
       role="banner"
     >

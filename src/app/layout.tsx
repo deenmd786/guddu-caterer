@@ -1,34 +1,31 @@
-"use client";
-
+import ClientProvider from "@/redux/ClientProvider";
 import "./globals.css";
-import { Provider } from "react-redux";
-import { store } from "../redux/store";
-import Head from "next/head";
+import { Metadata } from "next";
+import Footer from "@/components/layout/Footer";
+import Copyright from "@/components/layout/CopyRight";
 
-type RootLayoutProps = {
-  children: React.ReactNode;
+export const metadata: Metadata = {
+  title: {
+    default: "Guddu Caterer - Best Catering Service in Delhi",
+    template: "%s | Guddu Caterers - Best Catering Service in Delhi",
+  },
+  description:
+    "Welcome to Guddu Caterer, the best wedding catering service in Delhi. Customized buffets and exceptional live cooking for all occasions.",
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <Head>
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Guddu Caterer | Best Catering Services in Delhi with Our Customise Menus.</title>
-        <meta name="description" content="Welcome to Guddu Caterer, the best wedding catering service in Delhi. Customized buffets and exceptional live cooking for all occasions." />
-        <meta property="og:title" content="Guddu Caterer | Best Catering Services in Delhi with Our Customise Menus." />
-        <meta property="og:description" content="Welcome to Guddu Caterer, the best wedding catering service in Delhi. Customized buffets and exceptional live cooking for all occasions." />
-        <meta property="og:image" content="https://www.gudducaterer.in/logo.png" />
-        <meta property="og:url" content="https://www.gudducaterer.in/" />
-        <meta property="og:type" content="website" />
-      </head>
-      </Head>
       <body>
-        <Provider store={store}>{children}</Provider>
+        <ClientProvider>{children}</ClientProvider>
+        <footer>
+      <Footer />
+      <Copyright />
+      </footer>
       </body>
     </html>
   );
-
 }

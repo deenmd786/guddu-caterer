@@ -1,6 +1,5 @@
 "use client";
 
-import Footer from "@/components/layout/Footer";
 import AboutUs from "../components/layout/AboutUs";
 import CatBanner from "../components/layout/CatBanner";
 import OurServices from "../components/layout/OurServices";
@@ -13,7 +12,6 @@ import { User } from "../types/User";
 import apiHelper from "../utils/apiHelper";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import Copyright from "@/components/layout/CopyRight";
 
 interface ApiResponse {
   message?: string;
@@ -84,10 +82,7 @@ export default function Home() {
         {loading && <p>Loading...</p>}
         {error && <p className="text-red-500">Error: {error}</p>}
       </main>
-      <footer>
-      <Footer />
-      <Copyright />
-      </footer>
+      
       
     </>
   );
