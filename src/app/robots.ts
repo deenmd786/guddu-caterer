@@ -1,19 +1,14 @@
-import { NextResponse } from "next/server";
+import { MetadataRoute } from "next";
 
-export function GET() {
-  const robotsTxt = `
-User-agent: *
-Disallow: /auth/
-Disallow: /dashboard/
-Disallow: /assets/
-Allow: /
-
-Sitemap: https://www.gudducaterer.in/sitemap.xml
-  `;
-
-  return new NextResponse(robotsTxt, {
-    headers: {
-      "Content-Type": "text/plain",
+function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: "*",
+      disallow: ["/auth/", "/dashboard/", "/assets/"],
+      allow: ["/", "/auth/signup", "/auth/login"]
     },
-  });
+    sitemap: 'https://www.gudducaterer.in/sitemap.xml',
+  };
 }
+
+export default robots;
