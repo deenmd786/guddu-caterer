@@ -8,10 +8,25 @@ export const metadata: Metadata = {
   title: "Guddu Caterer - Best Catering Service in Delhi",
   description:
     "Welcome to Guddu Caterer, the best wedding catering service in Delhi. Customized buffets and exceptional live cooking for all occasions.",
+  keywords: "wedding catering in delhi, catering service in delhi, best catering service in Delhi",
   twitter: {
     site: "@gudducaterer",
     creator: "@gudducaterer",
+    card: "summary_large_image",
+    images: 'https://www.gudducaterer.in/logo.png',
   },
+  openGraph: {
+    siteName: "Guddu Caterer",
+    title: "Guddu Caterer - Best Catering Service in Delhi",
+    description: "Welcome to Guddu Caterer, the best wedding catering service in Delhi. Customized buffets and exceptional live cooking for all occasions.",
+    images: [
+      'https://www.gudducaterer.in/logo.png', 
+      '/assets/images/banners/guddu.png', 
+      '/assets/images/banners/story.png'
+    ],
+    type: "website",
+    url: "https://www.gudducaterer.in/"
+  }
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
