@@ -5,7 +5,7 @@ function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       disallow: ["/auth/", "/dashboard/", "/assets/"],
-      allow: ["/", "/auth/signup", "/auth/login"]
+      allow: ["/", "/auth/signup", "/auth/login", "/about-us", "/contact-us", "/services" ]
     },
     sitemap: 'https://www.gudducaterer.in/sitemap.xml',
   };
