@@ -4,7 +4,6 @@ import React from "react";
 import {
   FaFacebookF,
   FaInstagram,
-  FaLinkedinIn,
   FaTwitter,
 } from "react-icons/fa";
 
@@ -17,7 +16,7 @@ const Copyright: React.FC = () => {
           <h3 className="font-bold text-lg mb-2">FOLLOW US</h3>
           <div className="flex justify-center space-x-4 md:space-x-6">
           <a
-              href="https://www.facebook.com"
+              href="https://www.facebook.com/profile.php?id=61572165755415"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-600 border border-[#97CCD1] rounded p-2 flex justify-center items-center hover:shadow-lg hover:shadow-blue-600/50 transition-all"
@@ -25,23 +24,16 @@ const Copyright: React.FC = () => {
               <FaFacebookF className="text-xl" />
             </a>
             <a
-              href="#"
+              href="https://x.com/GudduCaterer"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-400 border border-[#97CCD1] rounded p-2 flex justify-center items-center hover:shadow-lg hover:shadow-blue-400/50 transition-all"
             >
               <FaTwitter className="text-xl" />
             </a>
+            
             <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-700 border border-[#97CCD1] rounded p-2 flex justify-center items-center hover:shadow-lg hover:shadow-blue-700/50 transition-all"
-            >
-              <FaLinkedinIn className="text-xl" />
-            </a>
-            <a
-              href="#"
+              href="https://www.instagram.com/gudducatererdelhi/"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-pink-600 border border-[#97CCD1] rounded p-2 flex justify-center items-center hover:shadow-lg hover:shadow-pink-600/50 transition-all"
