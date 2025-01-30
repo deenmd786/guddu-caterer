@@ -81,7 +81,7 @@ const ShowProduct: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
   return (
-    <div id="menu" className="bg-[var(--background-secondary)] p-2 mb-3">
+    <div id="menu" className="bg-[var(--background-secondary)] flex-1 p-2 mb-3">
       <div className="mx-auto">
         {/* Category buttons */}
         <div className="flex pb-2 h-[6vh] xl:h-[8vh] justify-center">

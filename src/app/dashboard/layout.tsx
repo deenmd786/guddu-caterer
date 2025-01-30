@@ -17,7 +17,7 @@ export default function RootLayout({
       {/* Admin panel sidebar */}
       <aside className="w-full md:w-1/4  md:h-[100vh] bg-[var(--background-secondary)] max-md:flex justify-between items-center custom-shadow">
         <div className=" md:bg-[var(--background-secondary)] h-[9vh] md:h-[25vh] shrink-0 shadow-[4px 0 10px rgba(0,0,0,0.2)]">
-          <div className="max-md:flex max-md:w-screen max-md:p-2 justify-between  items-center">
+          <div className="flex-1 max-md:flex max-md:w-screen max-md:p-2 justify-between  items-center">
             <Link href={"/dashboard"}>
               <AdminPanelData />
             </Link>

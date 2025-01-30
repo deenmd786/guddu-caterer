@@ -17,14 +17,14 @@ const BookBuffet = () => {
 
   return (
      <>
-   <div className="w-full px-3 pt-3  md:max-h-screen">
+   <div className="w-full max-h-[91vh] px-3 pt-3 flex flex-col md:max-h-screen">
      
 
      {/* Step Tracker */}
      <ProgressSteps currentStep={1} />
 
      {/* Content */}
-     <div className="lg:hidden max-h-[84vh]">
+     <div className="flex-1 lg:hidden">
        <MenuSection />
      </div>
      <div className="hidden lg:flex">
@@ -32,7 +32,7 @@ const BookBuffet = () => {
      </div>
 
      {/* Navigation Buttons */}
-     <div className="flex justify-between">
+     <div className="flex justify-between ">
        <Button label="Back" onClick={() => router.back()} className="catr-btn" />
         {user?.role === "ADMIN" && (<Button label="Buffet" href="/dashboard/create-buffet" />)}
        <Button label="Next" href="/dashboard/book-buffet/cart" />

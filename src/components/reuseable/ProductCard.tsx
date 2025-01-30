@@ -29,10 +29,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isInCart }) => {
 
     return (
         <div className="bg-[var(--background-secondary)] rounded-lg shadow-md overflow-hidden sm:w-[108px] md:w-[136px] lg:w-32  lg:text-center xl:w-36"> {/* Fixed width and height */}
-            <div className="relative h-24 lg:h-36"> {/* Set a fixed height for the image container */}
+            <div className="relative h-28 lg:h-36"> {/* Set a fixed height for the image container */}
                 <Image
-                    width={300}
-                    height={250}
+                    width={200}
+                    height={150}
                     alt={`${product.productName} dish`}
                     className="w-full h-full object-cover transition-transform duration-300 ease-in-out transform hover:scale-105"
                     src={product.productImg[0]}
