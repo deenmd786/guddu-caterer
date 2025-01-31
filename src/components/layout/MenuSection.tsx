@@ -72,7 +72,7 @@ const MenuSection: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
   return (
-    <div className="bg-[var(--background)] min-h-[79vh]">
+    <div className="bg-[var(--background)]">
       <div className="flex gap-4 py-3 items-center justify-center ">
         <MenuCategorySelector
           categories={productCategory}
@@ -87,7 +87,7 @@ const MenuSection: React.FC = () => {
           />
         )}
       </div>
-      <div className="mb-1 md:mb-2 lg:mb-0 bg-[var(--background)] w-full max-h-[72vh]  md:max-h-[74vh] scroll-hidden overflow-y-auto">
+      <div className="mb-1 md:mb-2 lg:mb-0 bg-[var(--background)] w-full max-h-[67vh]  sm:max-h-[73vh]  md:max-h-[74vh] scroll-hidden overflow-y-auto">
       {loading && (
   <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex w-full h-full scroll-hidden gap-5 md:gap-4 lg:gap-4 bg-[var(--background)]">
     {Array.from({ length: 12 }).map((_, index) => (

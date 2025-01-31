@@ -106,3 +106,9 @@ html {
     background-position: 200% 0;
   }
 }
+
+@media (min-width: 429px) {
+  .sm\:max-h-\[73vh\] {
+      max-height: 73vh;
+  }
+}

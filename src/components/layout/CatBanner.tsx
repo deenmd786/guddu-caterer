@@ -8,7 +8,6 @@ const CatBanner: React.FC = () => {
   
   return (
     <section
-      id="home"
       className="cat-banner-wrapper w-full min-h-screen md:pt-10 bg-cover bg-center  flex flex-col items-center justify-center"
       style={{
         backgroundImage: "url('/assets/images/banners/banner.jpg')",
