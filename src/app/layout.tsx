@@ -3,7 +3,6 @@ import "./globals.css";
 import { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import Copyright from "@/components/layout/CopyRight";
-import { homePageSchema, localBusinessSchema, organizationSchema } from "@/schemas/homePageSchema";
 
 export const viewport = {
   width: "device-width",
@@ -51,18 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </footer>
 
         {/* Schema Scripts */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-        />
+        
       </body>
     </html>
   );

@@ -1,5 +1,7 @@
 import dynamic from "next/dynamic";
 import Head from "next/head";
+import { homePageSchema, localBusinessSchema, organizationSchema } from "@/schemas/homePageSchema";
+
 
 const CatBanner = dynamic(() => import("../components/layout/CatBanner"), {
   ssr: true,
@@ -55,7 +57,20 @@ export default function Home() {
           <h2 id="testimonials-heading" className="sr-only">Testimonials</h2>
           <OurTestimonials />
         </section>
+
       </main>
+      <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
     </>
   );
 }
