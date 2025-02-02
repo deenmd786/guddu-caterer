@@ -7,12 +7,8 @@ import Logo from "../../components/reuseable/Logo";
 import Map from "../../components/reuseable/Map";
 import EnquiryForm from "@/components/reuseable/EnquiryForm";
 import { contactPageSchema } from "@/schemas/contactPageSchema";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Contact Us - Guddu Catering",
-  description: "Get in touch with Guddu Catering for exceptional catering services in Delhi. Reach out via phone, chat, or book an appointment to discuss your catering needs.",
-}
+
 const ContactUs: React.FC = () => {
   const message = "Hello, Guddu Catering Service!";
 

@@ -5,7 +5,7 @@ import Specialization from "./_components/Specialization";
 import WhatWeOffer from "./_components/WhatWeOffer";
 
 export const metadata: Metadata = {
-    title: "About Us - Guddu Catering",
+    title: "About Us - Guddu Catering Service",
     description: "Learn more about Guddu Catering, the leading catering service provider in Delhi. We specialize in premium catering for weddings, corporate events, and private parties. Enjoy customizable buffets, live cooking stations, and top-notch service for every occasion.",
 };
 
