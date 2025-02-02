@@ -109,7 +109,7 @@ const Header = () => {
             </a>
           ) : (
             <Link
-              href={section === "home" ? "/" : section === "about-us" || section === "contact-us" ? `/${section}` : `#${section}`}
+              href={section === "home" ? "/" : section === "about-us" || section === "contact-us" || section === "services" ? `/${section}` : `#${section}`}
               className={`md:hover:text-[--text-secondary] ${
                 activeSection === section
                   ? "text-[--text-secondary] border-b-2 border-[--text-secondary]"

@@ -6,7 +6,13 @@ import Button from "../../components/reuseable/Button";
 import Logo from "../../components/reuseable/Logo";
 import Map from "../../components/reuseable/Map";
 import EnquiryForm from "@/components/reuseable/EnquiryForm";
+import { contactPageSchema } from "@/schemas/contactPageSchema";
+import { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Contact Us - Guddu Catering",
+  description: "Get in touch with Guddu Catering for exceptional catering services in Delhi. Reach out via phone, chat, or book an appointment to discuss your catering needs.",
+}
 const ContactUs: React.FC = () => {
   const message = "Hello, Guddu Catering Service!";
 
@@ -17,34 +23,10 @@ const ContactUs: React.FC = () => {
     window.open(whatsappURL, "_blank");
   };
 
-  // Structured data for SEO
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    name: "Contact Us - Guddu Catering Service",
-    description: "Get in touch with Guddu Catering Service for exceptional catering services. Reach out via phone, chat, or book an appointment.",
-    url: "https://www.gudducaterer.in/contact-us",
-    mainEntity: {
-      "@type": "Organization",
-      name: "Guddu Catering Service",
-      url: "https://www.gudducaterer.in",
-      logo: "https://www.gudducaterer.in/logo.png",
-      contactPoint: {
-        "@type": "ContactPoint",
-        telephone: "+9192878422964",
-        contactType: "Customer Service",
-        areaServed: "IN",
-        availableLanguage: "English",
-      },
-    },
-  };
-
   return (
-
     <>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
-      
-    <div className="bg-white font-LexendDeca text-[var(--text-primary)] pt-24 pb-6">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }} />
+      <div className="bg-white font-LexendDeca text-[var(--text-primary)] pt-24 pb-6">
     <div className="container mx-auto px-4">
       <span className="absolute  top-10 lg:left-20">
         <Logo />
