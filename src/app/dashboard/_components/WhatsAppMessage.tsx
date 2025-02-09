@@ -5,7 +5,7 @@ const WhatsAppPage: React.FC = () => {
   const message = "Hello, Guddu Catering Service!";
 
   const sendMessage = () => {
-    const phoneNumber = "918851253661"; // Fixed phone number
+    const phoneNumber = "919278422964"; // Fixed phone number
     const encodedMessage = encodeURIComponent(message);
     const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappURL, "_blank");
