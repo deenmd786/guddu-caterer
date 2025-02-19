@@ -10,8 +10,8 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Guddu Caterer - Affordable Catering Services in Delhi for Weddings & Events",
-  description: "Welcome to Guddu Catering Service! We provide catering for 20 to 2000+ guests, Starting With Rs.200 per plate, perfect for weddings, corporate events, and parties in Delhi. Packages start at just ₹2499. Book now for delicious, hassle-free catering!",
+  title: "Top-Quality Catering in Delhi – Starting at Just ₹200 Per Plate!",
+  description: "Top-rated catering service in Delhi! We serve 20-2000+ guests, starting at just ₹200 per plate. Perfect for weddings, corporate events & parties. Book hassle-free catering today!",
   keywords: "wedding catering in Delhi, best caterer in Delhi, affordable catering services Delhi, corporate event catering Delhi, party catering services Delhi, top catering companies in Delhi, Guddu Catering Service",  authors: [{ name: "Guddu Caterer", url: "https://www.gudducaterer.in" }],
   robots: "index, follow",
   alternates: { canonical: "https://www.gudducaterer.in/" },
