@@ -21,7 +21,7 @@ function robots(): MetadataRoute.Robots {
         ]
       }
     ],
-    sitemap: "https://www.gudducaterer.in/api/sitemap",
+    sitemap: "https://www.gudducaterer.in/sitemap.xml",
   };
 }
 

@@ -11,8 +11,11 @@ export const viewport = {
 
 export const metadata: Metadata = {
   title: "Top-Quality Catering in Delhi – Starting at Just ₹200 Per Plate!",
-  description: "Top-rated catering service in Delhi! We serve 20-2000+ guests, starting at just ₹200 per plate. Perfect for weddings, corporate events & parties. Book hassle-free catering today!",
-  keywords: "wedding catering in Delhi, best caterer in Delhi, affordable catering services Delhi, corporate event catering Delhi, party catering services Delhi, top catering companies in Delhi, Guddu Catering Service",  authors: [{ name: "Guddu Caterer", url: "https://www.gudducaterer.in" }],
+  description:
+    "Top-rated catering service in Delhi! We serve 20-2000+ guests, starting at just ₹200 per plate. Perfect for weddings, corporate events & parties. Book hassle-free catering today!",
+  keywords:
+    "wedding catering in Delhi, best caterer in Delhi, affordable catering services Delhi, corporate event catering Delhi, party catering services Delhi, top catering companies in Delhi, Guddu Catering Service",
+  authors: [{ name: "Guddu Caterer", url: "https://www.gudducaterer.in" }],
   robots: "index, follow",
   alternates: { canonical: "https://www.gudducaterer.in/" },
   twitter: {
@@ -23,15 +26,16 @@ export const metadata: Metadata = {
   },
   openGraph: {
     siteName: "Guddu Caterer",
-    title: "Guddu Catering Service - Affordable & Best Catering Services in Delhi for Weddings & Events",
+    title:
+      "Guddu Catering Service - Affordable & Best Catering Services in Delhi for Weddings & Events",
     description: "Professional catering services for weddings and events.",
     images: [
       {
-        url: "https://www.gudducaterer.in/assets/images/banners/guddu.png", 
+        url: "https://www.gudducaterer.in/assets/images/banners/guddu.png",
         width: 1200,
         height: 630,
-        alt: "Guddu Catering Service"
-      }
+        alt: "Guddu Catering Service",
+      },
     ],
     type: "website",
     locale: "en_IN",
@@ -42,15 +46,51 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        {/* ✅ WebSite Schema for Google */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Guddu Caterer",
+              "url": "https://www.gudducaterer.in/",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://www.gudducaterer.in/search?q={search_term_string}",
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+
+        {/* ✅ Site Navigation Schema for Sitelinks */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SiteNavigationElement",
+              "name": ["Home", "About Us", "Services", "Contact Us", "Login", "Signup"],
+              "url": [
+                "https://www.gudducaterer.in/",
+                "https://www.gudducaterer.in/about-us",
+                "https://www.gudducaterer.in/services",
+                "https://www.gudducaterer.in/contact-us",
+                "https://www.gudducaterer.in/auth/login",
+                "https://www.gudducaterer.in/auth/signup",
+              ],
+            }),
+          }}
+        />
+      </head>
       <body>
         <ClientProvider>{children}</ClientProvider>
         <footer>
           <Footer />
           <Copyright />
         </footer>
-
-        {/* Schema Scripts */}
-        
       </body>
     </html>
   );
