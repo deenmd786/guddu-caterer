@@ -26,7 +26,8 @@ export default function Home() {
         <meta name="description" content="Welcome to Guddu Catering Service! We provide catering for 20 to 1000+ guests, perfect for weddings, corporate events, and parties in Delhi. Packages start at just ₹2499. Book now for delicious, hassle-free catering!" />
         <meta name="keywords" content="wedding catering in Delhi, best caterer in Delhi, affordable catering services Delhi, corporate event catering Delhi, party catering services Delhi" />
         <meta name="author" content="Guddu Caterer" />
-        <meta name="robots" content="all" />
+        <meta name="robots" content="index, follow" />
+        <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
         <link rel="canonical" href="https://www.gudducaterer.in" />
       </Head>
       <Header />

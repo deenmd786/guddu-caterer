@@ -112,3 +112,9 @@ html {
       max-height: 73vh;
   }
 }
+
+@media (min-width: 430px) {
+  .sm1\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

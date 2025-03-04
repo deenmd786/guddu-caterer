@@ -10,7 +10,7 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Top-Quality Catering in Delhi – Starting at Just ₹200 Per Plate!",
+  title: "Guddu Caterer - Starting at ₹200 Per Plate!",
   description:
     "Top-rated catering service in Delhi! We serve 20-2000+ guests, starting at just ₹200 per plate. Perfect for weddings, corporate events & parties. Book hassle-free catering today!",
   keywords:

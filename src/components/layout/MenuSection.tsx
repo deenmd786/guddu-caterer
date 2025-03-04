@@ -72,7 +72,7 @@ const MenuSection: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
   return (
-    <div className="bg-[var(--background)]">
+    <div className="menu-section bg-[var(--background)]">
       <div className="flex gap-4 py-3 items-center justify-center ">
         <MenuCategorySelector
           categories={productCategory}
@@ -101,11 +101,11 @@ const MenuSection: React.FC = () => {
             {error}
           </p>
         )}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:flex w-full scroll-hidden lg:overflow-x-auto gap-5 bg-[var(--background)]">
+        <div className="grid grid-cols-2 sm1:grid-cols-3 sm:grid-cols-4 lg:flex w-full scroll-hidden lg:overflow-x-auto gap-5 bg-[var(--background)]">
           {!loading &&
             !error &&
             products.map((product) => (
-              <div key={product._id} className="flex-shrink-0 ">
+              <div key={product._id}>
                 <ProductCard
                   product={product}
                   isInCart={cartItems.some((item) => item._id === product._id)}

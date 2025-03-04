@@ -132,7 +132,7 @@ const ShowProduct: React.FC = () => {
                 ))}
             </div>
           ) : (
-            <div className="hidden min:h-[80vh]  lg:grid lg:grid-cols-4 xl:grid-cols-5 scroll-hidden overflow-x-auto gap-4 bg-[var(--background)] ">
+            <div className="hidden min:h-[80vh]  md:grid md:grid-cols-4 xl:grid-cols-5 scroll-hidden overflow-x-auto gap-4 bg-[var(--background)] ">
               {products.map((product) => (
                 <div key={product._id} className="flex-shrink-0">
                   <ProductCard
