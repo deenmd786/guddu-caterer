@@ -48,6 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         {/* ✅ WebSite Schema for Google */}
+        <meta name="google-adsense-account" content="ca-pub-6227091069689473"></meta>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }),
           }}
         />
+        
       </head>
       <body>
         <ClientProvider>{children}</ClientProvider>
