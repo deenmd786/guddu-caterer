@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 const stats = [
-  { count: 30, label: "Happy Customers", icon: "/assets/images/icons/1.png" },
+  { count: 300, label: "Happy Customers", icon: "/assets/images/icons/1.png" },
   { count: 40, label: "Expert Cooks", icon: "/assets/images/icons/2.png" },
   {
     count: 23,
