@@ -106,6 +106,7 @@ const cookingMethods = [
   { id: 9, label: "Blanched", value: "blanched" },
   { id: 10, label: "Frozen", value: "Frozen" },
   { id: 11, label: "Chilled", value: "chilled" }, 
+  { id: 11, label: "Blended", value: "blended" }, 
 ];
 
 
