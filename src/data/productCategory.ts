@@ -24,7 +24,8 @@ const productCategory = [
       { "id": 2, "label": "Fruit-Based Salads", "value": "fruit-based-salads" },
       { "id": 3, "label": "Legume & Grain Salads", "value": "legume-grain-salads" },
       { "id": 4, "label": "Yogurt-Based (Raitas)", "value": "yogurt-based-salads" },
-      { "id": 5, "label": "Mixed & Fusion Salads", "value": "mixed-fusion-salads" }
+      { "id": 5, "label": "Mixed & Fusion Salads", "value": "mixed-fusion-salads" },
+      { "id": 6, "label": "Chatney (ketchup)", "value": "chatney" },
     ]
   },
   {
