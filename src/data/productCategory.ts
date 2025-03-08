@@ -90,7 +90,7 @@ const regions = [
   { id: 8, label: "Gujarat", value: "gujarat" },
   { id: 9, label: "Maharashtra", value: "maharashtra" },
   { id: 10, label: "Punjab", value: "punjab" },
-
+  { id: 10, label: "Rajasthan", value: "rajasthan" },
 ];
 
 
