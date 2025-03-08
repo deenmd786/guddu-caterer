@@ -56,7 +56,6 @@ const ShowProduct: React.FC = () => {
     setSelectedCategory(category);
     setProducts([]);
     setSelectedSubcategory(null);
-    alert(`You clicked on: ${category.label}`);
   };
 
   useEffect(() => {
