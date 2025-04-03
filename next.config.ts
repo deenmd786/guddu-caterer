@@ -20,6 +20,11 @@ const nextConfig: NextConfig = {
         hostname: 'maps.googleapis.com',
         pathname: '/**', // This allows all paths under the domain
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn-icons-png.flaticon.com',
+        pathname: '/**', // This allows all paths under the domain
+      },
     ],
   },
   experimental: {

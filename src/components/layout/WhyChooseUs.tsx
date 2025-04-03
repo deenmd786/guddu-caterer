@@ -9,7 +9,7 @@ const stats = [
     label: "Years of Experience",
     icon: "/assets/images/icons/3.png",
   },
-  { count: 500, label: "Events Completed", icon: "/assets/images/icons/4.png" },
+  { count: 150, label: "Events Completed", icon: "/assets/images/icons/4.png" },
 ];
 
 const WhyChooseUs: React.FC = () => (

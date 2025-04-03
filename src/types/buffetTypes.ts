@@ -1,12 +1,17 @@
-
 export interface IBuffetData {
-  id?: string;
+  _id?: string; // Optional ID
   title: string;
+  description: string;
   cookPrice: number;
-  minPrice: number;
-  maxPrice: number;
-  gatheringSize: "small" | "medium" | "large";
-  categories: {
-    [key: string]: { title: string; imageUrl: string }[]; // Key-value pairs for categories
+  category: "Wedding" | "Birthday" | "Corporate" | "Festival" | "Anniversary" | "Casual Party";
+  dishes: {
+    [key: string]: { title: string; imageUrl: string; }[]; // Each key maps to an array of dish objects
   };
+  prices: { [key: number]: number }; // More flexible pricing structure
+  offer: string;
+}
+
+export interface IDish {
+  title: string;
+  imageUrl: string;
 }

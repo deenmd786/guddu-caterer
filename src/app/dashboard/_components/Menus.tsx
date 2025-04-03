@@ -10,7 +10,6 @@ import ProgressSteps from "./ProgressSteps";
 
 const Menus = () => {
   const user = useSelector((state: RootState) => state.user.user);
-  console.log("user: ", user);
 
   const router = useRouter();
 
