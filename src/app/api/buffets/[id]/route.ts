@@ -1,30 +1,31 @@
-// src/app/api/buffets/[id]/route.ts
-
 import { NextRequest, NextResponse } from "next/server";
-import { Error as MongooseError } from "mongoose"; // Import Mongoose error type
+import mongoose, { Error as MongooseError } from "mongoose"; // Import Mongoose error type
 import { dbConnect } from "@/lib/dbConnect"; // Ensure this is the correct path to your dbConnect function
 import Buffet from "@/models/buffetSchema";
 
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest,
+  context: { params: Promise<{ id: string }> }
+  ) {
+    const params = await context.params;
   await dbConnect();
 
+  // Validate the product ID
+      if (!mongoose.Types.ObjectId.isValid(params.id)) {
+        console.log("Invalid product ID: ", params.id);
+        return NextResponse.json(
+          { success: false, error: "Invalid product ID" },
+          { status: 400 }
+        );
+      }
   try {
     const buffetData = await req.json(); // Correctly parse the request body
 
-    const { title, description, cookPrice, category, dishes, prices, offers } = buffetData;
+    const { title, description, cookPrice, category, dishes, prices, offer } = buffetData; // Changed 'offers' to 'offer'
 
     // Validate required fields
-    if (!title || !description || !cookPrice || !category || !dishes || !prices || !offers) {
+    if (!title || !description || !cookPrice || !category || !dishes || !prices || !offer) {
       return NextResponse.json(
         { message: "All fields are required." },
-        { status: 400 }
-      );
-    }
-
-    // Validate dishes structure
-    if (typeof dishes !== "object" || Array.isArray(dishes)) {
-      return NextResponse.json(
-        { message: "Dishes must be an object." },
         { status: 400 }
       );
     }
@@ -40,27 +41,19 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
       }
     }
 
-    // Validate offers structure
-    if (!Array.isArray(offers) || offers.some(offer => !offer.name || !offer.discount || !offer.validUntil)) {
-      return NextResponse.json(
-        { message: "Offers must be an array of objects with name, discount, and validUntil." },
-        { status: 400 }
-      );
-    }
-
     // Find the buffet by ID and update it
     const buffet = await Buffet.findByIdAndUpdate(
-      params.id,
+      params.id, // Use the extracted id directly
       {
         title,
         description,
         cookPrice,
         category,
-        dishes: new Map(Object.entries(dishes)), // Convert the object to a Map
+        dishes: Object.fromEntries(dishes), // Convert the object to a Map if needed, or keep it as an object
         prices,
-        offers,
+        offer, // Ensure this matches your schema
       },
-      { new: true } // Return the updated document
+      { new: true, runValidators: true } // Return the updated document and run validators
     );
 
     if (!buffet) {

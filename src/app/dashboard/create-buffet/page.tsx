@@ -1,7 +1,6 @@
-// src/pages/Page.tsx
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { clearCart, setCart } from "@/redux/cartSlice";
@@ -13,7 +12,7 @@ const Page: React.FC = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
 
-  const initialData: IBuffetData = {
+  const [initialData, setInitialData] = useState<IBuffetData>({
     title: "Classic Indian Mini Feast",
     description: "",
     cookPrice: 1000,
@@ -21,7 +20,7 @@ const Page: React.FC = () => {
     dishes: {},
     prices: { 50: 1000, 100: 2000, 200: 4000, 500: 9000, 1000: 18000 },
     offer: "",
-  };
+  });
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
@@ -40,7 +39,10 @@ const Page: React.FC = () => {
       },
       {}
     );
-    initialData.dishes = dishes; // Update initialData with dishes
+    setInitialData((prevData) => ({
+      ...prevData,
+      dishes, // Update initialData with dishes
+    }));
   }, [cartItems]);
 
   const handleSubmit = async (data: IBuffetData) => {

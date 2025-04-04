@@ -33,8 +33,8 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
   const priceForSelectedPeople = buffetData.prices[selectedPeople] || 0;
   const originalPrice = priceForSelectedPeople * 1.3; // Assuming original price is 30% more
 
-  // Apply discount if available
-  const discount = buffetData.offers && buffetData.offers[0]?.discount ? buffetData.offers[0].discount : 0; // Check if offers exist
+  // Convert offer to a number and apply discount if available
+  const discount = parseFloat(buffetData.offer) || 0; // Convert offer from string to number
   const discountedPrice = priceForSelectedPeople * (1 - discount / 100);
 
   // Filter available categories with dishes
@@ -60,9 +60,9 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
       {/* Section Title and Discount Percentage */}
       <div className="flex justify-between items-center">
         <h3 className="text-3xl font-bold text-gray-900">{buffetData.title}</h3>
-        {buffetData.offers && buffetData.offers[0] && (
+        {buffetData.offer && (
           <span className="text-lg text-red-500 font-semibold ml-4">
-            {buffetData.offers[0].name} - {buffetData.offers[0].discount}% Off
+            {buffetData.offer} - {discount}% Off
           </span>
         )}
       </div>
@@ -80,7 +80,7 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
       {/* Conditional Rendering of Update Form as Full-Screen Popup */}
       {showUpdateForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-4 rounded-lg shadow-lg w-full max-w-lg">
+          <div className="bg -white p-4 rounded-lg shadow-lg w-full max-w-lg">
             <UpdatePrices onUpdate={handleUpdate} initialData={buffetData} />
             <button
               onClick={() => setShowUpdateForm(false)}
