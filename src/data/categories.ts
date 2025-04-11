@@ -1,13 +1,14 @@
 export const categories = [
-    {
-      name: "wedding",
-      label: "Wedding", // Capitalized label
-      image: "/assets/services/categories/wedding-1.jpg" // Replace with the actual path to your image
-    },
+    
     {
       name: "birthday",
       label: "Birthday", // Capitalized label
       image: "/assets/services/categories/Birthday.avif" // Replace with the actual path to your image
+    },
+    {
+      name: "wedding",
+      label: "Wedding", // Capitalized label
+      image: "/assets/services/categories/wedding-1.jpg" // Replace with the actual path to your image
     },
     {
       name: "corporate",

@@ -1,17 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Error as MongooseError } from "mongoose"; // Import Mongoose error type
-import { dbConnect } from "@/lib/dbConnect"; // Ensure this is the correct path to your dbConnect function
+import { Error as MongooseError } from "mongoose";
+import { dbConnect } from "@/lib/dbConnect";
 import Buffet from "@/models/buffetSchema";
 
 export async function POST(req: NextRequest) {
   await dbConnect();
 
   try {
-    const buffetData = await req.json(); // Correctly parse the request body
+    const buffetData = await req.json();
+    const { title, description, cookPrice, category, dishes, prices, offer } = buffetData;
 
-    const { title, description, cookPrice, category, dishes, prices, offer } = buffetData; // Corrected 'offers' to 'offer'
-
-    // Validate required fields
+    // Check required fields
     if (!title || !description || !cookPrice || !category || !dishes || !prices || !offer) {
       return NextResponse.json(
         { message: "All fields are required." },
@@ -19,7 +18,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Validate dishes structure
+    // Dishes validation
     if (typeof dishes !== "object" || Array.isArray(dishes)) {
       return NextResponse.json(
         { message: "Dishes must be an object." },
@@ -27,26 +26,33 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Validate prices structure
-    const requiredPriceKeys = [50, 100, 200, 500, 1000];
+    // Prices validation (as strings)
+    const requiredPriceKeys = ["50", "100", "200", "500", "1000"];
     for (const key of requiredPriceKeys) {
-      if (typeof prices[key] !== 'number') {
+      const price = prices[key];
+      if (!price || isNaN(Number(price))) {
         return NextResponse.json(
-          { message: `Price for ${key} guests is required and must be a number.` },
+          { message: `Price for ${key} guests is required and must be a valid number.` },
           { status: 400 }
         );
       }
     }
 
-    // Create a new buffet instance
+    // Convert prices from string to number if needed (optional)
+    const convertedPrices: Record<string, number> = {};
+    for (const [key, value] of Object.entries(prices)) {
+      convertedPrices[key] = Number(value);
+    }
+
+    // Save buffet
     const buffet = new Buffet({
       title,
       description,
-      cookPrice,
+      cookPrice: Number(cookPrice),
       category,
-      dishes: new Map(Object.entries(dishes)), // Convert the object to a Map
-      prices,
-      offer, // Corrected to match the incoming data structure
+      dishes: new Map(Object.entries(dishes)),
+      prices: convertedPrices,
+      offer,
     });
 
     await buffet.save();
@@ -55,12 +61,10 @@ export async function POST(req: NextRequest) {
   } catch (error: unknown) {
     console.error("Error creating buffet:", error);
 
-    // Handle validation errors from Mongoose
     if (error instanceof MongooseError.ValidationError) {
       return NextResponse.json({ message: error.message }, { status: 400 });
     }
 
-    // Handle other types of errors (e.g., database connection issues)
     return NextResponse.json(
       { message: "Failed to create buffet. Please try again." },
       { status: 500 }
@@ -70,13 +74,13 @@ export async function POST(req: NextRequest) {
 
 export async function GET(request: Request) {
   await dbConnect();
-  
+
   const { searchParams } = new URL(request.url);
-  const category = searchParams.get('category'); // Get the category from the query parameters
+  const category = searchParams.get("category");
 
   try {
-    const query = category ? { category } : {}; // If a category is provided, filter by it
-    const buffets = await Buffet.find(query); // Fetch buffets based on the query
+    const query = category ? { category } : {};
+    const buffets = await Buffet.find(query);
     return NextResponse.json({ message: "Buffets retrieved", buffets });
   } catch (error) {
     console.error("Error fetching buffets:", error);

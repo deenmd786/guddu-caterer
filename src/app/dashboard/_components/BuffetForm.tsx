@@ -15,11 +15,11 @@ const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData }) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: name === "cookPrice" ? Number(value) : value,
+      [name]: value,
     }));
   };
 
-  const handlePriceChange = (guestCount: number, value: number) => {
+  const handlePriceChange = (guestCount: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
       prices: { ...prev.prices, [guestCount]: value },
@@ -40,26 +40,33 @@ const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-h-[80vh] md:max-h-[89vh] overflow-y-auto bg-white p-6 rounded-lg shadow-md">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-6 max-h-[80vh] md:max-h-[89vh] overflow-y-auto bg-white p-6 rounded-lg shadow-md"
+    >
       <h2 className="text-xl font-bold text-gray-700">Create a Buffet Plan</h2>
+
       {(["title", "description", "cookPrice", "offer"] as Array<keyof IBuffetData>).map((field) => (
         <div key={field} className="flex flex-col">
           <label htmlFor={field} className="font-medium text-gray-600">
             {field.charAt(0).toUpperCase() + field.slice(1)}:
           </label>
           <input
-            type={field === "cookPrice" ? "number" : "text"}
+            type="text"
             id={field}
             name={field}
-            value={field === "cookPrice" ? formData.cookPrice : (formData[field] as string)}
+            value={formData[field] as string}
             onChange={handleChange}
             required
             className="border p-2 rounded-md focus:ring-2 focus:ring-blue-400"
           />
         </div>
       ))}
+
       <div>
-        <label htmlFor="category" className="font-medium text-gray-600">Category:</label>
+        <label htmlFor="category" className="font-medium text-gray-600">
+          Category:
+        </label>
         <select
           id="category"
           name="category"
@@ -67,11 +74,14 @@ const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData }) => {
           onChange={handleChange}
           className="border p-2 rounded-md w-full focus:ring-2 focus:ring-blue-400"
         >
-          {categories.map((cat,i) => (
-            <option key={i} value={cat.name}>{cat.label}</option>
+          {categories.map((cat, i) => (
+            <option key={i} value={cat.name}>
+              {cat.label}
+            </option>
           ))}
         </select>
       </div>
+
       <div>
         <h2 className="text-lg font-semibold text-gray-700">Prices:</h2>
         {Object.keys(formData.prices).map((guestCount) => (
@@ -80,19 +90,21 @@ const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData }) => {
               Price for {guestCount} guests:
             </label>
             <input
-              type="number"
+              type="text"
               id={`price-${guestCount}`}
-              value={formData.prices[guestCount as unknown as keyof typeof formData.prices]}
-              onChange={(e) => handlePriceChange(Number(guestCount), Number(e.target.value))}
+              value={formData.prices[guestCount]}
+              onChange={(e) => handlePriceChange(guestCount, e.target.value)}
               className="border p-2 rounded-md focus:ring-2 focus:ring-blue-400"
             />
           </div>
         ))}
       </div>
-      
+
       <button
         type="submit"
-        className={`bg-blue-500 w-full text-white p-2 rounded-md hover:bg-blue-600 transition ${isSubmitting ? "opacity-50 cursor-not-allowed" : ""}`}
+        className={`bg-blue-500 w-full text-white p-2 rounded-md hover:bg-blue-600 transition ${
+          isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+        }`}
         disabled={isSubmitting}
       >
         {isSubmitting ? "Submitting..." : "Create Buffet"}
