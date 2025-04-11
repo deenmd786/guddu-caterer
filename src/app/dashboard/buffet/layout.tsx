@@ -1,6 +1,5 @@
 
 import { FaConciergeBell } from "react-icons/fa";
-import InclusionSection from "./_components/InclusionSection";
 
 
 export default function RootLayout({
