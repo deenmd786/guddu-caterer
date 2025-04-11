@@ -54,7 +54,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ menuOpen, setMenuOpen }) => {
         Menus
       </Link>
       <Link
-        href="#services"
+        href="/services"
         className="block text-[var(--text-primary)] p-4 border-b-2 border-[var(--border)]"
         onClick={() => setMenuOpen(false)} // Close menu on link click
       >

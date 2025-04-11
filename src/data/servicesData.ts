@@ -8,7 +8,6 @@ export type ServiceKey =
   | "birthday-party-food-catering"
   | "funeral-catering-service-in-delhi"
   | "outdoor-catering-service-in-delhi"
-  | "popular-catering-for-house-party-in-delhi"
   | "small-party-catering"
   | "home-food-catering";
 
@@ -67,12 +66,6 @@ export const servicesData: Record<ServiceKey, { image: string; altText: string; 
     title: "Outdoor Catering Services for Banquets and Events in Delhi",
     description: "Enjoy exceptional outdoor catering for weddings, corporate picnics, and large gatherings with our expert team.",
   },
-  "popular-catering-for-house-party-in-delhi": {
-    image: "/assets/services/home-party.jpg", // Replace with a Google-hosted image if available
-    altText: "Popular catering for house parties with a variety of foods",
-    title: "Popular Catering for House Parties in Delhi",
-    description: "Throw an amazing house party with our highly-rated catering services, offering delectable food and a seamless experience.",
-  },
   "small-party-catering": {
     image: "/assets/services/small-party.jpg", // Replace with a Google-hosted image if available
     altText: "Catering setup for small parties with intimate arrangements",
@@ -80,7 +73,7 @@ export const servicesData: Record<ServiceKey, { image: string; altText: string; 
     description: "Perfect catering solutions for small parties, family gatherings, and intimate events in Delhi.",
   },
   "home-food-catering": {
-    image: "/assets/services/house-party.webp", // Replace with a Google-hosted image if available
+    image: "/assets/services/home-party.jpg", // Replace with a Google-hosted image if available
     altText: "Home food catering setup with homemade-style food",
     title: "Home Food Catering for Small Events in Delhi",
     description: "Delightful catering services for home events, featuring homemade-style food and customizable menus.",
