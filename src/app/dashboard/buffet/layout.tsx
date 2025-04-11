@@ -18,7 +18,7 @@ export default function RootLayout({
           <FaConciergeBell className="text-red-500" /> Catering Inclusions:
         </h4>
         {/* Inclusion Section */}
-        <InclusionSection />
+        {/* <InclusionSection /> */}
       </div>
     </div>
   );
