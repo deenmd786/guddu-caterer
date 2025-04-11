@@ -47,7 +47,6 @@ const Page: React.FC = () => {
 
   const handleSubmit = async (data: IBuffetData) => {
     try {
-      console.log("data ", data);
       await createBuffet(data);
       alert("Buffet Created!!!")
     } catch (error) {

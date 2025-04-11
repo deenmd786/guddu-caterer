@@ -6,7 +6,7 @@ const buffetSchema = new Schema<IBuffetData>(
   {
     title: { type: String, required: true, trim: true },
     description: { type: String, required: true, trim: true },
-    cookPrice: { type: Number, required: true, min: [0, "Minimum price cannot be negative"] },
+    cookPrice: { type: String, required: true, trim:true},
     category: {
       type: String,
       enum: ["Wedding", "Birthday", "Corporate", "Festival", "Anniversary", "Casual Party"],
@@ -18,11 +18,11 @@ const buffetSchema = new Schema<IBuffetData>(
       required: true,
     },
     prices: {
-      50: { type: Number, required: true },
-      100: { type: Number, required: true },
-      200: { type: Number, required: true },
-      500: { type: Number, required: true },
-      1000: { type: Number, required: true },
+      50: { type: String, required: true },
+      100: { type: String, required: true },
+      200: { type: String, required: true },
+      500: { type: String, required: true },
+      1000: { type: String, required: true },
     },
     offer: { type: String, required: true, trim: true},
   },

@@ -12,30 +12,35 @@ interface BuffetSectionProps {
 }
 
 const categoryIcons: Record<string, string> = {
-  starters: "https://cdn-icons-png.flaticon.com/512/1706/1706607.png",
-  salads: "https://cdn-icons-png.flaticon.com/512/2515/2515263.png",
-  "main course": "https://cdn-icons-png.flaticon.com/512/1041/1041910.png",
-  "live food stations": "https://cdn-icons-png.flaticon.com/512/2921/2921220.png",
-  desserts: "https://cdn-icons-png.flaticon.com/512/1041/1041911.png",
-  beverages: "https://cdn-icons-png.flaticon.com/512/1041/1041912.png",
+  starters: "https://example.com/starters.png", // Replace with valid URLs
+  salads: "https://example.com/salads.png",
+  "main course": "https://example.com/main_course.png",
+  "live food stations": "https://example.com/live_food_stations.png",
+  desserts: "https://example.com/desserts.png",
+  beverages: "https://example.com/beverages.png",
 };
 
 const BuffetSection: React.FC<BuffetSectionProps> = ({
   selectedPeople,
   initialData,
 }) => {
-  const [buffetData, setBuffetData] = useState<IBuffetData>(initialData); // State to manage buffet data
+  const [buffetData, setBuffetData] = useState<IBuffetData>(initialData);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
-  const [showUpdateForm, setShowUpdateForm] = useState(false); // State to manage the visibility of the update form
-  console.log("initialData", initialData);
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
   
   // Calculate price and discount
-  const priceForSelectedPeople = buffetData.prices[selectedPeople] || 0;
-  const originalPrice = priceForSelectedPeople * 1.3; // Assuming original price is 30% more
+  // Ensure priceForSelectedPeople is a number
+// Ensure priceForSelectedPeople is a number
+const priceForSelectedPeople = Number(buffetData.prices[selectedPeople]) || 0; // Convert to number
 
-  // Convert offer to a number and apply discount if available
-  const discount = parseFloat(buffetData.offer) || 0; // Convert offer from string to number
-  const discountedPrice = priceForSelectedPeople * (1 - discount / 100);
+// Parse the discount from the offer string
+const discount = parseFloat(buffetData.offer) || 0;
+
+// Calculate the original price (assuming a 30% increase)
+const originalPrice = priceForSelectedPeople * 1.3;
+
+// Calculate the discounted price
+const discountedPrice = originalPrice - (originalPrice * (discount / 100));
 
   // Filter available categories with dishes
   const availableCategories = Object.keys(categoryIcons).filter(
@@ -47,17 +52,15 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
   };
 
   const handleUpdate = async (data: IBuffetData) => {
-    // Handle the update logic here
     console.log("Updated data:", data);
     setBuffetData(data);
-    setShowUpdateForm(false); // Close the form after updating
+    setShowUpdateForm(false);
   };
 
   const user = useSelector((state: RootState) => state.user.user);
 
   return (
     <section className="p-6 bg-white shadow-lg rounded-lg border mb-2 relative">
-      {/* Section Title and Discount Percentage */}
       <div className="flex justify-between items-center">
         <h3 className="text-3xl font-bold text-gray-900">{buffetData.title}</h3>
         {buffetData.offer && (
@@ -67,7 +70,6 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
         )}
       </div>
 
-      {/* Toggle Button for Update Form */}
       {user?.role === "ADMIN" && (
         <button
           onClick={() => setShowUpdateForm((prev) => !prev)}
@@ -77,10 +79,9 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
         </button>
       )}
 
-      {/* Conditional Rendering of Update Form as Full-Screen Popup */}
       {showUpdateForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg -white p-4 rounded-lg shadow-lg w-full max-w-lg">
+          <div className="bg-white p-4 rounded-lg shadow-lg w-full max-w-lg">
             <UpdatePrices onUpdate={handleUpdate} initialData={buffetData} />
             <button
               onClick={() => setShowUpdateForm(false)}
@@ -92,7 +93,6 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
         </div>
       )}
 
-      {/* Category Selection */}
       <div className="mt-6">
         <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
           {availableCategories.map((category) => (
@@ -121,29 +121,24 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
           ))}
         </div>
 
-        {/* Display Dishes */}
-        {activeCategory && initialData.dishes[activeCategory] && (
+        {activeCategory && buffetData.dishes[activeCategory] && (
           <div className="pb-4 flex gap-3 overflow-x-auto transition-all duration-300">
-            {initialData.dishes[activeCategory].map((dish, index) => (
+            {buffetData.dishes[activeCategory].map((dish, index) => (
               <SubCategory key={index} dishes={[dish]} />
             ))}
           </div>
         )}
       </div>
 
-      {/* Pricing Section */}
       <div className="p-4 bg-gray-100 rounded-lg flex justify-between items-center">
         <p className="text-lg font-medium text-gray-800">Catering Price:</p>
 
         <div className="flex flex-col items-end">
           {priceForSelectedPeople !== undefined ? (
             <>
-              {/* Original Price with 30% increase (Strikethrough) */}
               <span className="text-lg text-red-500 line-through">
                 ₹{originalPrice.toFixed(0)}
               </span>
-
-              {/* Final Price after discount (Highlighted) */}
               <span className="text-xl font-bold text-green-600">
                 ₹{discountedPrice.toFixed(0)}
               </span>
