@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import AuthLayout from "../../../components/layout/AuthLayout";
 import { setUser } from "../../../redux/userSlice";
 import { useDispatch } from "react-redux";
+import authMessages from "@/utils/authMessages";
 
 interface FormData {
   email: string;
@@ -44,23 +45,27 @@ const Login: React.FC = () => {
     setSuccess(null);
 
     try {
-      const data = await apiHelper("/api/user/login", {
-        method: "POST",
-        body: formData,
-      });
-      console.log("data: " ,data);
-      
-      dispatch(setUser (data.user));
-      setSuccess(data.message || "Login successful!");
-      setFormData({ email: "", password: "" });
-      router.push("/dashboard");
+        const data = await apiHelper("/api/user/login", {
+            method: "POST",
+            body: formData,
+        });
+        dispatch(setUser (data.user));
+        setSuccess(data.message || "Login successful!");
+        setFormData({ email: "", password: "" });
+        router.push("/dashboard");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
-      router.push("/auth/signup");
+        const errorMessage = err instanceof Error ? err.message : "An error occurred";
+
+        // Check if the error message indicates that the email is incorrect
+        if (errorMessage === authMessages.incorrectEmail) {
+            router.push("/auth/signup");
+        } else {
+            setError(errorMessage);
+        }
     } finally {
-      setLoading(false);
+        setLoading(false);
     }
-  };
+};
 
   // Structured data for SEO
   const structuredData = {

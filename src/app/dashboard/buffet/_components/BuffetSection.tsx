@@ -8,7 +8,8 @@ import UpdatePrices from "../../_components/UpdatePrices";
 
 interface BuffetSectionProps {
   selectedPeople: number;
-  initialData: IBuffetData; // Add initialData prop for the update form
+  initialData: IBuffetData;
+  selectedQualityPercent: number;
 }
 
 const categoryIcons: Record<string, string> = {
@@ -23,24 +24,24 @@ const categoryIcons: Record<string, string> = {
 const BuffetSection: React.FC<BuffetSectionProps> = ({
   selectedPeople,
   initialData,
+  selectedQualityPercent
 }) => {
   const [buffetData, setBuffetData] = useState<IBuffetData>(initialData);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
+  console.log("selectedQualityPercent", selectedQualityPercent);
   
   // Calculate price and discount
-  // Ensure priceForSelectedPeople is a number
-// Ensure priceForSelectedPeople is a number
-const priceForSelectedPeople = Number(buffetData.prices[selectedPeople]) || 0; // Convert to number
+  const perPlate = 300;
+  // const priceForSelectedPeople = Number(buffetData.prices[selectedPeople]) || 0;
+  const priceForSelectedPeople = Number(selectedPeople) * perPlate;
 
 // Parse the discount from the offer string
-const discount = parseFloat(buffetData.offer) || 0;
+const discount = selectedQualityPercent + parseFloat(buffetData.perPlate) || 0;
 
-// Calculate the original price (assuming a 30% increase)
-const originalPrice = priceForSelectedPeople * 1.3;
 
 // Calculate the discounted price
-const discountedPrice = originalPrice - (originalPrice * (discount / 100));
+const discountedPrice = priceForSelectedPeople - (priceForSelectedPeople * (discount / 100));
 
   // Filter available categories with dishes
   const availableCategories = Object.keys(categoryIcons).filter(
@@ -60,12 +61,12 @@ const discountedPrice = originalPrice - (originalPrice * (discount / 100));
   const user = useSelector((state: RootState) => state.user.user);
 
   return (
-    <section className="p-6 bg-white shadow-lg rounded-lg border mb-2 relative">
+    <section className="p-4 sm:p-6 bg-white shadow-lg rounded-lg border mb-4 relative">
       <div className="flex justify-between items-center">
-        <h3 className="text-3xl font-bold text-gray-900">{buffetData.title}</h3>
-        {buffetData.offer && (
+        <h3 className="text-xl font-bold text-gray-900">{buffetData.title}</h3>
+        {buffetData.discounts && (
           <span className="text-lg text-red-500 font-semibold ml-4">
-            {buffetData.offer} - {discount}% Off
+            {discount}% Off
           </span>
         )}
       </div>
@@ -137,7 +138,7 @@ const discountedPrice = originalPrice - (originalPrice * (discount / 100));
           {priceForSelectedPeople !== undefined ? (
             <>
               <span className="text-lg text-red-500 line-through">
-                ₹{originalPrice.toFixed(0)}
+                ₹{priceForSelectedPeople.toFixed(0)}
               </span>
               <span className="text-xl font-bold text-green-600">
                 ₹{discountedPrice.toFixed(0)}

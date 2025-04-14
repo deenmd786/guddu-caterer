@@ -8,10 +8,10 @@ export async function POST(req: NextRequest) {
 
   try {
     const buffetData = await req.json();
-    const { title, description, cookPrice, category, dishes, prices, offer } = buffetData;
+    const { title, description, cookPrice, category, dishes, discounts, perPlate } = buffetData;
 
     // Check required fields
-    if (!title || !description || !cookPrice || !category || !dishes || !prices || !offer) {
+    if (!title || !description || !cookPrice || !category || !dishes || !discounts || !perPlate) {
       return NextResponse.json(
         { message: "All fields are required." },
         { status: 400 }
@@ -26,10 +26,10 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Prices validation (as strings)
+    // discounts validation (as strings)
     const requiredPriceKeys = ["50", "100", "200", "500", "1000"];
     for (const key of requiredPriceKeys) {
-      const price = prices[key];
+      const price = discounts[key];
       if (!price || isNaN(Number(price))) {
         return NextResponse.json(
           { message: `Price for ${key} guests is required and must be a valid number.` },
@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 
     // Convert prices from string to number if needed (optional)
     const convertedPrices: Record<string, number> = {};
-    for (const [key, value] of Object.entries(prices)) {
+    for (const [key, value] of Object.entries(discounts)) {
       convertedPrices[key] = Number(value);
     }
 
@@ -51,8 +51,8 @@ export async function POST(req: NextRequest) {
       cookPrice: Number(cookPrice),
       category,
       dishes: new Map(Object.entries(dishes)),
-      prices: convertedPrices,
-      offer,
+      discounts: convertedPrices,
+      perPlate,
     });
 
     await buffet.save();

@@ -15,11 +15,11 @@ const Page: React.FC = () => {
   const [initialData, setInitialData] = useState<IBuffetData>({
     title: "Classic Indian Mini Feast",
     description: "A tasty and traditional menu, perfect for small gatherings with family and friends.",
-    cookPrice: "1000",
+    cookPrice: "2500",
     category: "Birthday",
     dishes: {},
-    prices: { "50": "1000", "100": "2000", "200": "4000", "500": "9000", "1000": "18000", "2000": "36000" },
-    offer: "10",
+    discounts: { "50": "15", "100": "20", "200": "25", "500": "30", "1000": "40", "2000": "50" },
+    perPlate: "200",
   });
 
   useEffect(() => {
@@ -47,13 +47,16 @@ const Page: React.FC = () => {
 
   const handleSubmit = async (data: IBuffetData) => {
     try {
+      console.log("data", data);
+      
       await createBuffet(data);
-      alert("Buffet Created!!!")
     } catch (error) {
       // Optionally handle other errors
       console.error("An unexpected error occurred:", error);
     } finally {
       dispatch(clearCart());
+      alert("Buffet Created!!!")
+
     }
   };
 

@@ -17,14 +17,15 @@ const buffetSchema = new Schema<IBuffetData>(
       of: [{ title: String, imageUrl: String }],
       required: true,
     },
-    prices: {
+    discounts: {
       50: { type: String, required: true },
       100: { type: String, required: true },
       200: { type: String, required: true },
       500: { type: String, required: true },
       1000: { type: String, required: true },
+      2000: { type: String, required: true },
     },
-    offer: { type: String, required: true, trim: true},
+    perPlate: { type: String, required: true, trim: true},
   },
   { timestamps: true }
 );

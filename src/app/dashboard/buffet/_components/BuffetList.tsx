@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { IBuffetData } from "@/types/buffetTypes";
-import BuffetSection from "./BuffetSection"; // Adjust the import based on your project structure
+import BuffetSection from "./BuffetSection";
 import { getBuffetbyCategory } from "@/utils/buffetController";
 import { useParams } from "next/navigation";
 
@@ -11,23 +11,32 @@ const BuffetList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedPeople, setSelectedPeople] = useState<number>(50);
+  const [selectedQuality, setSelectedQuality] = useState<string>("standard");
+
   const { category } = useParams<{ category: string }>();
+
+  // Static quality pricing structure
+  const qualityPricing: Record<string, number> = {
+    medium: 30,    // 30% discount
+    standard: 10,  // 10% discount
+    premium: -40    // 40% discount
+  };
 
   useEffect(() => {
     const fetchBuffets = async () => {
       setLoading(true);
       try {
-        // Fetch buffets based on the category from the URL
-        const result = await getBuffetbyCategory("Wedding");
+        const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1);
+        const result = await getBuffetbyCategory(formattedCategory);
+        
         if ("buffets" in result) {
           setBuffets(result.buffets || []);
         } else {
           setError(result.message);
         }
       } catch (err) {
-        if (err instanceof Error) {
-          setError("Failed to fetch buffets. Please try again later.");
-        }
+        console.error("Error fetching buffets:", err);
+        setError("Failed to fetch buffets. Please try again later.");
       } finally {
         setLoading(false);
       }
@@ -40,6 +49,10 @@ const BuffetList = () => {
 
   const handlePeopleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedPeople(Number(event.target.value));
+  };
+
+  const handleQualityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedQuality(event.target.value);
   };
 
   if (loading) {
@@ -59,22 +72,24 @@ const BuffetList = () => {
   }
 
   return (
-    <div className="container mx-auto p-6">
-      {/* Select Number of People */}
-      <div className="mb-6 flex justify-between items-center gap-4">
-        <label htmlFor="people-select" className="text-lg font-semibold text-gray-700">
-          Select Number of Guests:
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    {/* Filters Row */}
+    <div className="flex justify-between items-center gap-4 mb-6">
+      {/* Quality Selection */}
+      <div className="w-full sm:w-1/2 md:w-1/3">
+        <label htmlFor="quality-select" className="block text-sm md:text-base font-semibold text-gray-700 mb-1">
+          Select Quality:
         </label>
-        <div className="relative w-52">
+        <div className="relative">
           <select
-            id="people-select"
-            value={selectedPeople}
-            onChange={handlePeopleChange}
-            className="w-full p-3 border border-gray-300 rounded-lg shadow-sm bg-white text-gray-700 text-lg focus:ring-2 focus:ring-primary focus:outline-none transition duration-200 ease-in-out appearance-none cursor-pointer"
+            id="quality-select"
+            value={selectedQuality}
+            onChange={handleQualityChange}
+            className="w-full p-2 md:p-3 border border-gray-300 rounded-lg shadow-sm bg-white text-gray-700 text-sm md:text-base focus:ring-2 focus:ring-primary focus:outline-none appearance-none cursor-pointer"
           >
-            {[50, 100, 200, 500, 1000].map((num) => (
-              <option key={num} value={num} className="p-2 text-lg bg-white hover:bg-gray-100">
-                {num} Guests
+            {Object.keys(qualityPricing).map((quality) => (
+              <option key={quality} value={quality}>
+                {quality.charAt(0).toUpperCase() + quality.slice(1)}
               </option>
             ))}
           </select>
@@ -84,18 +99,44 @@ const BuffetList = () => {
         </div>
       </div>
 
-      {/* Buffet Sections */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[80vh] overflow-y-auto">
-        {buffets.map((buffet) => (
-          <BuffetSection
-            key={buffet._id}
-            selectedPeople={selectedPeople}
-            initialData={buffet}
-          />
-        ))}
+      {/* People Selection */}
+      <div className="w-full sm:w-1/2 md:w-1/3">
+        <label htmlFor="people-select" className="block text-sm md:text-base font-semibold text-gray-700 mb-1">
+          Select Guests:
+        </label>
+        <div className="relative">
+          <select
+            id="people-select"
+            value={selectedPeople}
+            onChange={handlePeopleChange}
+            className="w-full p-2 md:p-3 border border-gray-300 rounded-lg shadow-sm bg-white text-gray-700 text-sm md:text-base focus:ring-2 focus:ring-primary focus:outline-none appearance-none cursor-pointer"
+          >
+            {[50, 100, 200, 500, 1000, 2000].map((num) => (
+              <option key={num} value={num}>
+                {num}+ Guests
+              </option>
+            ))}
+          </select>
+          <span className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-gray-500">
+            ▼
+          </span>
+        </div>
       </div>
     </div>
-  );
+
+    {/* Buffet Cards */}
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[80vh] overflow-y-auto">
+      {buffets.map((buffet) => (
+        <BuffetSection
+          key={buffet._id}
+          selectedPeople={selectedPeople}
+          initialData={buffet}
+          selectedQualityPercent={qualityPricing[selectedQuality]}
+        />
+      ))}
+    </div>
+  </div>
+);
 };
 
 export default BuffetList;

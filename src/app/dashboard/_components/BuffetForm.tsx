@@ -22,7 +22,7 @@ const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData }) => {
   const handlePriceChange = (guestCount: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
-      prices: { ...prev.prices, [guestCount]: value },
+      prices: { ...prev.discounts, [guestCount]: value },
     }));
   };
 
@@ -46,7 +46,7 @@ const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData }) => {
     >
       <h2 className="text-xl font-bold text-gray-700">Create a Buffet Plan</h2>
 
-      {(["title", "description", "cookPrice", "offer"] as Array<keyof IBuffetData>).map((field) => (
+      {(["title", "description", "cookPrice", "perPlate"] as Array<keyof IBuffetData>).map((field) => (
         <div key={field} className="flex flex-col">
           <label htmlFor={field} className="font-medium text-gray-600">
             {field.charAt(0).toUpperCase() + field.slice(1)}:
@@ -83,16 +83,16 @@ const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData }) => {
       </div>
 
       <div>
-        <h2 className="text-lg font-semibold text-gray-700">Prices:</h2>
-        {Object.keys(formData.prices).map((guestCount) => (
+        <h2 className="text-lg font-semibold text-gray-700">Discounts:</h2>
+        {Object.keys(formData.discounts).map((guestCount) => (
           <div key={guestCount} className="flex flex-col">
             <label htmlFor={`price-${guestCount}`} className="font-medium text-gray-600">
-              Price for {guestCount} guests:
+            Discount for {guestCount} guests:
             </label>
             <input
               type="text"
               id={`price-${guestCount}`}
-              value={formData.prices[guestCount]}
+              value={formData.discounts[guestCount]}
               onChange={(e) => handlePriceChange(guestCount, e.target.value)}
               className="border p-2 rounded-md focus:ring-2 focus:ring-blue-400"
             />

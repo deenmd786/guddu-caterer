@@ -7,8 +7,8 @@ export interface IBuffetData {
   dishes: {
     [key: string]: { title: string; imageUrl: string; }[]; // Each key maps to an array of dish objects
   };
-  prices: { [key: string]: string }; // More flexible pricing structure
-  offer: string;
+  discounts: { [key: string]: string }; // More flexible pricing structure
+  perPlate: string;
 }
 
 export interface IDish {
