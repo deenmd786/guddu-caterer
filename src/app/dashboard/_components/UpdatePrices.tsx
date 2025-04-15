@@ -15,7 +15,7 @@ const UpdatePrices: React.FC<UpdateBuffetFormProps> = ({ onUpdate, initialData }
   const handlePriceChange = (guestCount: number, value: number) => {
     setFormData((prev) => ({
       ...prev,
-      prices: { ...prev.prices, [guestCount]: value },
+      prices: { ...prev.discounts, [guestCount]: value },
     }));
   };
 
@@ -46,7 +46,7 @@ const UpdatePrices: React.FC<UpdateBuffetFormProps> = ({ onUpdate, initialData }
     <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-md">
       {error && <div className="text-red-500">{error}</div>} {/* Display error message */}
       <div>
-        {Object.keys(formData.prices).map((guestCount) => (
+        {Object.keys(formData.discounts).map((guestCount) => (
           <div key={guestCount} className="flex flex-col">
             <label htmlFor={`price-${guestCount}`} className="font-medium text-gray-600">
               Price for {guestCount} guests:
@@ -54,7 +54,7 @@ const UpdatePrices: React.FC<UpdateBuffetFormProps> = ({ onUpdate, initialData }
             <input
               type="number"
               id={`price-${guestCount}`}
-              value={formData.prices[Number(guestCount)] || ''} // Handle empty values
+              value={formData.discounts[Number(guestCount)] || ''} // Handle empty values
               onChange={(e) => handlePriceChange(Number(guestCount), Number(e.target.value) || 0)} // Default to 0 if empty
               className="border p-2 rounded-md focus:ring-2 focus:ring-blue-400"
             />
