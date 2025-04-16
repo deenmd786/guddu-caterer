@@ -22,7 +22,7 @@ const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData }) => {
   const handlePriceChange = (guestCount: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
-      prices: { ...prev.discounts, [guestCount]: value },
+      discounts: { ...prev.discounts, [guestCount]: value }, // Corrected here
     }));
   };
 
@@ -87,7 +87,7 @@ const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData }) => {
         {Object.keys(formData.discounts).map((guestCount) => (
           <div key={guestCount} className="flex flex-col">
             <label htmlFor={`price-${guestCount}`} className="font-medium text-gray-600">
-            Discount for {guestCount} guests:
+              Discount for {guestCount} guests:
             </label>
             <input
               type="text"

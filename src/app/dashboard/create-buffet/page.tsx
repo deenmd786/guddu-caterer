@@ -19,7 +19,7 @@ const Page: React.FC = () => {
     category: "Birthday",
     dishes: {},
     discounts: { "50": "15", "100": "20", "200": "25", "500": "30", "1000": "40", "2000": "50" },
-    perPlate: "200",
+    perPlate: "250",
   });
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const Page: React.FC = () => {
     );
     setInitialData((prevData) => ({
       ...prevData,
-      dishes, // Update initialData with dishes
+      dishes,
     }));
   }, [cartItems]);
 
