@@ -11,6 +11,8 @@ import BuffetForm from "../_components/BuffetForm";
 const Page: React.FC = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
+  console.log("cartItems",cartItems);
+  
 
   const [initialData, setInitialData] = useState<IBuffetData>({
     title: "Classic Indian Mini Feast",
@@ -18,7 +20,7 @@ const Page: React.FC = () => {
     cookPrice: "2500",
     category: "Birthday",
     dishes: {},
-    discounts: { "50": "15", "100": "20", "200": "25", "500": "30", "1000": "40", "2000": "50" },
+    discounts: { "50": "20", "100": "25", "200": "40", "500": "50", "1000": "60", "2000": "70" },
     perPlate: "250",
   });
 
@@ -44,12 +46,15 @@ const Page: React.FC = () => {
       dishes,
     }));
   }, [cartItems]);
+  console.log(initialData);
+  
+  
 
-  const handleSubmit = async (data: IBuffetData) => {
+  const handleSubmit = async (initialData: IBuffetData) => {
     try {
-      console.log("data", data);
+      console.log("initialData", initialData);
       
-      await createBuffet(data);
+      await createBuffet(initialData);
     } catch (error) {
       // Optionally handle other errors
       console.error("An unexpected error occurred:", error);
@@ -63,7 +68,10 @@ const Page: React.FC = () => {
   return (
     <main className="max-w-6xl mx-auto px-4 py-6">
       <h1 className="text-2xl font-bold">Buffet Creation</h1>
-      <BuffetForm onSubmit={handleSubmit} initialData={initialData} />
+      <BuffetForm
+  onSubmit={() => handleSubmit(initialData)}
+  initialData={initialData}
+/>
     </main>
   );
 };

@@ -17,9 +17,9 @@ const BuffetList = () => {
 
   // Static quality pricing structure
   const qualityPricing: Record<string, number> = {
-    medium: 30,    // 30% discount
-    standard: 10,  // 10% discount
-    premium: -40    // 40% discount
+    medium: 20,
+    standard: 0,
+    premium: -20
   };
 
   useEffect(() => {
@@ -43,8 +43,11 @@ const BuffetList = () => {
     };
 
     if (category) {
-      fetchBuffets();
+      fetchBuffets().then(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
     }
+    
   }, [category]);
 
   const handlePeopleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
