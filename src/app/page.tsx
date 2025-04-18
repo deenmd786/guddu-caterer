@@ -29,6 +29,7 @@ export default function Home() {
         <meta name="robots" content="index, follow" />
         <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
         <link rel="canonical" href="https://www.gudducaterer.in" />
+        <link rel="manifest" href="/manifest.json"/>
       </Head>
       <Header />
       <main role="main">
