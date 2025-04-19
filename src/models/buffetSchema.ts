@@ -4,7 +4,7 @@ import { IBuffetData } from "@/types/buffetTypes";
 // Define the Mongoose schema
 const buffetSchema = new Schema<IBuffetData>(
   {
-    title: { type: String, required: true, trim: true },
+    title: { type: String, required: true, trim: true , unique: true},
     description: { type: String, required: true, trim: true },
     cookPrice: { type: String, required: true, trim:true},
     category: {

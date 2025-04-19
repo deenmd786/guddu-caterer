@@ -1,10 +1,11 @@
 import React, { useMemo, useState } from "react";
-import SubCategory from "../../_components/SubCategory";
+import SubCategory from "./SubCategory";
 import Image from "next/image";
 import { IBuffetData } from "@/types/buffetTypes";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import UpdatePrices from "../../_components/UpdatePrices";
+import formatCategoryName from "@/helpers/formateName";
 
 interface BuffetSectionProps {
   selectedPeople: number;
@@ -13,12 +14,12 @@ interface BuffetSectionProps {
 }
 
 const categoryIcons: Record<string, string> = {
-  starters: "/assets/images/categoryIcons/starter.png", // Replace with valid URLs
-  salads: "/assets/images/categoryIcons/salads.png",
-  "main course": "/assets/images/categoryIcons/main-course.png",
-  "live food stations": "/assets/images/categoryIcons/live-station.png",
-  desserts: "/assets/images/categoryIcons/desserts.png",
-  beverages: "/assets/images/categoryIcons/beverages.png",
+  "starters": "/assets/images/categoryIcons/starter.png",
+  "salads": "/assets/images/categoryIcons/salads.png",
+  "main-course": "/assets/images/categoryIcons/main-course.png",
+  "live-stall": "/assets/images/categoryIcons/live-station.png",
+  "desserts": "/assets/images/categoryIcons/desserts.png",
+  "beverages": "/assets/images/categoryIcons/beverages.png",
 };
 
 const BuffetSection: React.FC<BuffetSectionProps> = ({
@@ -50,7 +51,7 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
   const availableCategories = Object.keys(categoryIcons).filter(
     (category) => buffetData.dishes[category]?.length > 0
   );
-  console.log("availableCategories",availableCategories);
+ 
   
 
   const toggleCategory = (category: string) => {
@@ -58,7 +59,6 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
   };
 
   const handleUpdate = async (data: IBuffetData) => {
-    console.log("Updated data:", data);
     setBuffetData(data);
     setShowUpdateForm(false);
   };
@@ -68,11 +68,11 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
   return (
     <section className="p-4 sm:p-6 bg-white shadow-lg rounded-lg border mb-4 relative">
   <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
-  <h3 className="text-2xl font-bold text-gray-900 capitalize">
+  <h3 className="text-lg sm:text-xl font-bold text-gray-900 capitalize">
     {buffetData.title}
   </h3>
   {buffetData.discounts && (
-    <span className="inline-flex items-center text-xl font-semibold text-red-600 bg-red-100 px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
+    <span className="inline-flex items-center text-base sm:text-lg font-semibold text-red-600 bg-red-100 px-4 pr-[.3rem] py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300">
     {discount}% Off
   </span>
   
@@ -107,16 +107,19 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
 
   {/* Category navigation buttons */}
   <div className="mt-6">
-    <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-      {availableCategories.map((category) => (
+    <div className="flex gap-2  overflow-x-auto mb-2 pb-3">
+      {availableCategories.map((category) => {
+            const dishesCount = buffetData?.dishes?.[category]?.length || 0;
+      return (
         <button
           key={category}
-          className={`flex flex-col items-center p-2 transition rounded-lg ${
+          className={`flex flex-col items-center p-2 rounded-lg ${
             activeCategory === category
-              ? "bg-primary text-white"
+              ? "border-red-300 border-2"
               : "bg-gray-100"
           }`}
           onClick={() => toggleCategory(category)}
+          
         >
           <div className="w-16 h-16 flex items-center justify-center">
             <Image
@@ -128,15 +131,20 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
             />
           </div>
           <span className="text-sm font-semibold mt-1 capitalize">
-            {category}
+            {formatCategoryName(category)}
           </span>
+          <span className="text-xs text-gray-800">
+          {dishesCount} item{dishesCount !== 1 ? 's' : ''}
+        </span>
         </button>
-      ))}
+      )
+      }
+      )}
     </div>
 
     {/* Display dishes based on active category */}
     {activeCategory && buffetData.dishes[activeCategory] && (
-      <div className="pb-4 flex gap-3 overflow-x-auto transition-all duration-300">
+      <div className="pb-2 flex gap-2 overflow-x-auto transition-all duration-300">
         {buffetData.dishes[activeCategory].map((dish, index) => (
           <SubCategory key={index} dishes={[dish]} />
         ))}

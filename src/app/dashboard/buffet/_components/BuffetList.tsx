@@ -5,6 +5,7 @@ import { IBuffetData } from "@/types/buffetTypes";
 import BuffetSection from "./BuffetSection";
 import { getBuffetbyCategory } from "@/utils/buffetController";
 import { useParams } from "next/navigation";
+import SimmerBuffetCard from "./SimmerBuffetCard";
 
 const BuffetList = () => {
   const [buffets, setBuffets] = useState<IBuffetData[]>([]);
@@ -60,9 +61,8 @@ const BuffetList = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-lg font-semibold text-gray-600">Loading buffets...</p>
-      </div>
+      <SimmerBuffetCard />
+
     );
   }
 

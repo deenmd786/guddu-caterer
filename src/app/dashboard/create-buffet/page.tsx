@@ -6,7 +6,7 @@ import { RootState } from "@/redux/store";
 import { clearCart, setCart } from "@/redux/cartSlice";
 import { createBuffet } from "@/utils/buffetController";
 import { IBuffetData } from "@/types/buffetTypes";
-import BuffetForm from "../_components/BuffetForm";
+import BuffetForm from "../buffet/_components/BuffetForm";
 
 const Page: React.FC = () => {
   const dispatch = useDispatch();
@@ -46,14 +46,11 @@ const Page: React.FC = () => {
       dishes,
     }));
   }, [cartItems]);
-  console.log(initialData);
   
   
 
   const handleSubmit = async (initialData: IBuffetData) => {
-    try {
-      console.log("initialData", initialData);
-      
+    try {      
       await createBuffet(initialData);
     } catch (error) {
       // Optionally handle other errors
@@ -69,7 +66,7 @@ const Page: React.FC = () => {
     <main className="max-w-6xl mx-auto px-4 py-6">
       <h1 className="text-2xl font-bold">Buffet Creation</h1>
       <BuffetForm
-  onSubmit={() => handleSubmit(initialData)}
+  onSubmit={handleSubmit}
   initialData={initialData}
 />
     </main>

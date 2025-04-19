@@ -10,11 +10,11 @@ const ItemCard: React.FC<ItemCardProps> = ({ imgUrl, title }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="flex-shrink-0 w-32 h-40 bg-white shadow-md rounded-lg overflow-hidden">
-      <Image width={200} height={200} src={imgUrl} alt={title} className="w-full h-24 object-cover" />
+    <div className="flex-shrink-0 w-24 h-32 bg-white shadow-md rounded-lg overflow-hidden">
+      <Image width={150} height={150} src={imgUrl} alt={title} className="w-full h-20 object-cover" />
       <div className="p-2">
         <p
-          className={`text-base font-semibold text-gray-900 mt-2 cursor-pointer ${
+          className={`text-xs font-semibold text-gray-900  cursor-pointer ${
             isExpanded ? "whitespace-normal" : "truncate"
           }`}
           onClick={() => setIsExpanded(!isExpanded)}

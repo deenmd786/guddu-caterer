@@ -18,6 +18,8 @@ const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData }) => {
       [name]: value,
     }));
   };
+  console.log("formData 1", formData);
+  
 
   const handlePriceChange = (guestCount: string, value: string) => {
     setFormData((prev) => ({
@@ -30,6 +32,8 @@ const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData }) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
+      console.log("formData 2", formData);
+
       await onSubmit(formData);
       setFormData(initialData);
     } catch (error) {

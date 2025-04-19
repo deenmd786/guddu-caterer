@@ -1,5 +1,5 @@
 import React from "react";
-import ItemCard from "../buffet/_components/ItemCard";
+import ItemCard from "./ItemCard";
 
 // Define the props interface for the SubCategory component
 interface SubCategoryProps {
