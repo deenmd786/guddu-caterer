@@ -3,7 +3,7 @@ export interface IBuffetData {
   title: string;
   description: string;
   cookPrice: string;
-  category: "Birthday" | "Corporate" | "Festival" | "Anniversary" | "Casual Party"|"Wedding";
+  category: "birthday" | "corporate" | "festival" | "anniversary" | "casual party"|"wedding";
   dishes: {
     [key: string]: { title: string; imageUrl: string; }[]; // Each key maps to an array of dish objects
   };

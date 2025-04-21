@@ -1,4 +1,5 @@
 "use client";
+import { toast } from "react-hot-toast";
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,14 +12,15 @@ import BuffetForm from "../buffet/_components/BuffetForm";
 const Page: React.FC = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
-  console.log("cartItems",cartItems);
+  const [isSubmited , setIsSubmited] = useState<boolean>(false);
+  console.log("cartItems: ", cartItems);
   
 
   const [initialData, setInitialData] = useState<IBuffetData>({
     title: "Classic Indian Mini Feast",
     description: "A tasty and traditional menu, perfect for small gatherings with family and friends.",
     cookPrice: "2500",
-    category: "Birthday",
+    category: "birthday",
     dishes: {},
     discounts: { "50": "20", "100": "25", "200": "40", "500": "50", "1000": "60", "2000": "70" },
     perPlate: "250",
@@ -49,18 +51,30 @@ const Page: React.FC = () => {
   
   
 
+  console.log("initialData: ", initialData);
   const handleSubmit = async (initialData: IBuffetData) => {
-    try {      
-      await createBuffet(initialData);
+    try {
+      
+      const res = await createBuffet(initialData);
+  
+      // Check for success response and show success message
+      if (res.buffet) {
+        setIsSubmited(true);
+        toast.success("Buffet Created.");
+        dispatch(clearCart());
+      } else if (res.message) {
+        // Handle error case if there's no buffet but a message exists
+        toast.error(res.message);
+      }
     } catch (error) {
-      // Optionally handle other errors
-      console.error("An unexpected error occurred:", error);
-    } finally {
-      dispatch(clearCart());
-      alert("Buffet Created!!!")
-
+      // Catch any unexpected errors and display a general error message
+      if (error instanceof Error) {
+        console.error("Buffet creation failed:", error);
+        toast.error(error?.message || "Something went wrong");
+      }
     }
   };
+  
 
   return (
     <main className="max-w-6xl mx-auto px-4 py-6">
@@ -68,6 +82,7 @@ const Page: React.FC = () => {
       <BuffetForm
   onSubmit={handleSubmit}
   initialData={initialData}
+  isSubmit = {isSubmited}
 />
     </main>
   );

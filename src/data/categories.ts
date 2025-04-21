@@ -26,7 +26,7 @@ export const categories = [
       image: "/assets/services/categories/anniversary.avif"
     },
     {
-      name: "casual-party",
+      name: "casual party",
       label: "Casual Party", // Capitalized label
       image: "/assets/services/categories/casual-party.avif" // Replace with the actual path to your image
     }

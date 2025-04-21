@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { IBuffetData } from "@/types/buffetTypes";
-import BuffetSection from "./BuffetSection";
 import { getBuffetbyCategory } from "@/utils/buffetController";
 import { useParams } from "next/navigation";
 import SimmerBuffetCard from "./SimmerBuffetCard";
+import BuffetSection from "../[category]/_components/BuffetSection";
 
 const BuffetList = () => {
   const [buffets, setBuffets] = useState<IBuffetData[]>([]);
@@ -15,6 +15,8 @@ const BuffetList = () => {
   const [selectedQuality, setSelectedQuality] = useState<string>("standard");
 
   const { category } = useParams<{ category: string }>();
+  console.log("category: ", category);
+  
 
   // Static quality pricing structure
   const qualityPricing: Record<string, number> = {
@@ -27,8 +29,7 @@ const BuffetList = () => {
     const fetchBuffets = async () => {
       setLoading(true);
       try {
-        const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1);
-        const result = await getBuffetbyCategory(formattedCategory);
+        const result = await getBuffetbyCategory(category);
         
         if ("buffets" in result) {
           setBuffets(result.buffets || []);

@@ -3,6 +3,8 @@ import "./globals.css";
 import { Metadata } from "next";
 import Footer from "@/components/layout/Footer";
 import Copyright from "@/components/layout/CopyRight";
+import { Toaster } from "react-hot-toast";
+
 
 export const viewport = {
   width: "device-width",
@@ -89,6 +91,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <ClientProvider>{children}</ClientProvider>
+        <Toaster position="top-right" reverseOrder={false} />
         <footer>
           <Footer />
           <Copyright />

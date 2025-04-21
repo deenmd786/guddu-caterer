@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IBuffetData } from "@/types/buffetTypes";
 import { categories } from "@/data/categories";
 
 interface BuffetFormProps {
   onSubmit: (data: IBuffetData) => Promise<void>;
   initialData: IBuffetData;
+  isSubmit : boolean;
 }
 
-const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData }) => {
+const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData, isSubmit }) => {
   const [formData, setFormData] = useState<IBuffetData>(initialData);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    setFormData(initialData);
+  }, [initialData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -18,7 +23,6 @@ const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData }) => {
       [name]: value,
     }));
   };
-  console.log("formData 1", formData);
   
 
   const handlePriceChange = (guestCount: string, value: string) => {
@@ -28,20 +32,24 @@ const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData }) => {
     }));
   };
 
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      console.log("formData 2", formData);
 
+      
       await onSubmit(formData);
-      setFormData(initialData);
+      if (isSubmit) { 
+        setFormData(initialData);
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
     } finally {
       setIsSubmitting(false);
     }
   };
+  
 
   return (
     <form

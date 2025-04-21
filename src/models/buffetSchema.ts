@@ -9,14 +9,22 @@ const buffetSchema = new Schema<IBuffetData>(
     cookPrice: { type: String, required: true, trim:true},
     category: {
       type: String,
-      enum: ["Wedding", "Birthday", "Corporate", "Festival", "Anniversary", "Casual Party"],
+      enum: ["wedding", "birthday", "corporate", "festival", "anniversary", "casual party"],
       required: true,
     },
     dishes: {
       type: Map,
       of: [{ title: String, imageUrl: String }],
       required: true,
+      validate: {
+        validator: function (value: Map<string, { title: string; imageUrl: string }[]>) {
+          // Ensure at least one entry exists in the dishes map
+          return value && value.size > 0;
+        },
+        message: "Dishes must contain at least one item.",
+      },
     },
+    
     discounts: {
       50: { type: String, required: true },
       100: { type: String, required: true },

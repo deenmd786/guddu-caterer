@@ -17,14 +17,30 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+     // Check if buffet with same title exists
+     const existingBuffet = await Buffet.findOne({ title });
+     if (existingBuffet) {
+       return NextResponse.json(
+         { message: "Title already exists. Please choose a unique title." },
+         { status: 409 },
+       );
+     }
 
     // Dishes validation
-    if (typeof dishes !== "object" || Array.isArray(dishes)) {
+    if (typeof dishes !== "object" || Array.isArray(dishes) ) {
       return NextResponse.json(
         { message: "Dishes must be an object." },
         { status: 400 }
       );
-    }
+    }    
+
+    // Check if dishes object is empty
+if (Object.keys(dishes).length === 0) {
+  return NextResponse.json(
+    { message: "Dishes cannot be empty." },
+    { status: 400 }
+  );
+}
 
     // discounts validation (as strings)
     const requiredPriceKeys = ["50", "100", "200", "500", "1000"];
@@ -57,7 +73,7 @@ export async function POST(req: NextRequest) {
 
     await buffet.save();
 
-    return NextResponse.json({ message: "Buffet created", buffet });
+    return NextResponse.json({ message: "Buffet created", buffet },{status:200});
   } catch (error: unknown) {
     console.error("Error creating buffet:", error);
 
@@ -89,4 +105,4 @@ export async function GET(request: Request) {
       { status: 500 }
     );
   }
-}
+} 
