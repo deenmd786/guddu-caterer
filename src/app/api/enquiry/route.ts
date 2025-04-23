@@ -7,7 +7,6 @@ export async function POST(req: NextRequest) {
   try {
     // Validate the incoming data
     const formData = await req.json();
-    console.log("formData: ", formData);
     
 
     // Send the enquiry email

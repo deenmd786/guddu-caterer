@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^2.5.0",
     "@types/nodemailer": "^6.4.17",
     "@vercel/speed-insights": "^1.1.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "bcryptjs": "^2.4.3",
     "browser-image-compression": "^2.0.2",
     "compression": "^1.7.5",

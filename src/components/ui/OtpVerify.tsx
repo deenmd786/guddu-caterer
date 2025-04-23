@@ -15,8 +15,15 @@ import { checkUserExistence } from "@/utils/phoneNumberController";
 interface OtpVerifyProps {
   setIsVerified: React.Dispatch<React.SetStateAction<boolean>>;
 }
+interface ResponseData {
+  message: string;
+  phoneNumber?: string;
+}
 
 const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
+  const [isSendingOtp, setIsSendingOtp] = useState(false);
+const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
+
   const [otpTimer, setOtpTimer] = useState(60);
   const [isResendDisabled, setIsResendDisabled] = useState(true);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -27,18 +34,13 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
   const [error, setError] = useState("");
   const [isOtpSent, setIsOtpSent] = useState(false);
   const router = useRouter();
-  
-
-
-
   const captureCode = () => {
     window.recaptchaVerifier = new RecaptchaVerifier(
       auth,
       "recaptcha-container",
       {
         size: "normal",
-        callback: (response: string) => {
-          console.log("Recaptcha verified", response);
+        callback: () => {
         },
         "expired-callback": () => {
           console.error("Recaptcha expired. Please try again.");
@@ -49,21 +51,33 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
 
   const sendOtp = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSendingOtp(true); // 🆕 Start loading
+    setError("");
+
     if (phoneNumber.length !== 10) {
       setError("Please enter a valid 10-digit phone number.");
+      setIsSendingOtp(false); // 🆕 Stop loading
+
       return;
     }
+    
 
     // Check if the phone number already exists
     const response = await checkUserExistence(formattedNumber);
 
-    // If the user already exists, handle the 300 status
     if (response.status === 200) {
-      if (response.data && 'message' in response.data) {
-        setError(response.data.message);
-      } else {
+      const data = response.data as ResponseData;
+      if (data && 'message' in data) {
+        setError(data.message);
+    
+        if (data.phoneNumber) {
+          localStorage.setItem('phoneNumber', data.phoneNumber);
+        }
+      }  else {
         setError("Unexpected error occurred.");
       }
+      setIsSendingOtp(false); // 🆕 Stop loading
+
       router.push('/dashboard/book-buffet/booking-form');
       return; // Return early to prevent further execution
     }
@@ -98,11 +112,16 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
     } catch (error) {
       console.error("Error during signInWithPhoneNumber", error);
       setError("Failed to send OTP. Please try again.");
+    }finally {
+      setIsSendingOtp(false); // 🆕 Stop loading
     }
   };
 
   const verifyOtp = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsVerifyingOtp(true); // 🆕 Start loading
+    setError("");
+
     const credential = PhoneAuthProvider.credential(verificationId, otp);
     try {
       await signInWithCredential(auth, credential);
@@ -113,6 +132,9 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
     } catch (error) {
       console.error("Error verifying OTP", error);
       setError("Failed to verify OTP. Please try again.");
+    }
+    finally {
+      setIsVerifyingOtp(false); // 🆕 Stop loading
     }
   };
 
@@ -147,8 +169,8 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
           <div className="text-center mt-4">
             <Button
               type="submit"
-              label="Send OTP"
-            />
+              label={isSendingOtp ? "Sending..." : "Send OTP"} // 🆕 Show loading text
+              />
           </div>
           {isOtpSent && (
             <div className="text-center mt-4">
@@ -173,7 +195,7 @@ const OtpVerify: React.FC<OtpVerifyProps> = ({ setIsVerified }) => {
           />
           <Button
             type="submit"
-            label="Verify OTP"
+            label={isVerifyingOtp ? "Verifying..." : "Verify OTP"} // 🆕 Show loading text
             className="w-full catr-btn"
           />
         </form>

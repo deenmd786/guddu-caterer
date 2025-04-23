@@ -14,9 +14,7 @@ const BuffetList = () => {
   const [selectedPeople, setSelectedPeople] = useState<number>(50);
   const [selectedQuality, setSelectedQuality] = useState<string>("standard");
 
-  const { category } = useParams<{ category: string }>();
-  console.log("category: ", category);
-  
+  const { category } = useParams<{ category: string }>();  
 
   // Static quality pricing structure
   const qualityPricing: Record<string, number> = {
@@ -127,7 +125,6 @@ const BuffetList = () => {
         </div>
       </div>
     </div>
-
     {/* Buffet Cards */}
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[80vh] overflow-y-auto">
       {buffets.map((buffet) => (

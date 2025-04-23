@@ -13,7 +13,7 @@ interface FormData {
   name: string;
   phone: string;
   eventDate: string;
-  guests: number;
+  guests: string;
   address: string;
   comments: string;
 }
@@ -45,7 +45,7 @@ const EnquiryForm: React.FC = () => {
     name: "",
     phone: "",
     eventDate: "",
-    guests: 0,
+    guests: "",
     address: "",
     comments: "",
   });
@@ -110,18 +110,20 @@ const EnquiryForm: React.FC = () => {
             console.error("Error response data:", errorData);
             setError(`Error: ${errorData.error || 'Something went wrong'}`);
             return;
-        }
-        const data = await response.json();
+        } else{
+          const data = await response.json();
         setSuccess(data.message || 'Email sent successfully!');
 
         setFormData({
             name: "",
             phone: "",
             eventDate: "",
-            guests: 0,
+            guests: "",
             address: "",
             comments: "",
         });
+        }
+        
     } catch (error) {
         console.error('Error during form submission:', error);
         setError('An unexpected error occurred.');
@@ -136,7 +138,7 @@ return (
       Catering Form
     </h2>
     <form onSubmit={handleSubmit} className="space-y-3 text-base">
-      {["name", "phone", "eventDate", "No. of guests", "address", "comments"].map((field) => (
+      {["name", "phone", "eventDate", "guests", "address", "comments"].map((field) => (
         <div key={field} className="relative">
           {field === "eventDate" ? (
             <input
@@ -150,16 +152,18 @@ return (
               onBlur={() => handleBlur(field)}
             />
           ) : field === "guests" ? (
+            <>
             <input
-              type="number"
-              name={field}
-              value={formData[field as keyof FormData]}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button)] focus:border-[var(--button)] transition-all"
-              onFocus={() => handleFocus(field)}
-              onBlur={() => handleBlur(field)}
-            />
+    type="number"
+    name={`${field}`}
+    value={`${formData[field as keyof FormData]}`}
+    onChange={handleChange}
+    required
+    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--button)] focus:border-[var(--button)] transition-all"
+    onFocus={() => handleFocus(field)}
+    onBlur={() => handleBlur(field)}
+  />
+  </>
           ) : (
             <input
               type="text"
@@ -180,8 +184,8 @@ return (
                 : "translate-y-0 scale-100 text-[var(--text-muted)] text-lg pr-20"
             }`}
           >
-            {field.charAt(0).toUpperCase() +
-              field.slice(1).replace(/([A-Z])/g, " $1")}
+            {field === "guests" ? "No. of Guests" : field.charAt(0).toUpperCase() + field.slice(1).replace(/([A-Z])/g, " $1")}
+
           </label>
         </div>
       ))}

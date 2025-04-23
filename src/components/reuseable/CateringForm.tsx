@@ -14,7 +14,7 @@ interface FormData {
   name: string;
   phone: string;
   eventDate: string;
-  guests: number;
+  guests: string;
   address: string;
   comments: string;
 }
@@ -48,10 +48,12 @@ const CateringForm: React.FC = () => {
     name: "",
     phone: phoneNumber ?? "",
     eventDate: "",
-    guests: 0,
+    guests: "",
     address: "",
     comments: "",
   });
+  console.log("formData: ", formData);
+  
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -92,7 +94,6 @@ const CateringForm: React.FC = () => {
     setSuccess(null);
 
     const groupedProducts = groupProductsByCategory(cartItems);
-    console.log("Grouped Products: ", groupedProducts);
 
     try {
         const payload = {
@@ -116,11 +117,10 @@ const CateringForm: React.FC = () => {
             setError(`Error: ${errorData.error || 'Something went wrong'}`);
             return;
         }
-        if (!phoneNumber) {
-          console.error("Phone number is required.");
-          return;
-        }
-        console.log("MdDataUsage",formData.phone,productNames);
+        // if (!phoneNumber) {
+        //   console.error("Phone number is required.");
+        //   return;
+        // }
         
         const res = await createPhoneNumber({
           phoneNumber: formData.phone,
@@ -128,7 +128,6 @@ const CateringForm: React.FC = () => {
         });
       
         if (res.status === 201) {
-          console.log("Phone number added successfully:", res.data);
         } else {
           console.error("Error adding phone number:", res.message);
         }
@@ -143,7 +142,7 @@ const CateringForm: React.FC = () => {
             name: "",
             phone: "",
             eventDate: "",
-            guests: 0,
+            guests: "",
             address: "",
             comments: "",
         });
@@ -161,7 +160,7 @@ return (
       Catering Form
     </h2>
     <form onSubmit={handleSubmit} className="space-y-3 text-base">
-      {["name", "phone", "eventDate", "No. of guests", "address", "comments"].map((field) => (
+      {["name", "phone", "eventDate", "guests", "address", "comments"].map((field) => (
         <div key={field} className="relative">
           {field === "eventDate" ? (
             <input

@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     const exists = await PhoneNumber.findOne({ phoneNumber });
     if (exists)
       return NextResponse.json(
-        { message: "Phone number already exists." },
+        { message: "Phone number already exists.", phoneNumber },
         {
           status: 200,
         }

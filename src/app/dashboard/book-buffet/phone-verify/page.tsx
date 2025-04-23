@@ -8,15 +8,11 @@ import { useState } from "react";
 
 
 const PhoneVerify: React.FC = () => {
-  const [isVerified, setIsVerified] = useState(false);
-  console.log(isVerified);
-  
+  const [isVerified, setIsVerified] = useState(false);  
   const route = useRouter();
   return (
     <>
     <div className="w-full p-8">
-       
- 
        <ProgressSteps currentStep={2} />
  
      <div className="py-12"> 
