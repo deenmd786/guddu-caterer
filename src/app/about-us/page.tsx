@@ -48,6 +48,7 @@ const AboutUs = () => {
                 <h2 className="text-2xl font-bold">Get in Touch</h2>
                 <p className="text-lg">Ready to plan your next event? <a href="/contact-us" className="text-blue-500 underline">Contact us today!</a></p>
             </section>
+            
         </>
     );
 };
