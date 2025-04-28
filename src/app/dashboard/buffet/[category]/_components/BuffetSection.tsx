@@ -8,6 +8,7 @@ import CategoryButtons from './CategoryButtons';
 import PriceSection from './PriceSection';
 import UpdatePrices from "@/app/dashboard/_components/UpdatePrices";
 import SubCategory from "../../_components/SubCategory";
+import BuffetActions from "./BuffetActions";
 
 interface BuffetSectionProps {
   selectedPeople: number;
@@ -66,7 +67,7 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
   const user = useSelector((state: RootState) => state.user.user);
 
   return (
-    <section className="p-4 sm:p-6 bg-white shadow-lg rounded-lg border mb-4 relative">
+    <section className="p-3 sm:p-4 bg-white shadow-lg rounded-lg border relative">
       <BuffetHeader title={buffetData.title} discount={discount} />
       {/* Admin functionality for updating buffet data */}
       {user?.role === "ADMIN" && (
@@ -121,6 +122,13 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
         discountedPrice={discountedPrice}
         perPlate={Number(buffetData.perPlate)}
       />
+
+<BuffetActions
+  onGetBestPrice={() => {
+    window.location.href = "tel:+918851253661"; // replace with your number
+  }}
+/>
+
     </section>
   );
 };

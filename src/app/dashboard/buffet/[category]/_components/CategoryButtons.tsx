@@ -19,8 +19,8 @@ const CategoryButtons: React.FC<CategoryButtonsProps> = ({
   dishes
 }) => {
   return (
-    <div className="mt-6">
-      <div className="flex gap-2 overflow-x-auto mb-2 pb-3">
+    <div className="mt-2">
+      <div className="flex gap-2 overflow-x-auto pb-2">
         {availableCategories.map((category) => {
           const dishesCount = dishes?.[category]?.length || 0;
           return (
@@ -33,7 +33,7 @@ const CategoryButtons: React.FC<CategoryButtonsProps> = ({
               }`}
               onClick={() => toggleCategory(category)}
             >
-              <div className="w-16 h-16 flex items-center justify-center">
+              <div className="w-16 h-12 flex items-center justify-center">
                 <Image
                   width={64}
                   height={64}

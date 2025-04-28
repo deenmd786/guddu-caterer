@@ -13,8 +13,8 @@ const PriceSection: React.FC<PriceSectionProps> = ({
   perPlate,
 }) => {
   return (
-    <div className="p-6 bg-gradient-to-r from-blue-50 via-white to-blue-50 rounded-xl shadow-lg flex justify-between items-center">
-      <div className="flex flex-col space-y-3 text-right w-full">
+    <div className="p-2 bg-gradient-to-r from-blue-50 via-white to-blue-50 rounded-xl shadow-lg flex justify-between items-center">
+      <div className="flex flex-col text-right w-full">
         {priceForSelectedPeople !== undefined ? (
           <>
             <div className="flex justify-between items-center">
@@ -29,7 +29,7 @@ const PriceSection: React.FC<PriceSectionProps> = ({
               <span className="text-base text-gray-600 font-medium">
                 Discounted Price:
               </span>
-              <span className="text-2xl text-green-600 font-semibold">
+              <span className="text-xl text-green-600 font-semibold">
                 ₹{discountedPrice.toFixed(0)}
               </span>
             </div>

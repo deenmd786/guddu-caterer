@@ -82,9 +82,10 @@ const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
       return; // Return early to prevent further execution
     }
 
-    // Proceed to send OTP if user does not exist
     captureCode();
+
     const appVerifier = window.recaptchaVerifier;
+    setIsSendingOtp(false);
 
     try {
       const confirmationResult = await signInWithPhoneNumber(
@@ -92,6 +93,7 @@ const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
         formattedNumber,
         appVerifier
       );
+      setIsSendingOtp(true);
       setVerificationId(confirmationResult.verificationId);
       setSuccess("OTP sent!");
       setIsOtpSent(true);
@@ -113,7 +115,7 @@ const [isVerifyingOtp, setIsVerifyingOtp] = useState(false);
       console.error("Error during signInWithPhoneNumber", error);
       setError("Failed to send OTP. Please try again.");
     }finally {
-      setIsSendingOtp(false); // 🆕 Stop loading
+      setIsSendingOtp(false);
     }
   };
 
