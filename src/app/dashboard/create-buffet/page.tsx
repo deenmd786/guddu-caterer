@@ -13,7 +13,6 @@ const Page: React.FC = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const [isSubmited , setIsSubmited] = useState<boolean>(false);
-  console.log("cartItems: ", cartItems);
   
 
   const [initialData, setInitialData] = useState<IBuffetData>({
@@ -51,7 +50,6 @@ const Page: React.FC = () => {
   
   
 
-  console.log("initialData: ", initialData);
   const handleSubmit = async (initialData: IBuffetData) => {
     try {
       

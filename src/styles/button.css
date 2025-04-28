@@ -7,7 +7,7 @@
     overflow: hidden;
     transition: all 500ms ease;
     z-index: 1;
-    padding: 13px 15px;
+    padding: 8px 12px;
     text-align: center;
     font-size: 14px;
     font-weight: 600;
@@ -54,7 +54,7 @@
 @media (max-width: 1024px) {
   .cat-btn {
     font-size: 14px; /* Smaller font size for smaller screens */
-    padding: 10px 12px; /* Adjust padding for smaller buttons */
+    padding: 8px 12px; /* Adjust padding for smaller buttons */
     min-width: 110px; /* Reduce minimum width */
   }
 }

@@ -8,7 +8,7 @@ interface BuffetActionsProps {
 
 const BuffetActions: React.FC<BuffetActionsProps> = ({ onGetBestPrice, colorClass }) => {
   return (
-    <div className="mt-6 flex justify-center">
+    <div className="mt-2 flex justify-center">
       <button
         className={`flex items-center gap-2 ${colorClass || "bg-blue-600 hover:bg-blue-700"} text-white font-semibold py-3 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300 ease-in-out`}
         onClick={onGetBestPrice}

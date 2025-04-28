@@ -80,13 +80,14 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
       {showUpdateForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-4 rounded-lg shadow-lg w-full max-w-lg">
-            <UpdatePrices onUpdate={handleUpdate} initialData={buffetData} />
-            <button
+          <button
               onClick={() => setShowUpdateForm(false)}
               className="mt-4 bg-red-500 text-white p-2 rounded-md hover:bg-red-600 transition"
             >
               Close
             </button>
+            <UpdatePrices onUpdate={handleUpdate} initialData={buffetData} />
+            
           </div>
         </div>
       )}

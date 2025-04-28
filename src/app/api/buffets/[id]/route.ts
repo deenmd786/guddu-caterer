@@ -1,59 +1,58 @@
 import { NextRequest, NextResponse } from "next/server";
-import mongoose, { Error as MongooseError } from "mongoose"; // Import Mongoose error type
-import { dbConnect } from "@/lib/dbConnect"; // Ensure this is the correct path to your dbConnect function
+import mongoose, { Error as MongooseError } from "mongoose";
+import { dbConnect } from "@/lib/dbConnect";
 import Buffet from "@/models/buffetSchema";
 
-export async function PUT(req: NextRequest,
+export async function PUT(
+  req: NextRequest,
   context: { params: Promise<{ id: string }> }
-  ) {
-    const params = await context.params;
+) {
+  const params = await context.params;
   await dbConnect();
 
-  // Validate the product ID
-      if (!mongoose.Types.ObjectId.isValid(params.id)) {
-        console.log("Invalid product ID: ", params.id);
-        return NextResponse.json(
-          { success: false, error: "Invalid product ID" },
-          { status: 400 }
-        );
-      }
+  if (!mongoose.Types.ObjectId.isValid(params.id)) {
+    console.log("Invalid buffet ID: ", params.id);
+    return NextResponse.json(
+      { success: false, error: "Invalid buffet ID" },
+      { status: 400 }
+    );
+  }
+
   try {
-    const buffetData = await req.json(); // Correctly parse the request body
+    const buffetData = await req.json();
 
-    const { title, description, cookPrice, category, dishes, prices, offer } = buffetData; // Changed 'offers' to 'offer'
+    const { title, description, cookPrice, category, dishes, discounts, perPlate } = buffetData;
 
-    // Validate required fields
-    if (!title || !description || !cookPrice || !category || !dishes || !prices || !offer) {
+    if (!title || !description || !cookPrice || !category || !dishes || !discounts || !perPlate) {
       return NextResponse.json(
         { message: "All fields are required." },
         { status: 400 }
       );
     }
 
-    // Validate prices structure
-    const requiredPriceKeys = [50, 100, 200, 500, 1000];
-    for (const key of requiredPriceKeys) {
-      if (typeof prices[key] !== 'number') {
+    // Validate discounts structure
+    const requiredDiscountKeys = ["50", "100", "200", "500", "1000"];
+    for (const key of requiredDiscountKeys) {
+      if (typeof discounts[key] !== "string") {
         return NextResponse.json(
-          { message: `Price for ${key} guests is required and must be a number.` },
+          { message: `Discount for ${key} guests must be a string.` },
           { status: 400 }
         );
       }
     }
 
-    // Find the buffet by ID and update it
     const buffet = await Buffet.findByIdAndUpdate(
-      params.id, // Use the extracted id directly
+      params.id,
       {
         title,
         description,
         cookPrice,
         category,
-        dishes: Object.fromEntries(dishes), // Convert the object to a Map if needed, or keep it as an object
-        prices,
-        offer, // Ensure this matches your schema
+        dishes,
+        discounts,
+        perPlate,
       },
-      { new: true, runValidators: true } // Return the updated document and run validators
+      { new: true, runValidators: true }
     );
 
     if (!buffet) {
@@ -67,12 +66,10 @@ export async function PUT(req: NextRequest,
   } catch (error: unknown) {
     console.error("Error updating buffet:", error);
 
-    // Handle validation errors from Mongoose
     if (error instanceof MongooseError.ValidationError) {
       return NextResponse.json({ message: error.message }, { status: 400 });
     }
 
-    // Handle other types of errors (e.g., database connection issues)
     return NextResponse.json(
       { message: "Failed to update buffet. Please try again." },
       { status: 500 }

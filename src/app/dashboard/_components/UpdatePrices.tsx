@@ -9,15 +9,18 @@ interface UpdateBuffetFormProps {
 
 const UpdatePrices: React.FC<UpdateBuffetFormProps> = ({ onUpdate, initialData }) => {
   const [formData, setFormData] = useState<IBuffetData>(initialData);
+  console.log("initialData", initialData);
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null); // State for error handling
 
   const handlePriceChange = (guestCount: number, value: number) => {
     setFormData((prev) => ({
       ...prev,
-      prices: { ...prev.discounts, [guestCount]: value },
+      discounts: { ...prev.discounts, [guestCount]: value },
     }));
   };
+  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,6 +28,8 @@ const UpdatePrices: React.FC<UpdateBuffetFormProps> = ({ onUpdate, initialData }
     setError(null); // Reset error state
 
     try {
+  console.log("formData", formData);
+      
       const response = await updateBuffet(formData);
 
       if ('buffet' in response && response.buffet) {
@@ -46,6 +51,19 @@ const UpdatePrices: React.FC<UpdateBuffetFormProps> = ({ onUpdate, initialData }
     <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-md">
       {error && <div className="text-red-500">{error}</div>} {/* Display error message */}
       <div>
+      <div className="flex flex-col">
+  <label htmlFor="perPlate" className="font-medium text-gray-600">
+    Per Plate Price:
+  </label>
+  <input
+    type="text"
+    id="perPlate"
+    value={formData.perPlate}
+    onChange={(e) => setFormData((prev) => ({ ...prev, perPlate: e.target.value }))}
+    className="border p-2 rounded-md focus:ring-2 focus:ring-blue-400"
+  />
+</div>
+
         {Object.keys(formData.discounts).map((guestCount) => (
           <div key={guestCount} className="flex flex-col">
             <label htmlFor={`price-${guestCount}`} className="font-medium text-gray-600">

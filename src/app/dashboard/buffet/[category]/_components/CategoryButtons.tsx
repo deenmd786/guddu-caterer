@@ -33,7 +33,7 @@ const CategoryButtons: React.FC<CategoryButtonsProps> = ({
               }`}
               onClick={() => toggleCategory(category)}
             >
-              <div className="w-16 h-12 flex items-center justify-center">
+              <div className="w-16 h-16 flex items-center justify-center">
                 <Image
                   width={64}
                   height={64}
