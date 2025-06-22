@@ -18,9 +18,9 @@ const BuffetList = () => {
 
   // Static quality pricing structure
   const qualityPricing: Record<string, number> = {
-    medium: 20,
+    medium: 10,
     standard: 0,
-    premium: -20
+    premium: -10,
   };
 
   useEffect(() => {
@@ -126,7 +126,7 @@ const BuffetList = () => {
       </div>
     </div>
     {/* Buffet Cards */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[80vh] overflow-y-auto">
+    <div className="grid pb-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[80vh] overflow-y-auto">
       {buffets.map((buffet) => (
         <BuffetSection
           key={buffet._id}

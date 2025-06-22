@@ -8,9 +8,9 @@ interface SubCategoryProps {
 
 const SubCategory: React.FC<SubCategoryProps> = ({ dishes }) => {
   return (
-    <div>
+    <div className="">
       {/* Items Section - Grid Layout */}
-      <div className="">
+      
         {dishes.map((dish, index) => (
           <ItemCard 
             key={index} 
@@ -18,7 +18,7 @@ const SubCategory: React.FC<SubCategoryProps> = ({ dishes }) => {
             title={dish.title} 
           />
         ))}
-      </div>
+     
     </div>
   );
 };

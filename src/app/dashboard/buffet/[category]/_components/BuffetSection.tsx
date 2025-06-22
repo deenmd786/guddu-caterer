@@ -33,12 +33,19 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
   const [buffetData, setBuffetData] = useState<IBuffetData>(initialData);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
+const [updatePrice, setUpdatePrice] = useState<number>(
+  Number(initialData.perPlate)
+);
 
-  const priceForSelectedPeople = useMemo(() => {
-    return buffetData.perPlate
-      ? selectedPeople * Number(buffetData.perPlate)
-      : 0;
-  }, [buffetData.perPlate, selectedPeople]);
+const priceForSelectedPeople = useMemo(() => {
+  const adjustedPerPlate =
+    selectedQualityPercent === -10 ? updatePrice + 100 : updatePrice;
+
+  return updatePrice ? selectedPeople * adjustedPerPlate : 0;
+}, [updatePrice, selectedPeople, selectedQualityPercent]);
+
+
+  
 
   const discount = useMemo(() => {
     const peopleDiscount =
@@ -60,14 +67,16 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
   };
 
   const handleUpdate = async (data: IBuffetData) => {
-    setBuffetData(data);
-    setShowUpdateForm(false);
-  };
+  setBuffetData(data);
+  setUpdatePrice(Number(data.perPlate));
+  setShowUpdateForm(false);
+};
+
 
   const user = useSelector((state: RootState) => state.user.user);
 
   return (
-    <section className="p-3 sm:p-4 bg-white shadow-lg rounded-lg border relative">
+    <section className="p-4 bg-white shadow-lg rounded-lg border relative">
       <BuffetHeader title={buffetData.title} discount={discount} />
       {/* Admin functionality for updating buffet data */}
       {user?.role === "ADMIN" && (
@@ -109,7 +118,7 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
         }`}
       >
         {activeCategory && buffetData.dishes[activeCategory] && (
-          <div className="pb-2 flex gap-2 overflow-x-auto transition-all duration-300">
+          <div className="pb-4 flex gap-4 overflow-x-auto transition-all duration-300">
             {buffetData.dishes[activeCategory].map((dish, index) => (
               <SubCategory key={index} dishes={[dish]} />
             ))}
@@ -119,10 +128,11 @@ const BuffetSection: React.FC<BuffetSectionProps> = ({
 
       {/* Price section with original and discounted prices */}
       <PriceSection
-        priceForSelectedPeople={priceForSelectedPeople}
-        discountedPrice={discountedPrice}
-        perPlate={Number(buffetData.perPlate)}
-      />
+  priceForSelectedPeople={priceForSelectedPeople}
+  discountedPrice={discountedPrice}
+  perPlate={updatePrice}
+/>
+
 
 <BuffetActions
   onGetBestPrice={() => {

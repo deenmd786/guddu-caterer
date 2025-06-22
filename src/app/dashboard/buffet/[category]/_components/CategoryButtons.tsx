@@ -19,7 +19,7 @@ const CategoryButtons: React.FC<CategoryButtonsProps> = ({
   dishes
 }) => {
   return (
-    <div className="mt-2">
+    <div className="mt-4">
       <div className="flex gap-2 overflow-x-auto pb-2">
         {availableCategories.map((category) => {
           const dishesCount = dishes?.[category]?.length || 0;
