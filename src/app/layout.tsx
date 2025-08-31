@@ -12,11 +12,11 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Guddu Caterer - Starting at ₹200 Per Plate!",
+  title: "Best Caterers in Delhi - Guddu Caterers",
   description:
-    "Top-rated catering service in Delhi! We serve 20-2000+ guests, starting at just ₹200 per plate. Perfect for weddings, corporate events & parties. Book hassle-free catering today!",
+    "Guddu Caterers – Best Catering Service in Delhi for weddings, parties, and events. We serve delicious food, customized menus, and top-quality service to make your occasion unforgettable.",
   keywords:
-    "wedding catering in Delhi, best caterer in Delhi, affordable catering services Delhi, corporate event catering Delhi, party catering services Delhi, top catering companies in Delhi, Guddu Catering Service",
+    "wedding catering in Delhi, best caterers in Delhi, affordable catering services Delhi, corporate event catering Delhi, party catering services Delhi, top catering companies in Delhi, Guddu Catering Service",
   authors: [{ name: "Guddu Caterer", url: "https://www.gudducaterer.in" }],
   robots: "index, follow",
   alternates: { canonical: "https://www.gudducaterer.in/" },
@@ -52,21 +52,29 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* ✅ WebSite Schema for Google */}
         <meta name="google-adsense-account" content="ca-pub-6227091069689473"></meta>
         <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              "name": "Guddu Caterer",
-              "url": "https://www.gudducaterer.in/",
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://www.gudducaterer.in/search?q={search_term_string}",
-                "query-input": "required name=search_term_string",
-              },
-            }),
-          }}
-        />
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Guddu Caterer",
+      "image": "https://www.gudducaterer.in/assets/images/banners/guddu.png",
+      "url": "https://www.gudducaterer.in/",
+      "telephone": "+918750838486",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Delhi",
+        "addressCountry": "IN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+918750838486",
+        "contactType": "Customer Service"
+      }
+    }),
+  }}
+/>
+
 
         {/* ✅ Site Navigation Schema for Sitelinks */}
         <script
