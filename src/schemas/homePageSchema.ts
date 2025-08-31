@@ -27,7 +27,7 @@ export const homePageSchema = {
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+91-9278422664",
+      "telephone": "+91-8750838486",
       "contactType": "Customer Service",
       "areaServed": "Delhi, India",
       "availableLanguage": ["English", "Hindi"]
@@ -40,7 +40,7 @@ export const homePageSchema = {
     "name": "Guddu Caterer",
     "description": "Professional Catering Services in Delhi for Weddings, Parties, and Corporate Events.",
     "url": "https://www.gudducaterer.in",
-    "telephone": "+91-9278422964",
+    "telephone": "+91-8750838486",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "A-1, Rajhans Vihar, Carnal Bhatia Road, Vikas Nagar",

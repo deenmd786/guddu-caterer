@@ -11,7 +11,7 @@ export const contactPageSchema = {
       "logo": "https://www.gudducaterer.in/logo.png",
       "contactPoint": {
         "@type": "ContactPoint",
-        "telephone": "+91-9278422964",
+        "telephone": "+91-8750838486",
         "contactType": "Customer Service",
         "areaServed": "Delhi, India",
         "availableLanguage": ["English", "Hindi"]
