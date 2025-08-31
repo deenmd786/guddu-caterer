@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IBuffetData } from "@/types/buffetTypes";
-import { categories } from "@/data/categories";
+import { cateringSizes } from "@/data/cateringSizes";
 
 interface BuffetFormProps {
   onSubmit: (data: IBuffetData) => Promise<void>;
@@ -86,11 +86,12 @@ const BuffetForm: React.FC<BuffetFormProps> = ({ onSubmit, initialData, isSubmit
           onChange={handleChange}
           className="border p-2 rounded-md w-full focus:ring-2 focus:ring-blue-400"
         >
-          {categories.map((cat, i) => (
-            <option key={i} value={cat.name}>
-              {cat.label}
-            </option>
-          ))}
+          {cateringSizes.map((cat, i) => (
+  <option key={i} value={cat.name}>
+    {cat.label}
+  </option>
+))}
+
         </select>
       </div>
 

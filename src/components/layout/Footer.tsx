@@ -64,7 +64,7 @@ const Footer: React.FC = () => {
               </li>
               <li className="flex items-center">
                 <FaPhoneAlt className="text-[--text-secondary] mr-2 " />
-                (+91) 9278422964
+                (+91) 8750838486
               </li>
               <li className="flex items-center">
                 <FaClock className="text-[--text-secondary] mr-2" />

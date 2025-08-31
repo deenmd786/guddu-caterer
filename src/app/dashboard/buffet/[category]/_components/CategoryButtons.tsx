@@ -24,8 +24,12 @@ const CategoryButtons: React.FC<CategoryButtonsProps> = ({
         {availableCategories.map((category) => {
           const dishesCount = dishes?.[category]?.length || 0;
           return (
-            <button
-              key={category}
+            <div
+            key={category}
+            className='shrink-0'
+            >
+              <button
+              
               className={`flex flex-col items-center p-2 rounded-lg ${
                 activeCategory === category
                   ? 'border-red-300 border-2'
@@ -33,9 +37,9 @@ const CategoryButtons: React.FC<CategoryButtonsProps> = ({
               }`}
               onClick={() => toggleCategory(category)}
             >
-              <div className="w-16 h-16 flex items-center justify-center">
+              <div className="w-16 h-16 mx-2 flex items-center justify-center">
                 <Image
-                  width={64}
+                  width={100}
                   height={64}
                   src={categoryIcons[category]}
                   alt={category}
@@ -49,6 +53,7 @@ const CategoryButtons: React.FC<CategoryButtonsProps> = ({
                 {dishesCount} item{dishesCount !== 1 ? 's' : ''}
               </span>
             </button>
+            </div>
           );
         })}
       </div>

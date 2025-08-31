@@ -1,19 +1,19 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { IBuffetData } from "@/types/buffetTypes";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import BuffetHeader from './BuffetHeader';
 import AdminUpdateButton from './AdminUpdateButton';
 import CategoryButtons from './CategoryButtons';
-import PriceSection from './PriceSection';
+// import PriceSection from './PriceSection';
 import UpdatePrices from "@/app/dashboard/_components/UpdatePrices";
 import SubCategory from "../../_components/SubCategory";
 import BuffetActions from "./BuffetActions";
 
 interface BuffetSectionProps {
-  selectedPeople: number;
   initialData: IBuffetData;
-  selectedQualityPercent: number;
+  // selectedPeople: number;
+  // selectedQualityPercent: number;
 }
 
 const categoryIcons: Record<string, string> = {
@@ -26,36 +26,37 @@ const categoryIcons: Record<string, string> = {
 };
 
 const BuffetSection: React.FC<BuffetSectionProps> = ({
-  selectedPeople,
   initialData,
-  selectedQualityPercent,
+  // selectedPeople,
+  // selectedQualityPercent,
 }) => {
   const [buffetData, setBuffetData] = useState<IBuffetData>(initialData);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
-const [updatePrice, setUpdatePrice] = useState<number>(
-  Number(initialData.perPlate)
-);
 
-const priceForSelectedPeople = useMemo(() => {
-  const adjustedPerPlate =
-    selectedQualityPercent === -10 ? updatePrice + 100 : updatePrice;
+// const [updatePrice, setUpdatePrice] = useState<number>(
+//   Number(initialData.perPlate)
+// );
 
-  return updatePrice ? selectedPeople * adjustedPerPlate : 0;
-}, [updatePrice, selectedPeople, selectedQualityPercent]);
+// const priceForSelectedPeople = useMemo(() => {
+//   const adjustedPerPlate =
+//     selectedQualityPercent === -10 ? updatePrice + 100 : updatePrice;
+
+//   return updatePrice ? selectedPeople * adjustedPerPlate : 0;
+// }, [updatePrice, selectedPeople, selectedQualityPercent]);
 
 
   
 
-  const discount = useMemo(() => {
-    const peopleDiscount =
-      parseFloat(buffetData.discounts[selectedPeople]) || 0;
-    return selectedQualityPercent + peopleDiscount;
-  }, [selectedPeople, selectedQualityPercent, buffetData.discounts]);
+  // const discount = useMemo(() => {
+  //   const peopleDiscount =
+  //     parseFloat(buffetData.discounts[selectedPeople]) || 0;
+  //   return selectedQualityPercent + peopleDiscount;
+  // }, [selectedPeople, selectedQualityPercent, buffetData.discounts]);
 
-  const discountedPrice = useMemo(() => {
-    return priceForSelectedPeople - priceForSelectedPeople * (discount / 100);
-  }, [priceForSelectedPeople, discount]);
+  // const discountedPrice = useMemo(() => {
+  //   return priceForSelectedPeople - priceForSelectedPeople * (discount / 100);
+  // }, [priceForSelectedPeople, discount]);
 
   // Filter available categories with dishes
   const availableCategories = Object.keys(categoryIcons).filter(
@@ -68,7 +69,7 @@ const priceForSelectedPeople = useMemo(() => {
 
   const handleUpdate = async (data: IBuffetData) => {
   setBuffetData(data);
-  setUpdatePrice(Number(data.perPlate));
+  // setUpdatePrice(Number(data.perPlate));
   setShowUpdateForm(false);
 };
 
@@ -77,7 +78,10 @@ const priceForSelectedPeople = useMemo(() => {
 
   return (
     <section className="p-4 bg-white shadow-lg rounded-lg border relative">
-      <BuffetHeader title={buffetData.title} discount={discount} />
+      <BuffetHeader
+       title={buffetData.title}
+      //  discount={discount} 
+       />
       {/* Admin functionality for updating buffet data */}
       {user?.role === "ADMIN" && (
         <AdminUpdateButton
@@ -126,12 +130,11 @@ const priceForSelectedPeople = useMemo(() => {
         )}
       </div>
 
-      {/* Price section with original and discounted prices */}
-      <PriceSection
+      {/* <PriceSection
   priceForSelectedPeople={priceForSelectedPeople}
   discountedPrice={discountedPrice}
   perPlate={updatePrice}
-/>
+/> */}
 
 
 <BuffetActions

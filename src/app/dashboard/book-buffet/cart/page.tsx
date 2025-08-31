@@ -11,6 +11,7 @@ import { removeFromCart, setCart } from "@/redux/cartSlice";
 import { Product } from "@/types/Products";
 import CustomDropdown from "@/components/reuseable/CustomDropdown";
 import Button from "@/components/reuseable/Button";
+import WhatsAppBuffet from "../../_components/WhatsAppbuffet";
 
 
 
@@ -18,7 +19,6 @@ const Cart: React.FC = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
-  console.log("cartItems: ", cartItems);
       const route = useRouter();
   useEffect(() => {
     // Load cart from localStorage when the component mounts
@@ -143,7 +143,8 @@ const Cart: React.FC = () => {
       <div className="flex pt-3 justify-between">
           <Button label="Back" onClick={()=> route.back()} className="catr-btn" />
           {filteredItems.length !== 0 &&
-          <Button label="Next"  href="/dashboard/book-buffet/phone-verify"/>}
+                <WhatsAppBuffet selectedProducts={cartItems} />
+}
         </div>
     </div>
     </>

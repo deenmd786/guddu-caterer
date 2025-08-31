@@ -25,6 +25,11 @@ const nextConfig: NextConfig = {
         hostname: 'cdn-icons-png.flaticon.com',
         pathname: '/**', // This allows all paths under the domain
       },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co',
+        pathname: '/**', // This allows all paths under the domain
+      },
     ],
   },
   experimental: {

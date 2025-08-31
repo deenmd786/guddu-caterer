@@ -38,12 +38,6 @@ const linksData = {
       description: "Make your birthday celebrations truly special with our delicious catering options and exceptional service."
     },
     {
-      href: "/services/popular-catering-for-house-party-in-delhi",
-      label: "Popular Catering for House Parties in Delhi",
-      imageUrl: "/assets/services/home-party.jpg",
-      description: "Throw an amazing house party with our highly-rated catering services, offering delectable food and a seamless experience."
-    },
-    {
       href: "/services/festival-catering-services",
       label: "Festival and Cultural Event Catering in Delhi",
       imageUrl: "/assets/services/festival-catering.jpg",

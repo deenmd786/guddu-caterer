@@ -63,14 +63,14 @@ const ContactUs: React.FC = () => {
             <div className="bg-[var(--background-secondary)] p-8 rounded-lg text-center w-full md:w-1/3 h-64 flex flex-col justify-between">
               {" "}
               {/* Added flex properties */}
-              <a href="tel:09278422964" className="my-auto">
+              <a href="tel:08750838486" className="my-auto">
                 <div className="flex flex-col items-center">
                   <FaPhone className="text-gray-500 mb-4 text-3xl mx-auto" />
                   <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-2">
                     Call us directly
                   </h2>
                   <p className="text-2xl font-bold text-[var(--text-primary)] mb-2">
-                    09278422964
+                    08750838486
                   </p>
                 </div>
               </a>

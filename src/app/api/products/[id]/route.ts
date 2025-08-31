@@ -9,13 +9,10 @@ export async function GET(
 ) {
   try {
     const params = await context.params; // Await the params
-    console.log("Connecting to database...");
     await dbConnect();
-    console.log("Connected to database. Params: ", params);
 
     // Validate the product ID
     if (!mongoose.Types.ObjectId.isValid(params.id)) {
-      console.log("Invalid product ID: ", params.id);
       return NextResponse.json(
         { success: false, error: "Invalid product ID" },
         { status: 400 }

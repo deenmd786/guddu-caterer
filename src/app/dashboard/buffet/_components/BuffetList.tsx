@@ -11,17 +11,16 @@ const BuffetList = () => {
   const [buffets, setBuffets] = useState<IBuffetData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedPeople, setSelectedPeople] = useState<number>(50);
-  const [selectedQuality, setSelectedQuality] = useState<string>("standard");
+  // const [selectedPeople, setSelectedPeople] = useState<number>(50);
+  // const [selectedQuality, setSelectedQuality] = useState<string>("standard");
 
   const { category } = useParams<{ category: string }>();  
 
-  // Static quality pricing structure
-  const qualityPricing: Record<string, number> = {
-    medium: 10,
-    standard: 0,
-    premium: -10,
-  };
+  // const qualityPricing: Record<string, number> = {
+  //   medium: 10,
+  //   standard: 0,
+  //   premium: -10,
+  // };
 
   useEffect(() => {
     const fetchBuffets = async () => {
@@ -50,13 +49,13 @@ const BuffetList = () => {
     
   }, [category]);
 
-  const handlePeopleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedPeople(Number(event.target.value));
-  };
+  // const handlePeopleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setSelectedPeople(Number(event.target.value));
+  // };
 
-  const handleQualityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedQuality(event.target.value);
-  };
+  // const handleQualityChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setSelectedQuality(event.target.value);
+  // };
 
   if (loading) {
     return (
@@ -78,7 +77,7 @@ const BuffetList = () => {
     {/* Filters Row */}
     <div className="flex justify-between items-center gap-4 mb-3">
       {/* Quality Selection */}
-      <div className="w-full sm:w-1/2 md:w-1/3">
+      {/* <div className="w-full sm:w-1/2 md:w-1/3">
         <label htmlFor="quality-select" className="block text-sm md:text-base font-semibold text-gray-700 mb-1">
           Select Quality:
         </label>
@@ -99,10 +98,10 @@ const BuffetList = () => {
             ▼
           </span>
         </div>
-      </div>
+      </div> */}
 
       {/* People Selection */}
-      <div className="w-full sm:w-1/2 md:w-1/3">
+      {/* <div className="w-full sm:w-1/2 md:w-1/3">
         <label htmlFor="people-select" className="block text-sm md:text-base font-semibold text-gray-700 mb-1">
           Select Guests:
         </label>
@@ -123,16 +122,16 @@ const BuffetList = () => {
             ▼
           </span>
         </div>
-      </div>
+      </div> */}
     </div>
     {/* Buffet Cards */}
     <div className="grid pb-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-h-[80vh] overflow-y-auto">
       {buffets.map((buffet) => (
         <BuffetSection
           key={buffet._id}
-          selectedPeople={selectedPeople}
+          // selectedPeople={selectedPeople}
           initialData={buffet}
-          selectedQualityPercent={qualityPricing[selectedQuality]}
+          // selectedQualityPercent={qualityPricing[selectedQuality]}
         />
       ))}
     </div>
