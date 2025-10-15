@@ -67,12 +67,6 @@ const linksData = {
       imageUrl: "/assets/services/small-party.jpg",
       description: "Perfect catering solutions for small parties, family gatherings, and intimate events in Delhi."
     },
-    {
-      href: "/services/home-food-catering",
-      label: "Home Food Catering for Small Events in Delhi",
-      imageUrl: "/assets/services/house-party.webp",
-      description: "Delightful catering services for home events, featuring homemade-style food and customizable menus."
-    }
   ],
   
   
