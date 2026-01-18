@@ -13,7 +13,7 @@ import ShimmerPlaceholder from "../reuseable/ShimmerPlaceholder";
 
 const MenuSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(
-    productCategory[0]
+    productCategory[2]
   );
   const [selectedSubcategory, setSelectedSubcategory] =
     useState<SubCategory | null>(null);
